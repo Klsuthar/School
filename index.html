@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -8,6 +9,7 @@
     <link rel="stylesheet" href="style.css">
     <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
 </head>
+
 <body>
     <div class="dashboard-layout">
         <!-- ===== SIDEBAR ===== -->
@@ -31,14 +33,14 @@
                     <!-- Toppers will be injected here -->
                 </ul>
             </div>
-            
+
             <div class="sidebar-section">
                 <label for="student-selector">Select Student</label>
                 <select id="student-selector" disabled>
                     <option value="">-- Choose a Student --</option>
                 </select>
             </div>
-            
+
             <div class="sidebar-section">
                 <label for="student-id-input">Find by ID</label>
                 <div class="search-container">
@@ -58,7 +60,7 @@
             <div id="student-content-area" class="hidden">
                 <!-- Student Details Header -->
                 <div id="student-details-header" class="card"></div>
-                
+
                 <!-- NAYA: Tab Navigation -->
                 <nav class="tabs">
                     <button class="tab-link active" data-tab="overview">Overview</button>
@@ -95,5 +97,7 @@
     </div>
 
     <script src="script.js"></script>
+    <script src="topper.js"></script>
 </body>
+
 </html>

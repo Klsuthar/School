@@ -21,22 +21,18 @@ document.addEventListener('DOMContentLoaded', () => {
 
     // --- INITIALIZATION ---
     async function initialize() {
-        // Setup Chart.js global defaults for dark theme
         Chart.defaults.color = '#a9b1d6';
         Chart.defaults.borderColor = '#3b4261';
-        await loadClasses(); // <-- Yahan call ho raha tha
+        await loadClasses();
     }
     
-    // YAH FUNCTION MISSING THA
     async function loadClasses() {
         try {
             const response = await fetch('classes.json');
             allClassInfo = await response.json();
             allClassInfo.forEach(cls => {
-                const option = document.createElement('option');
-                option.value = cls.fileName;
-                option.textContent = cls.displayText;
-                classSelector.appendChild(option);
+                const option = new Option(cls.displayText, cls.fileName);
+                classSelector.add(option);
             });
         } catch (error) {
             console.error("Error loading classes:", error);
@@ -44,46 +40,31 @@ document.addEventListener('DOMContentLoaded', () => {
         }
     }
 
-    // --- NEW: TOP PERFORMERS LOGIC ---
-    async function calculateAndDisplayTopPerformers(classFile, studentList) {
+    // --- TOP PERFORMERS LOGIC (Ab yah `topper.js` se function call karega) ---
+    async function displayTopPerformers(classFileName, studentList) {
         topPerformersList.innerHTML = '';
         topPerformersCard.classList.remove('hidden');
         topPerformersLoader.classList.remove('hidden');
-
+        
         try {
             const testsDirectory = await fetch('tests-directory.json').then(res => res.json());
-            const classTests = testsDirectory.filter(test => test.marksFile.startsWith(classFile.split('.')[0].replace('students_', 'marks_')));
+            const classInfo = allClassInfo.find(c => c.fileName === classFileName);
+            if (!classInfo) return;
 
-            if (classTests.length === 0) {
-                topPerformersList.innerHTML = '<li>No test data available for this class.</li>';
-                return;
+            const classTests = testsDirectory.filter(test => test.class === classInfo.displayText);
+
+            // Naye function ko call karein jo topper.js mein hai
+            const topPerformers = await calculateTopPerformers(classTests, studentList);
+
+            if (topPerformers.length > 0) {
+                renderTopPerformers(topPerformers);
+            } else {
+                topPerformersList.innerHTML = '<li>No test data to calculate toppers.</li>';
             }
 
-            const marksPromises = classTests.map(test => fetch(`test_marks/${test.marksFile}`).then(res => res.json()));
-            const allClassMarks = await Promise.all(marksPromises);
-            
-            const studentAverages = studentList.map(student => {
-                let totalObtained = 0, totalMax = 0;
-                allClassMarks.forEach(test => {
-                    const result = test.results.find(r => r.studentId === student.student_id);
-                    if (result) {
-                        totalObtained += Object.values(result.scores).reduce((a, b) => a + b, 0);
-                        const subjectsInTest = test.testInfo.subjects;
-                        subjectsInTest.forEach((subj, i) => {
-                            totalMax += test.testInfo.maxmarks[i];
-                        });
-                    }
-                });
-                const percentage = totalMax > 0 ? (totalObtained / totalMax * 100) : 0;
-                return { name: student.name, percentage: percentage.toFixed(2) };
-            });
-
-            const topPerformers = studentAverages.sort((a, b) => b.percentage - a.percentage).slice(0, 3);
-            renderTopPerformers(topPerformers);
-
         } catch (error) {
-            console.error("Error calculating top performers:", error);
-            topPerformersList.innerHTML = '<li>Could not load data.</li>';
+            console.error("Error displaying top performers:", error);
+            topPerformersList.innerHTML = '<li>Could not load topper data.</li>';
         } finally {
             topPerformersLoader.classList.add('hidden');
         }
@@ -101,12 +82,11 @@ document.addEventListener('DOMContentLoaded', () => {
         `).join('');
     }
 
-    // --- DATA LOADING & PROCESSING (Existing logic, adapted for new UI) ---
+    // --- DATA LOADING & PROCESSING ---
     async function handleStudentSelection(studentId, studentClass) {
         if (!studentId || !studentClass) return;
         studentContentArea.classList.remove('hidden');
         welcomeMessage.classList.add('hidden');
-        // Reset and show loader can be added here
         
         try {
             const testsDirectory = await fetch('tests-directory.json').then(res => res.json());
@@ -139,7 +119,7 @@ document.addEventListener('DOMContentLoaded', () => {
     
     function renderFilteredPerformance(filterType) {
         const filteredData = filterType === "All Tests" ? studentPerformanceData : studentPerformanceData.filter(test => test.testType === filterType);
-        if (filteredData.length === 0) { /* handle no filtered data */ return; }
+        if (filteredData.length === 0) { return; }
         renderPerformanceReports(filteredData);
         renderProgressChart(filteredData);
         renderSubjectChart(filteredData);
@@ -173,7 +153,7 @@ document.addEventListener('DOMContentLoaded', () => {
                 </table>`;
     }
 
-    // --- CHART RENDERING (New Grouped Chart Logic) ---
+    // --- CHART RENDERING ---
     function renderSubjectChart(performanceData) {
         if (subjectChartInstance) subjectChartInstance.destroy();
         const ctx = document.getElementById('subject-chart').getContext('2d');
@@ -223,10 +203,8 @@ document.addEventListener('DOMContentLoaded', () => {
         const testTypes = [...new Set(performanceData.map(test => test.testType))];
         testTypeFilter.innerHTML = `<option value="All Tests">All Tests</option>`;
         testTypes.forEach(type => {
-            const option = document.createElement('option');
-            option.value = type;
-            option.textContent = type;
-            testTypeFilter.appendChild(option);
+            const option = new Option(type, type);
+            testTypeFilter.add(option);
         });
     }
 
@@ -245,13 +223,11 @@ document.addEventListener('DOMContentLoaded', () => {
         currentStudentsData = await response.json();
         studentSelector.innerHTML = '<option value="">-- Choose a Student --</option>';
         currentStudentsData.forEach(student => {
-            const option = document.createElement('option');
-            option.value = student.student_id;
-            option.textContent = student.name;
-            studentSelector.appendChild(option);
+            const option = new Option(student.name, student.student_id);
+            studentSelector.add(option);
         });
         studentSelector.disabled = false;
-        await calculateAndDisplayTopPerformers(classFile, currentStudentsData);
+        await displayTopPerformers(classFile, currentStudentsData);
     }
     
     // --- EVENT LISTENERS ---
@@ -259,9 +235,10 @@ document.addEventListener('DOMContentLoaded', () => {
         tab.addEventListener('click', () => {
             tabs.forEach(item => item.classList.remove('active'));
             tab.classList.add('active');
-            const target = document.getElementById(tab.dataset.tab);
-            tabContents.forEach(content => content.classList.remove('active'));
-            target.classList.add('active');
+            document.getElementById(tab.dataset.tab).classList.add('active');
+            tabContents.forEach(content => {
+                if (content.id !== tab.dataset.tab) content.classList.remove('active');
+            });
         });
     });
 
@@ -269,8 +246,9 @@ document.addEventListener('DOMContentLoaded', () => {
         const classFile = event.target.value;
         studentContentArea.classList.add('hidden');
         welcomeMessage.classList.remove('hidden');
+        studentSelector.innerHTML = '<option value="">-- Choose a Student --</option>';
+        studentSelector.disabled = true;
         if (!classFile) {
-            studentSelector.disabled = true;
             topPerformersCard.classList.add('hidden');
             return;
         }
@@ -296,10 +274,14 @@ document.addEventListener('DOMContentLoaded', () => {
         if (!studentId) return;
         const classInfo = allClassInfo.find(cls => studentId.startsWith(cls.idPrefix));
         if (!classInfo) { alert("Invalid Student ID format."); return; }
-        await loadStudentList(classInfo.fileName);
+        
+        if(classSelector.value !== classInfo.fileName){
+            await loadStudentList(classInfo.fileName);
+            classSelector.value = classInfo.fileName;
+        }
+
         const student = currentStudentsData.find(s => s.student_id === studentId);
         if (student) {
-            classSelector.value = classInfo.fileName;
             studentSelector.value = student.student_id;
             studentSelector.dispatchEvent(new Event('change'));
         } else { alert("Student not found."); }
@@ -307,6 +289,5 @@ document.addEventListener('DOMContentLoaded', () => {
 
     studentIdInput.addEventListener('keypress', (e) => e.key === 'Enter' && findBtn.click());
 
-    // Start the application
     initialize();
 });
