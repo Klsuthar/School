@@ -8,19 +8,19 @@
     {
       "studentId": "10A01",
       "scores": {
-        "Hindi": 44, "English": 46, "Social Science": 41, "Science": 45, "Sanskrit": 47, "Math": 45
+        "Hindi": 44, "English": 25, "Social Science": 41, "Science": 45, "Sanskrit": 47, "Math": 45
       }
     },
     {
       "studentId": "10A02",
       "scores": {
-        "Hindi": 36, "English": 39, "Social Science": 34, "Science": 37, "Sanskrit": 41, "Math": 33
+        "Hindi": 36, "English": 29, "Social Science": 34, "Science": 37, "Sanskrit": 41, "Math": 33
       }
     },
     {
       "studentId": "10A03",
       "scores": {
-        "Hindi": 28, "English": 29, "Social Science": 25, "Science": 28, "Sanskrit": 32, "Math": 24
+        "Hindi": 28, "English": 34, "Social Science": 25, "Science": 28, "Sanskrit": 32, "Math": 24
       }
     },
     {
