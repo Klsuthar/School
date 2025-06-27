@@ -22,5 +22,13 @@
     "testName": "July Weekly Test 1",
     "date": "2024-07-12",
     "marksFile": "marks_9_WT1.json"
+  },
+  {
+    "testId": "10A_MT2",
+    "class": "10th A",
+    "testType": "Weekly Test",
+    "testName": "August Weekly Test 1",
+    "date": "2024-08-12",
+    "marksFile": "marks_10A_MT2.json"
   }
 ]
