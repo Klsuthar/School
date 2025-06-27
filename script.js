@@ -183,11 +183,11 @@ document.addEventListener('DOMContentLoaded', () => {
                 scales: {
                     y: {
                         beginAtZero: true,
-                        suggestedMax: Math.max(...maxscores) // Dynamically set max
+                        suggestedMax: Math.max(...maxscores)
                     }
                 },
                 responsive: true,
-                maintainAspectRatio: false
+                maintainAspectRatio: false // <<<--- BADLAV YAHAN HAI
             }
         });
     }
@@ -223,7 +223,7 @@ document.addEventListener('DOMContentLoaded', () => {
                     }
                 },
                 responsive: true,
-                maintainAspectRatio: false
+                maintainAspectRatio: false // <<<--- BADLAV YAHAN HAI
             }
         });
     }

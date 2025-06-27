@@ -162,6 +162,8 @@ select:disabled {
     padding: 20px;
     border-radius: 8px;
     border: 1px solid var(--border-color);
+    height: 350px; /* <-- YAH LINE ADD KAREIN */
+    position: relative; /* Yah zaroori hai taki canvas sahi se fit ho */
 }
 .chart-container h3 {
     text-align: center;
