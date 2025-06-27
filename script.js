@@ -40,23 +40,22 @@ document.addEventListener('DOMContentLoaded', () => {
         }
     }
 
-    // --- TOP PERFORMERS LOGIC (Ab yah `topper.js` se function call karega) ---
-    async function displayTopPerformers(classFileName, studentList) {
+    // --- TOP PERFORMERS LOGIC (The Fix is Here) ---
+    async function displayTopPerformers(className, studentList) {
         topPerformersList.innerHTML = '';
         topPerformersCard.classList.remove('hidden');
         topPerformersLoader.classList.remove('hidden');
         
         try {
             const testsDirectory = await fetch('tests-directory.json').then(res => res.json());
-            const classInfo = allClassInfo.find(c => c.fileName === classFileName);
-            if (!classInfo) return;
 
-            const classTests = testsDirectory.filter(test => test.class === classInfo.displayText);
+            // THE FIX: Filter using the actual class name (e.g., "10th A")
+            const classTests = testsDirectory.filter(test => test.class === className);
 
-            // Naye function ko call karein jo topper.js mein hai
+            // Call the function from topper.js
             const topPerformers = await calculateTopPerformers(classTests, studentList);
 
-            if (topPerformers.length > 0) {
+            if (topPerformers && topPerformers.length > 0) {
                 renderTopPerformers(topPerformers);
             } else {
                 topPerformersList.innerHTML = '<li>No test data to calculate toppers.</li>';
@@ -91,7 +90,7 @@ document.addEventListener('DOMContentLoaded', () => {
         try {
             const testsDirectory = await fetch('tests-directory.json').then(res => res.json());
             const studentTestsMeta = testsDirectory.filter(test => test.class === studentClass);
-            if (studentTestsMeta.length === 0) { /* handle no tests */ return; }
+            if (studentTestsMeta.length === 0) { return; }
 
             const marksPromises = studentTestsMeta.map(test => fetch(`test_marks/${test.marksFile}`).then(res => res.json()));
             const allMarksData = await Promise.all(marksPromises);
@@ -111,7 +110,7 @@ document.addEventListener('DOMContentLoaded', () => {
                 studentPerformanceData.push({ ...testMeta, scores: studentResult.scores, maxmarks: combinedMaxMarks });
             }
         });
-        if (studentPerformanceData.length === 0) { /* handle no data */ return; }
+        if (studentPerformanceData.length === 0) { return; }
         studentPerformanceData.sort((a, b) => new Date(a.date) - new Date(b.date));
         populateTestFilter(studentPerformanceData);
         renderFilteredPerformance("All Tests");
@@ -227,7 +226,14 @@ document.addEventListener('DOMContentLoaded', () => {
             studentSelector.add(option);
         });
         studentSelector.disabled = false;
-        await displayTopPerformers(classFile, currentStudentsData);
+        
+        // THE FIX: Pass the correct class name to the topper calculation function
+        if (currentStudentsData.length > 0) {
+            const className = currentStudentsData[0].class; // Get "10th A" from student data
+            await displayTopPerformers(className, currentStudentsData);
+        } else {
+            topPerformersCard.classList.add('hidden');
+        }
     }
     
     // --- EVENT LISTENERS ---
