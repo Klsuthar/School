@@ -1,0 +1,196 @@
+{
+  "testInfo": {
+    "testId": "10A_WT1",
+    "subjects": ["Hindi", "English", "Social Science", "Science", "Sanskrit", "Math"],
+    "maxmarks": [20, 20, 20, 20, 20, 20]
+  },
+  "results": [
+    {
+      "studentId": "10A01",
+      "scores": {
+        "Hindi": 18,
+        "English": 17,
+        "Social Science": 19,
+        "Science": 16,
+        "Sanskrit": 20,
+        "Math": 18
+      }
+    },
+    {
+      "studentId": "10A02",
+      "scores": {
+        "Hindi": 15,
+        "English": 16,
+        "Social Science": 14,
+        "Science": 17,
+        "Sanskrit": 18,
+        "Math": 13
+      }
+    },
+    {
+      "studentId": "10A03",
+      "scores": {
+        "Hindi": 12,
+        "English": 14,
+        "Social Science": 11,
+        "Science": 13,
+        "Sanskrit": 15,
+        "Math": 10
+      }
+    },
+    {
+      "studentId": "10A04",
+      "scores": {
+        "Hindi": 19,
+        "English": 18,
+        "Social Science": 17,
+        "Science": 19,
+        "Sanskrit": 18,
+        "Math": 20
+      }
+    },
+    {
+      "studentId": "10A05",
+      "scores": {
+        "Hindi": 16,
+        "English": 15,
+        "Social Science": 18,
+        "Science": 17,
+        "Sanskrit": 16,
+        "Math": 15
+      }
+    },
+    {
+      "studentId": "10A06",
+      "scores": {
+        "Hindi": 14,
+        "English": 17,
+        "Social Science": 15,
+        "Science": 16,
+        "Sanskrit": 17,
+        "Math": 14
+      }
+    },
+    {
+      "studentId": "10A07",
+      "scores": {
+        "Hindi": 17,
+        "English": 18,
+        "Social Science": 16,
+        "Science": 18,
+        "Sanskrit": 19,
+        "Math": 17
+      }
+    },
+    {
+      "studentId": "10A08",
+      "scores": {
+        "Hindi": 11,
+        "English": 13,
+        "Social Science": 12,
+        "Science": 10,
+        "Sanskrit": 14,
+        "Math": 9
+      }
+    },
+    {
+      "studentId": "10A09",
+      "scores": {
+        "Hindi": 18,
+        "English": 16,
+        "Social Science": 19,
+        "Science": 17,
+        "Sanskrit": 18,
+        "Math": 19
+      }
+    },
+    {
+      "studentId": "10A10",
+      "scores": {
+        "Hindi": 16,
+        "English": 15,
+        "Social Science": 16,
+        "Science": 14,
+        "Sanskrit": 17,
+        "Math": 15
+      }
+    },
+    {
+      "studentId": "10A11",
+      "scores": {
+        "Hindi": 20,
+        "English": 19,
+        "Social Science": 18,
+        "Science": 19,
+        "Sanskrit": 20,
+        "Math": 20
+      }
+    },
+    {
+      "studentId": "10A12",
+      "scores": {
+        "Hindi": 13,
+        "English": 14,
+        "Social Science": 15,
+        "Science": 12,
+        "Sanskrit": 16,
+        "Math": 11
+      }
+    },
+    {
+      "studentId": "10A13",
+      "scores": {
+        "Hindi": 17,
+        "English": 16,
+        "Social Science": 15,
+        "Science": 18,
+        "Sanskrit": 17,
+        "Math": 16
+      }
+    },
+    {
+      "studentId": "10A14",
+      "scores": {
+        "Hindi": 18,
+        "English": 19,
+        "Social Science": 17,
+        "Science": 18,
+        "Sanskrit": 19,
+        "Math": 18
+      }
+    },
+    {
+      "studentId": "10A15",
+      "scores": {
+        "Hindi": 15,
+        "English": 14,
+        "Social Science": 16,
+        "Science": 13,
+        "Sanskrit": 17,
+        "Math": 14
+      }
+    },
+    {
+      "studentId": "10A16",
+      "scores": {
+        "Hindi": 16,
+        "English": 17,
+        "Social Science": 18,
+        "Science": 17,
+        "Sanskrit": 18,
+        "Math": 16
+      }
+    },
+    {
+      "studentId": "10A17",
+      "scores": {
+        "Hindi": 19,
+        "English": 18,
+        "Social Science": 20,
+        "Science": 19,
+        "Sanskrit": 19,
+        "Math": 17
+      }
+    }
+  ]
+}

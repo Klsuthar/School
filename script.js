@@ -1,20 +1,30 @@
 document.addEventListener('DOMContentLoaded', () => {
-
+    // DOM Elements
     const classSelector = document.getElementById('class-selector');
     const studentSelector = document.getElementById('student-selector');
-    const studentDetailsCard = document.getElementById('student-details-card');
     const studentIdInput = document.getElementById('student-id-input');
     const findBtn = document.getElementById('find-btn');
+    const studentDetailsCard = document.getElementById('student-details-card');
+    const performanceCard = document.getElementById('student-performance-card');
+    const loader = document.getElementById('loader');
+    const performanceContent = document.getElementById('performance-content');
+    const noDataMessage = document.getElementById('no-data-message');
+    const latestTestReport = document.getElementById('latest-test-report');
 
+    // Global variables to hold data and chart instances
+    let allClassInfo = [];
     let currentStudentsData = [];
-    let allClassInfo = []; // Sabhi classes ki info yahan store hogi
+    let subjectChartInstance, progressChartInstance;
 
-    // Function 1: Sabhi classes ko 'classes.json' se load karna
+    // --- INITIALIZATION ---
+    async function initialize() {
+        await loadClasses();
+    }
+
     async function loadClasses() {
         try {
             const response = await fetch('classes.json');
-            allClassInfo = await response.json(); // Data ko global variable mein save karein
-
+            allClassInfo = await response.json();
             allClassInfo.forEach(cls => {
                 const option = document.createElement('option');
                 option.value = cls.fileName;
@@ -23,116 +33,283 @@ document.addEventListener('DOMContentLoaded', () => {
             });
         } catch (error) {
             console.error("Error loading classes:", error);
-            alert("Could not load class list. Please check classes.json file.");
+            alert("Could not load class list.");
         }
     }
 
-    // Function 2: Chuni hui class ke students ko load karna
-    async function loadStudents(classFile) {
+    // --- STUDENT SELECTION & DATA LOADING ---
+    async function handleStudentSelection(studentId, studentClass) {
+        if (!studentId || !studentClass) return;
+
+        // Reset UI
+        performanceCard.classList.remove('hidden');
+        performanceContent.classList.add('hidden');
+        noDataMessage.classList.add('hidden');
+        loader.classList.remove('hidden');
+
+        try {
+            const testsDirectory = await fetch('tests-directory.json').then(res => res.json());
+            const studentTests = testsDirectory.filter(test => test.class === studentClass);
+
+            if (studentTests.length === 0) {
+                noDataMessage.classList.remove('hidden');
+                return;
+            }
+
+            const marksPromises = studentTests.map(test => fetch(`test_marks/${test.marksFile}`).then(res => res.json()));
+            const allMarksData = await Promise.all(marksPromises);
+
+            processAndDisplayPerformance(studentId, studentTests, allMarksData);
+            
+        } catch (error) {
+            console.error("Error loading performance data:", error);
+            noDataMessage.textContent = "Error loading performance data.";
+            noDataMessage.classList.remove('hidden');
+        } finally {
+            loader.classList.add('hidden');
+        }
+    }
+
+    // --- DATA PROCESSING & DISPLAY ---
+    function processAndDisplayPerformance(studentId, studentTests, allMarksData) {
+        let studentPerformance = [];
+
+        allMarksData.forEach((marksData, index) => {
+            const studentResult = marksData.results.find(res => res.studentId === studentId);
+            if (studentResult) {
+                const testMeta = studentTests[index];
+                const testInfo = marksData.testInfo;
+                
+                let combinedMaxMarks = {};
+                testInfo.subjects.forEach((subj, i) => {
+                    combinedMaxMarks[subj] = testInfo.maxmarks[i];
+                });
+
+                studentPerformance.push({
+                    ...testMeta,
+                    scores: studentResult.scores,
+                    maxmarks: combinedMaxMarks
+                });
+            }
+        });
+
+        if (studentPerformance.length === 0) {
+            noDataMessage.classList.remove('hidden');
+            return;
+        }
+
+        // Sort tests by date, oldest to newest
+        studentPerformance.sort((a, b) => new Date(a.date) - new Date(b.date));
+        
+        const latestTest = studentPerformance[studentPerformance.length - 1];
+        
+        displayLatestTest(latestTest);
+        renderSubjectChart(latestTest);
+        renderProgressChart(studentPerformance);
+        
+        performanceContent.classList.remove('hidden');
+    }
+
+    function displayLatestTest(latestTest) {
+        const subjects = Object.keys(latestTest.scores);
+        let totalObtained = 0;
+        let totalMax = 0;
+
+        let tableRows = subjects.map(subject => {
+            const obtained = latestTest.scores[subject];
+            const max = latestTest.maxmarks[subject];
+            const percentage = (obtained / max * 100).toFixed(2);
+            totalObtained += obtained;
+            totalMax += max;
+
+            return `
+                <tr>
+                    <td>${subject}</td>
+                    <td>${obtained}</td>
+                    <td>${max}</td>
+                    <td class="percentage ${getPercentageClass(percentage)}">${percentage}%</td>
+                </tr>
+            `;
+        }).join('');
+
+        const overallPercentage = (totalObtained / totalMax * 100).toFixed(2);
+
+        latestTestReport.innerHTML = `
+            <h3>${latestTest.testName} (${new Date(latestTest.date).toLocaleDateString()})</h3>
+            <table class="marks-table">
+                <thead>
+                    <tr>
+                        <th>Subject</th>
+                        <th>Marks Obtained</th>
+                        <th>Max Marks</th>
+                        <th>Percentage</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    ${tableRows}
+                    <tr>
+                        <th>Overall</th>
+                        <th>${totalObtained}</th>
+                        <th>${totalMax}</th>
+                        <th class="percentage ${getPercentageClass(overallPercentage)}">${overallPercentage}%</th>
+                    </tr>
+                </tbody>
+            </table>
+        `;
+    }
+
+    // --- CHART RENDERING ---
+    function renderSubjectChart(latestTest) {
+        if (subjectChartInstance) subjectChartInstance.destroy();
+        
+        const ctx = document.getElementById('subject-chart').getContext('2d');
+        const subjects = Object.keys(latestTest.scores);
+        const scores = subjects.map(s => latestTest.scores[s]);
+        const maxscores = subjects.map(s => latestTest.maxmarks[s]);
+
+        subjectChartInstance = new Chart(ctx, {
+            type: 'bar',
+            data: {
+                labels: subjects,
+                datasets: [{
+                    label: 'Marks Obtained',
+                    data: scores,
+                    backgroundColor: 'rgba(74, 144, 226, 0.6)',
+                    borderColor: 'rgba(74, 144, 226, 1)',
+                    borderWidth: 1
+                }]
+            },
+            options: {
+                scales: {
+                    y: {
+                        beginAtZero: true,
+                        suggestedMax: Math.max(...maxscores) // Dynamically set max
+                    }
+                },
+                responsive: true,
+                maintainAspectRatio: false
+            }
+        });
+    }
+
+    function renderProgressChart(performanceData) {
+        if (progressChartInstance) progressChartInstance.destroy();
+
+        const ctx = document.getElementById('progress-chart').getContext('2d');
+        const labels = performanceData.map(test => `${test.testName}`);
+        const percentages = performanceData.map(test => {
+            const totalObtained = Object.values(test.scores).reduce((a, b) => a + b, 0);
+            const totalMax = Object.values(test.maxmarks).reduce((a, b) => a + b, 0);
+            return (totalObtained / totalMax * 100).toFixed(2);
+        });
+
+        progressChartInstance = new Chart(ctx, {
+            type: 'line',
+            data: {
+                labels: labels,
+                datasets: [{
+                    label: 'Overall Performance (%)',
+                    data: percentages,
+                    fill: false,
+                    borderColor: '#28a745',
+                    tension: 0.1
+                }]
+            },
+            options: {
+                scales: {
+                    y: {
+                        beginAtZero: true,
+                        max: 100
+                    }
+                },
+                responsive: true,
+                maintainAspectRatio: false
+            }
+        });
+    }
+
+    // --- UI HELPERS ---
+    function getPercentageClass(percentage) {
+        if (percentage >= 75) return 'percentage-good';
+        if (percentage >= 50) return 'percentage-ok';
+        return 'percentage-bad';
+    }
+
+    function displayStudentDetails(student) {
+        studentDetailsCard.innerHTML = `
+            <div class="detail-item"><strong>Student Name:</strong><span>${student.name}</span></div>
+            <div class="detail-item"><strong>Student ID:</strong><span>${student.student_id}</span></div>
+            <div class="detail-item"><strong>Class:</strong><span>${student.class}</span></div>
+            <div class="detail-item"><strong>Father's Name:</strong><span>${student.parents.father_name}</span></div>
+            <div class="detail-item"><strong>Mother's Name:</strong><span>${student.parents.mother_name}</span></div>
+            <div class="detail-item"><strong>Contact:</strong><span>${student.contact.phone}</span></div>
+        `;
+        studentDetailsCard.classList.remove('hidden');
+    }
+
+    async function loadStudentList(classFile) {
         if (!classFile) {
             studentSelector.innerHTML = '<option value="">-- Choose a Student --</option>';
             studentSelector.disabled = true;
-            studentDetailsCard.classList.add('hidden');
             return;
         }
-
-        try {
-            const response = await fetch(classFile);
-            currentStudentsData = await response.json();
-            
-            studentSelector.innerHTML = '<option value="">-- Choose a Student --</option>';
-            currentStudentsData.forEach(student => {
-                const option = document.createElement('option');
-                option.value = student.student_id;
-                option.textContent = student.name;
-                studentSelector.appendChild(option);
-            });
-
-            studentSelector.disabled = false;
-        } catch (error) {
-            console.error(`Error loading students from ${classFile}:`, error);
-            alert(`Could not load student data for this class.`);
-        }
+        const response = await fetch(classFile);
+        currentStudentsData = await response.json();
+        studentSelector.innerHTML = '<option value="">-- Choose a Student --</option>';
+        currentStudentsData.forEach(student => {
+            const option = document.createElement('option');
+            option.value = student.student_id;
+            option.textContent = student.name;
+            studentSelector.appendChild(option);
+        });
+        studentSelector.disabled = false;
     }
 
-    // Function 3: Student ki details card mein dikhana
-    function displayStudentDetails(studentId) {
-        if (!studentId) {
-            studentDetailsCard.classList.add('hidden');
-            return;
-        }
-
-        const student = currentStudentsData.find(s => s.student_id === studentId);
-        
-        if (student) {
-            studentDetailsCard.innerHTML = `
-                <h2>${student.name}</h2>
-                <div class="detail-item"><strong>Student ID:</strong><span>${student.student_id}</span></div>
-                <div class="detail-item"><strong>Class:</strong><span>${student.class}</span></div>
-                <div class="detail-item"><strong>Father's Name:</strong><span>${student.parents.father_name}</span></div>
-                <div class="detail-item"><strong>Mother's Name:</strong><span>${student.parents.mother_name}</span></div>
-                <div class="detail-item"><strong>Contact:</strong><span>${student.contact.phone}</span></div>
-            `;
-            studentDetailsCard.classList.remove('hidden');
-        } else {
-             studentDetailsCard.classList.add('hidden');
-        }
-    }
-
-    // NAYA FUNCTION: ID se student ko dhundhna
-    async function findStudentById() {
-        const studentId = studentIdInput.value.trim();
-        if (!studentId) {
-            alert("Please enter a Student ID.");
-            return;
-        }
-
-        // 1. ID ke prefix se class file ka pata lagao
-        const classInfo = allClassInfo.find(cls => studentId.startsWith(cls.idPrefix));
-
-        if (!classInfo) {
-            alert("Invalid Student ID format or class not found.");
-            return;
-        }
-
-        // 2. Us class ke students ka data load karo
-        await loadStudents(classInfo.fileName);
-
-        // 3. Student ko dhundho aur details dikhao
-        const student = currentStudentsData.find(s => s.student_id === studentId);
-
-        if (student) {
-            // Dropdowns ko bhi update kar do
-            classSelector.value = classInfo.fileName;
-            studentSelector.value = student.student_id;
-            displayStudentDetails(student.student_id);
-        } else {
-            alert(`Student with ID "${studentId}" not found in ${classInfo.displayText}.`);
-            studentDetailsCard.classList.add('hidden');
-        }
-    }
-
-    // Event Listeners
-    classSelector.addEventListener('change', (event) => {
-        studentIdInput.value = ""; // Search box khali kar do
+    // --- EVENT LISTENERS ---
+    classSelector.addEventListener('change', async (event) => {
+        studentIdInput.value = "";
         studentDetailsCard.classList.add('hidden');
-        loadStudents(event.target.value);
+        performanceCard.classList.add('hidden');
+        await loadStudentList(event.target.value);
     });
 
     studentSelector.addEventListener('change', (event) => {
-        studentIdInput.value = ""; // Search box khali kar do
-        displayStudentDetails(event.target.value);
+        const studentId = event.target.value;
+        if (!studentId) {
+            studentDetailsCard.classList.add('hidden');
+            performanceCard.classList.add('hidden');
+            return;
+        }
+        const student = currentStudentsData.find(s => s.student_id === studentId);
+        displayStudentDetails(student);
+        handleStudentSelection(student.student_id, student.class);
     });
 
-    // NAYE Event Listeners
-    findBtn.addEventListener('click', findStudentById);
+    findBtn.addEventListener('click', async () => {
+        const studentId = studentIdInput.value.trim();
+        if (!studentId) return;
 
-    studentIdInput.addEventListener('keypress', (event) => {
-        if (event.key === 'Enter') {
-            findStudentById();
+        const classInfo = allClassInfo.find(cls => studentId.startsWith(cls.idPrefix));
+        if (!classInfo) {
+            alert("Invalid Student ID format.");
+            return;
+        }
+
+        await loadStudentList(classInfo.fileName);
+        const student = currentStudentsData.find(s => s.student_id === studentId);
+
+        if (student) {
+            classSelector.value = classInfo.fileName;
+            studentSelector.value = student.student_id;
+            displayStudentDetails(student);
+            handleStudentSelection(student.student_id, student.class);
+        } else {
+            alert("Student not found.");
         }
     });
 
-    // Page load hote hi classes ko load karein
-    loadClasses();
+    studentIdInput.addEventListener('keypress', (e) => e.key === 'Enter' && findBtn.click());
+
+    // Start the application
+    initialize();
 });

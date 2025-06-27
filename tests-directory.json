@@ -1,0 +1,26 @@
+[
+  {
+    "testId": "10A_WT1",
+    "class": "10th A",
+    "testType": "Weekly Test",
+    "testName": "July Weekly Test 1",
+    "date": "2024-07-10",
+    "marksFile": "marks_10A_WT1.json"
+  },
+  {
+    "testId": "10A_MT1",
+    "class": "10th A",
+    "testType": "Monthly Test",
+    "testName": "July Monthly Test",
+    "date": "2024-07-25",
+    "marksFile": "marks_10A_MT1.json"
+  },
+  {
+    "testId": "9_WT1",
+    "class": "9th",
+    "testType": "Weekly Test",
+    "testName": "July Weekly Test 1",
+    "date": "2024-07-12",
+    "marksFile": "marks_9_WT1.json"
+  }
+]

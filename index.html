@@ -3,41 +3,71 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Student Dashboard</title>
+    <title>Student Performance Dashboard</title>
+    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;500;700&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="style.css">
+    <!-- Chart.js Library -->
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
 </head>
 <body>
 
     <div class="dashboard-container">
-        <h1>School Dashboard</h1>
+        <header>
+            <h1>Student Performance Dashboard</h1>
+        </header>
         
-        <div class="controls">
-            <!-- Class ka dropdown -->
-            <div class="control-group">
-                <label for="class-selector">Select Class:</label>
-                <select id="class-selector">
-                    <option value="">-- Choose a Class --</option>
-                </select>
+        <div class="card">
+            <div class="controls">
+                <div class="control-group">
+                    <label for="class-selector">Select Class:</label>
+                    <select id="class-selector">
+                        <option value="">-- Choose a Class --</option>
+                    </select>
+                </div>
+                <div class="control-group">
+                    <label for="student-selector">Select Student:</label>
+                    <select id="student-selector" disabled>
+                        <option value="">-- Choose a Student --</option>
+                    </select>
+                </div>
             </div>
-
-            <!-- Student ka dropdown -->
-            <div class="control-group">
-                <label for="student-selector">Select Student:</label>
-                <select id="student-selector" disabled>
-                    <option value="">-- Choose a Student --</option>
-                </select>
+            <div class="search-container">
+                <input type="text" id="student-id-input" placeholder="Or Enter Student ID to find...">
+                <button id="find-btn">Find</button>
             </div>
         </div>
 
-        <!-- Naya Search Box -->
-        <div class="search-container">
-            <input type="text" id="student-id-input" placeholder="Or Enter Student ID...">
-            <button id="find-btn">Find Student</button>
-        </div>
+        <!-- Student Details Card -->
+        <div id="student-details-card" class="card hidden"></div>
 
-        <!-- Student ki details yahan dikhegi -->
-        <div id="student-details-card" class="card hidden">
-            <!-- Data JS se aayega -->
+        <!-- Performance Report Card -->
+        <div id="student-performance-card" class="card hidden">
+            <h2>Performance Report</h2>
+            
+            <!-- Loader -->
+            <div id="loader" class="hidden">Loading Performance Data...</div>
+
+            <!-- Performance content -->
+            <div id="performance-content" class="hidden">
+                <div id="latest-test-report">
+                    <!-- Latest test table will be injected here -->
+                </div>
+                <div class="charts-grid">
+                    <div class="chart-container">
+                        <h3>Subject Performance (Latest Test)</h3>
+                        <canvas id="subject-chart"></canvas>
+                    </div>
+                    <div class="chart-container">
+                        <h3>Overall Progress (%)</h3>
+                        <canvas id="progress-chart"></canvas>
+                    </div>
+                </div>
+            </div>
+
+             <!-- No data message -->
+             <div id="no-data-message" class="hidden">
+                <p>No performance data available for this student yet.</p>
+            </div>
         </div>
 
     </div>
