@@ -15,7 +15,7 @@ document.addEventListener('DOMContentLoaded', () => {
     // Global variables
     let allClassInfo = [];
     let currentStudentsData = [];
-    let studentPerformanceData = []; // Store all performance data for a student
+    let studentPerformanceData = [];
     let subjectChartInstance, progressChartInstance;
 
     // --- INITIALIZATION ---
@@ -67,7 +67,7 @@ document.addEventListener('DOMContentLoaded', () => {
 
     // --- DATA PROCESSING & DISPLAY ---
     function processAndStorePerformanceData(studentId, studentTestsMeta, allMarksData) {
-        studentPerformanceData = []; // Clear previous student's data
+        studentPerformanceData = [];
 
         allMarksData.forEach((marksData, index) => {
             const studentResult = marksData.results.find(res => res.studentId === studentId);
@@ -90,7 +90,7 @@ document.addEventListener('DOMContentLoaded', () => {
         studentPerformanceData.sort((a, b) => new Date(a.date) - new Date(b.date));
         
         populateTestFilter(studentPerformanceData);
-        renderFilteredPerformance("All Tests"); // Show all tests by default
+        renderFilteredPerformance("All Tests");
         
         performanceContent.classList.remove('hidden');
     }
@@ -109,11 +109,11 @@ document.addEventListener('DOMContentLoaded', () => {
 
         renderPerformanceReports(filteredData);
         renderProgressChart(filteredData);
-        renderSubjectChart(filteredData[filteredData.length - 1]); // Chart for the latest test in the filtered group
+        renderSubjectChart(filteredData); // BADLAV: Poora filtered data bhejenge
     }
 
     function renderPerformanceReports(testData) {
-        testReportsContainer.innerHTML = ''; // Clear previous reports
+        testReportsContainer.innerHTML = '';
         testData.forEach(test => {
             const reportBlock = document.createElement('div');
             reportBlock.className = 'test-report-block';
@@ -124,19 +124,18 @@ document.addEventListener('DOMContentLoaded', () => {
 
     function generateReportTableHTML(test) {
         const subjects = Object.keys(test.scores);
-        let totalObtained = 0;
-        let totalMax = 0;
+        let totalObtained = 0, totalMax = 0;
 
         let tableRows = subjects.map(subject => {
-            const obtained = test.scores[subject];
-            const max = test.maxmarks[subject];
-            const percentage = (obtained / max * 100).toFixed(1);
+            const obtained = test.scores[subject] || 0;
+            const max = test.maxmarks[subject] || 0;
+            const percentage = max > 0 ? (obtained / max * 100).toFixed(1) : 0;
             totalObtained += obtained;
             totalMax += max;
             return `<tr><td>${subject}</td><td>${obtained}</td><td>${max}</td><td class="percentage ${getPercentageClass(percentage)}">${percentage}%</td></tr>`;
         }).join('');
 
-        const overallPercentage = (totalObtained / totalMax * 100).toFixed(1);
+        const overallPercentage = totalMax > 0 ? (totalObtained / totalMax * 100).toFixed(1) : 0;
 
         return `
             <h3>${test.testName} (${new Date(test.date).toLocaleDateString()})</h3>
@@ -151,27 +150,42 @@ document.addEventListener('DOMContentLoaded', () => {
     }
 
     // --- CHART RENDERING ---
-    function renderSubjectChart(latestTest) {
+    // NAYA: Grouped Bar Chart ka poora logic
+    function renderSubjectChart(performanceData) {
         if (subjectChartInstance) subjectChartInstance.destroy();
         
         const ctx = document.getElementById('subject-chart').getContext('2d');
-        const subjects = Object.keys(latestTest.scores);
-        const scores = subjects.map(s => latestTest.scores[s]);
+        
+        // 1. Sabhi unique subjects ki list banayein
+        const subjects = [...new Set(performanceData.flatMap(test => Object.keys(test.scores)))];
+        
+        // 2. Har test ke liye alag dataset banayein
+        const chartColors = ['rgba(74, 144, 226, 0.7)', 'rgba(245, 166, 35, 0.7)', 'rgba(126, 211, 33, 0.7)', 'rgba(208, 2, 27, 0.7)', 'rgba(189, 16, 224, 0.7)', 'rgba(80, 227, 194, 0.7)'];
+        const datasets = performanceData.map((test, index) => {
+            return {
+                label: test.testName,
+                data: subjects.map(subject => {
+                    const score = test.scores[subject] || 0;
+                    const max = test.maxmarks[subject] || 0;
+                    // Hum percentage dikha rahe hain taaki comparison aasan ho
+                    return max > 0 ? (score / max * 100).toFixed(1) : 0;
+                }),
+                backgroundColor: chartColors[index % chartColors.length]
+            };
+        });
 
         subjectChartInstance = new Chart(ctx, {
             type: 'bar',
             data: {
-                labels: subjects,
-                datasets: [{
-                    label: 'Marks Obtained',
-                    data: scores,
-                    backgroundColor: 'rgba(74, 144, 226, 0.6)',
-                    borderColor: 'rgba(74, 144, 226, 1)',
-                    borderWidth: 1
-                }]
+                labels: subjects, // X-axis par subjects
+                datasets: datasets // Har test ek alag bar group
             },
             options: {
-                scales: { y: { beginAtZero: true } },
+                plugins: {
+                    title: { display: true, text: 'Subject Performance (in %)' },
+                    tooltip: { callbacks: { label: (context) => `${context.dataset.label}: ${context.formattedValue}%` } }
+                },
+                scales: { y: { beginAtZero: true, max: 100, title: { display: true, text: 'Percentage (%)' } } },
                 responsive: true,
                 maintainAspectRatio: false
             }
@@ -186,7 +200,7 @@ document.addEventListener('DOMContentLoaded', () => {
         const percentages = performanceData.map(test => {
             const totalObtained = Object.values(test.scores).reduce((a, b) => a + b, 0);
             const totalMax = Object.values(test.maxmarks).reduce((a, b) => a + b, 0);
-            return (totalObtained / totalMax * 100).toFixed(1);
+            return totalMax > 0 ? (totalObtained / totalMax * 100).toFixed(1) : 0;
         });
 
         progressChartInstance = new Chart(ctx, {
