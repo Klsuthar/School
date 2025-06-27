@@ -1,0 +1,302 @@
+[
+  {
+    "student_id": "901",
+    "name": "Aditya Kumar",
+    "class": "9th",
+    "parents": {
+      "father_name": "Sanjay Kumar",
+      "mother_name": "Poonam Kumar"
+    },
+    "contact": {
+      "phone": "9112233401"
+    }
+  },
+  {
+    "student_id": "902",
+    "name": "Meera Sharma",
+    "class": "9th",
+    "parents": {
+      "father_name": "Suresh Sharma",
+      "mother_name": "Anita Sharma"
+    },
+    "contact": {
+      "phone": "9112233402"
+    }
+  },
+  {
+    "student_id": "903",
+    "name": "Sameer Singh",
+    "class": "9th",
+    "parents": {
+      "father_name": "Rakesh Singh",
+      "mother_name": "Meena Singh"
+    },
+    "contact": {
+      "phone": "9112233403"
+    }
+  },
+  {
+    "student_id": "904",
+    "name": "Khushi Gupta",
+    "class": "9th",
+    "parents": {
+      "father_name": "Rajesh Gupta",
+      "mother_name": "Sunita Gupta"
+    },
+    "contact": {
+      "phone": "9112233404"
+    }
+  },
+  {
+    "student_id": "905",
+    "name": "Dev Verma",
+    "class": "9th",
+    "parents": {
+      "father_name": "Anil Verma",
+      "mother_name": "Geeta Verma"
+    },
+    "contact": {
+      "phone": "9112233405"
+    }
+  },
+  {
+    "student_id": "906",
+    "name": "Jiya Patel",
+    "class": "9th",
+    "parents": {
+      "father_name": "Manoj Patel",
+      "mother_name": "Kiran Patel"
+    },
+    "contact": {
+      "phone": "9112233406"
+    }
+  },
+  {
+    "student_id": "907",
+    "name": "Yash Joshi",
+    "class": "9th",
+    "parents": {
+      "father_name": "Girish Joshi",
+      "mother_name": "Hema Joshi"
+    },
+    "contact": {
+      "phone": "9112233407"
+    }
+  },
+  {
+    "student_id": "908",
+    "name": "Nisha Reddy",
+    "class": "9th",
+    "parents": {
+      "father_name": "Vijay Reddy",
+      "mother_name": "Lakshmi Reddy"
+    },
+    "contact": {
+      "phone": "9112233408"
+    }
+  },
+  {
+    "student_id": "909",
+    "name": "Rahul Jain",
+    "class": "9th",
+    "parents": {
+      "father_name": "Ashok Jain",
+      "mother_name": "Rekha Jain"
+    },
+    "contact": {
+      "phone": "9112233409"
+    }
+  },
+  {
+    "student_id": "910",
+    "name": "Anjali Mishra",
+    "class": "9th",
+    "parents": {
+      "father_name": "Dinesh Mishra",
+      "mother_name": "Usha Mishra"
+    },
+    "contact": {
+      "phone": "9112233410"
+    }
+  },
+  {
+    "student_id": "911",
+    "name": "Arnav Mehra",
+    "class": "9th",
+    "parents": {
+      "father_name": "Sunil Mehra",
+      "mother_name": "Seema Mehra"
+    },
+    "contact": {
+      "phone": "9112233411"
+    }
+  },
+  {
+    "student_id": "912",
+    "name": "Priya Iyer",
+    "class": "9th",
+    "parents": {
+      "father_name": "Ravi Iyer",
+      "mother_name": "Shanti Iyer"
+    },
+    "contact": {
+      "phone": "9112233412"
+    }
+  },
+  {
+    "student_id": "913",
+    "name": "Farhan Ali",
+    "class": "9th",
+    "parents": {
+      "father_name": "Zakir Ali",
+      "mother_name": "Fatima Ali"
+    },
+    "contact": {
+      "phone": "9112233413"
+    }
+  },
+  {
+    "student_id": "914",
+    "name": "Siya Chauhan",
+    "class": "9th",
+    "parents": {
+      "father_name": "Vikram Chauhan",
+      "mother_name": "Deepa Chauhan"
+    },
+    "contact": {
+      "phone": "9112233414"
+    }
+  },
+  {
+    "student_id": "915",
+    "name": "Krish Das",
+    "class": "9th",
+    "parents": {
+      "father_name": "Hari Das",
+      "mother_name": "Maya Das"
+    },
+    "contact": {
+      "phone": "9112233415"
+    }
+  },
+  {
+    "student_id": "916",
+    "name": "Alia Begum",
+    "class": "9th",
+    "parents": {
+      "father_name": "Aslam Begum",
+      "mother_name": "Nadia Begum"
+    },
+    "contact": {
+      "phone": "9112233416"
+    }
+  },
+  {
+    "student_id": "917",
+    "name": "Rishi Saxena",
+    "class": "9th",
+    "parents": {
+      "father_name": "Alok Saxena",
+      "mother_name": "Nisha Saxena"
+    },
+    "contact": {
+      "phone": "9112233417"
+    }
+  },
+  {
+    "student_id": "918",
+    "name": "Tanvi Yadav",
+    "class": "9th",
+    "parents": {
+      "father_name": "Mukesh Yadav",
+      "mother_name": "Sarita Yadav"
+    },
+    "contact": {
+      "phone": "9112233418"
+    }
+  },
+  {
+    "student_id": "919",
+    "name": "Mohit Nair",
+    "class": "9th",
+    "parents": {
+      "father_name": "Gopal Nair",
+      "mother_name": "Vidya Nair"
+    },
+    "contact": {
+      "phone": "9112233419"
+    }
+  },
+  {
+    "student_id": "920",
+    "name": "Kavya Tiwari",
+    "class": "9th",
+    "parents": {
+      "father_name": "Prakash Tiwari",
+      "mother_name": "Savita Tiwari"
+    },
+    "contact": {
+      "phone": "9112233420"
+    }
+  },
+  {
+    "student_id": "921",
+    "name": "Prem Chaudhary",
+    "class": "9th",
+    "parents": {
+      "father_name": "Ram Chaudhary",
+      "mother_name": "Suman Chaudhary"
+    },
+    "contact": {
+      "phone": "9112233421"
+    }
+  },
+  {
+    "student_id": "922",
+    "name": "Neha Agarwal",
+    "class": "9th",
+    "parents": {
+      "father_name": "Pawan Agarwal",
+      "mother_name": "Ritu Agarwal"
+    },
+    "contact": {
+      "phone": "9112233422"
+    }
+  },
+  {
+    "student_id": "923",
+    "name": "Rudra Menon",
+    "class": "9th",
+    "parents": {
+      "father_name": "Bala Menon",
+      "mother_name": "Indu Menon"
+    },
+    "contact": {
+      "phone": "9112233423"
+    }
+  },
+  {
+    "student_id": "924",
+    "name": "Sonia Soni",
+    "class": "9th",
+    "parents": {
+      "father_name": "Deepak Soni",
+      "mother_name": "Pooja Soni"
+    },
+    "contact": {
+      "phone": "9112233424"
+    }
+  },
+  {
+    "student_id": "925",
+    "name": "Esha Malhotra",
+    "class": "9th",
+    "parents": {
+      "father_name": "Rajiv Malhotra",
+      "mother_name": "Tina Malhotra"
+    },
+    "contact": {
+      "phone": "9112233425"
+    }
+  }
+]

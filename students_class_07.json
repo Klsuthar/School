@@ -1,0 +1,218 @@
+[
+  {
+    "student_id": "701",
+    "name": "Aisha Khan",
+    "class": "7th",
+    "parents": {
+      "father_name": "Salman Khan",
+      "mother_name": "Zoya Khan"
+    },
+    "contact": {
+      "phone": "9312345701"
+    }
+  },
+  {
+    "student_id": "702",
+    "name": "Benny Thomas",
+    "class": "7th",
+    "parents": {
+      "father_name": "Joseph Thomas",
+      "mother_name": "Mary Thomas"
+    },
+    "contact": {
+      "phone": "9312345702"
+    }
+  },
+  {
+    "student_id": "703",
+    "name": "Chirag Rawat",
+    "class": "7th",
+    "parents": {
+      "father_name": "Bhagat Rawat",
+      "mother_name": "Ganga Rawat"
+    },
+    "contact": {
+      "phone": "9312345703"
+    }
+  },
+  {
+    "student_id": "704",
+    "name": "Deepika Singh",
+    "class": "7th",
+    "parents": {
+      "father_name": "Amar Singh",
+      "mother_name": "Priya Singh"
+    },
+    "contact": {
+      "phone": "9312345704"
+    }
+  },
+  {
+    "student_id": "705",
+    "name": "Eklavya Sharma",
+    "class": "7th",
+    "parents": {
+      "father_name": "Gopal Sharma",
+      "mother_name": "Radha Sharma"
+    },
+    "contact": {
+      "phone": "9312345705"
+    }
+  },
+  {
+    "student_id": "706",
+    "name": "Falak Naaz",
+    "class": "7th",
+    "parents": {
+      "father_name": "Mohsin Naaz",
+      "mother_name": "Rubina Naaz"
+    },
+    "contact": {
+      "phone": "9312345706"
+    }
+  },
+  {
+    "student_id": "707",
+    "name": "Gaurav Negi",
+    "class": "7th",
+    "parents": {
+      "father_name": "Surendra Negi",
+      "mother_name": "Vimla Negi"
+    },
+    "contact": {
+      "phone": "9312345707"
+    }
+  },
+  {
+    "student_id": "708",
+    "name": "Harshita Jain",
+    "class": "7th",
+    "parents": {
+      "father_name": "Ankit Jain",
+      "mother_name": "Shilpa Jain"
+    },
+    "contact": {
+      "phone": "9312345708"
+    }
+  },
+  {
+    "student_id": "709",
+    "name": "Iman Ahmed",
+    "class": "7th",
+    "parents": {
+      "father_name": "Waseem Ahmed",
+      "mother_name": "Samira Ahmed"
+    },
+    "contact": {
+      "phone": "9312345709"
+    }
+  },
+  {
+    "student_id": "710",
+    "name": "Jatin Kumar",
+    "class": "7th",
+    "parents": {
+      "father_name": "Vijay Kumar",
+      "mother_name": "Saroj Kumar"
+    },
+    "contact": {
+      "phone": "9312345710"
+    }
+  },
+  {
+    "student_id": "711",
+    "name": "Kriti Paul",
+    "class": "7th",
+    "parents": {
+      "father_name": "Daniel Paul",
+      "mother_name": "Rina Paul"
+    },
+    "contact": {
+      "phone": "9312345711"
+    }
+  },
+  {
+    "student_id": "712",
+    "name": "Laksh Mehta",
+    "class": "7th",
+    "parents": {
+      "father_name": "Chirag Mehta",
+      "mother_name": "Bhavna Mehta"
+    },
+    "contact": {
+      "phone": "9312345712"
+    }
+  },
+  {
+    "student_id": "713",
+    "name": "Manvi Tyagi",
+    "class": "7th",
+    "parents": {
+      "father_name": "Arun Tyagi",
+      "mother_name": "Beena Tyagi"
+    },
+    "contact": {
+      "phone": "9312345713"
+    }
+  },
+  {
+    "student_id": "714",
+    "name": "Naman Bisht",
+    "class": "7th",
+    "parents": {
+      "father_name": "Puran Bisht",
+      "mother_name": "Hema Bisht"
+    },
+    "contact": {
+      "phone": "9312345714"
+    }
+  },
+  {
+    "student_id": "715",
+    "name": "Ojasvi Saini",
+    "class": "7th",
+    "parents": {
+      "father_name": "Rajkumar Saini",
+      "mother_name": "Mamta Saini"
+    },
+    "contact": {
+      "phone": "9312345715"
+    }
+  },
+  {
+    "student_id": "716",
+    "name": "Paridhi Kashyap",
+    "class": "7th",
+    "parents": {
+      "father_name": "Lokesh Kashyap",
+      "mother_name": "Jyoti Kashyap"
+    },
+    "contact": {
+      "phone": "9312345716"
+    }
+  },
+  {
+    "student_id": "717",
+    "name": "Qamar Rizvi",
+    "class": "7th",
+    "parents": {
+      "father_name": "Haider Rizvi",
+      "mother_name": "Shabnam Rizvi"
+    },
+    "contact": {
+      "phone": "9312345717"
+    }
+  },
+  {
+    "student_id": "718",
+    "name": "Rishika Gusain",
+    "class": "7th",
+    "parents": {
+      "father_name": "Jagmohan Gusain",
+      "mother_name": "Sushila Gusain"
+    },
+    "contact": {
+      "phone": "9312345718"
+    }
+  }
+]

@@ -1,0 +1,242 @@
+[
+  {
+    "student_id": "501",
+    "name": "Anika Mehra",
+    "class": "5th",
+    "parents": {
+      "father_name": "Vikram Mehra",
+      "mother_name": "Sonia Mehra"
+    },
+    "contact": {
+      "phone": "9512345601"
+    }
+  },
+  {
+    "student_id": "502",
+    "name": "Bhuvan Pant",
+    "class": "5th",
+    "parents": {
+      "father_name": "Girish Pant",
+      "mother_name": "Uma Pant"
+    },
+    "contact": {
+      "phone": "9512345602"
+    }
+  },
+  {
+    "student_id": "503",
+    "name": "Charvi Negi",
+    "class": "5th",
+    "parents": {
+      "father_name": "Balwant Negi",
+      "mother_name": "Pooja Negi"
+    },
+    "contact": {
+      "phone": "9512345603"
+    }
+  },
+  {
+    "student_id": "504",
+    "name": "Dhruv Rawat",
+    "class": "5th",
+    "parents": {
+      "father_name": "Sandeep Rawat",
+      "mother_name": "Kiran Rawat"
+    },
+    "contact": {
+      "phone": "9512345604"
+    }
+  },
+  {
+    "student_id": "505",
+    "name": "Elina Peter",
+    "class": "5th",
+    "parents": {
+      "father_name": "David Peter",
+      "mother_name": "Susan Peter"
+    },
+    "contact": {
+      "phone": "9512345605"
+    }
+  },
+  {
+    "student_id": "506",
+    "name": "Faisal Ansari",
+    "class": "5th",
+    "parents": {
+      "father_name": "Karim Ansari",
+      "mother_name": "Shabnam Ansari"
+    },
+    "contact": {
+      "phone": "9512345606"
+    }
+  },
+  {
+    "student_id": "507",
+    "name": "Gitanjali Bisht",
+    "class": "5th",
+    "parents": {
+      "father_name": "Harish Bisht",
+      "mother_name": "Maya Bisht"
+    },
+    "contact": {
+      "phone": "9512345607"
+    }
+  },
+  {
+    "student_id": "508",
+    "name": "Himank Joshi",
+    "class": "5th",
+    "parents": {
+      "father_name": "Jagdish Joshi",
+      "mother_name": "Tulsi Joshi"
+    },
+    "contact": {
+      "phone": "9512345608"
+    }
+  },
+  {
+    "student_id": "509",
+    "name": "Ishani Singh",
+    "class": "5th",
+    "parents": {
+      "father_name": "Pratap Singh",
+      "mother_name": "Roshni Singh"
+    },
+    "contact": {
+      "phone": "9512345609"
+    }
+  },
+  {
+    "student_id": "510",
+    "name": "Jay Sharma",
+    "class": "5th",
+    "parents": {
+      "father_name": "Kamal Sharma",
+      "mother_name": "Vandana Sharma"
+    },
+    "contact": {
+      "phone": "9512345610"
+    }
+  },
+  {
+    "student_id": "511",
+    "name": "Kashvi Adhikari",
+    "class": "5th",
+    "parents": {
+      "father_name": "Dinesh Adhikari",
+      "mother_name": "Madhu Adhikari"
+    },
+    "contact": {
+      "phone": "9512345611"
+    }
+  },
+  {
+    "student_id": "512",
+    "name": "Lalit Mohan",
+    "class": "5th",
+    "parents": {
+      "father_name": "Suresh Mohan",
+      "mother_name": "Beena Mohan"
+    },
+    "contact": {
+      "phone": "9512345612"
+    }
+  },
+  {
+    "student_id": "513",
+    "name": "Manan Sethi",
+    "class": "5th",
+    "parents": {
+      "father_name": "Rohit Sethi",
+      "mother_name": "Divya Sethi"
+    },
+    "contact": {
+      "phone": "9512345613"
+    }
+  },
+  {
+    "student_id": "514",
+    "name": "Naina Kapoor",
+    "class": "5th",
+    "parents": {
+      "father_name": "Amit Kapoor",
+      "mother_name": "Anjali Kapoor"
+    },
+    "contact": {
+      "phone": "9512345614"
+    }
+  },
+  {
+    "student_id": "515",
+    "name": "Parth Kandpal",
+    "class": "5th",
+    "parents": {
+      "father_name": "Naveen Kandpal",
+      "mother_name": "Pooja Kandpal"
+    },
+    "contact": {
+      "phone": "9512345615"
+    }
+  },
+  {
+    "student_id": "516",
+    "name": "Ritika Semwal",
+    "class": "5th",
+    "parents": {
+      "father_name": "Dharmendra Semwal",
+      "mother_name": "Kavita Semwal"
+    },
+    "contact": {
+      "phone": "9512345616"
+    }
+  },
+  {
+    "student_id": "517",
+    "name": "Soham Bhatt",
+    "class": "5th",
+    "parents": {
+      "father_name": "Prakash Bhatt",
+      "mother_name": "Rekha Bhatt"
+    },
+    "contact": {
+      "phone": "9512345617"
+    }
+  },
+  {
+    "student_id": "518",
+    "name": "Tanmay Gusain",
+    "class": "5th",
+    "parents": {
+      "father_name": "Anup Gusain",
+      "mother_name": "Manju Gusain"
+    },
+    "contact": {
+      "phone": "9512345618"
+    }
+  },
+  {
+    "student_id": "519",
+    "name": "Vivan Kumar",
+    "class": "5th",
+    "parents": {
+      "father_name": "Rakesh Kumar",
+      "mother_name": "Anita Kumar"
+    },
+    "contact": {
+      "phone": "9512345619"
+    }
+  },
+  {
+    "student_id": "520",
+    "name": "Zara Ali",
+    "class": "5th",
+    "parents": {
+      "father_name": "Iqbal Ali",
+      "mother_name": "Sana Ali"
+    },
+    "contact": {
+      "phone": "9512345620"
+    }
+  }
+]

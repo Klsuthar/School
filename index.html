@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Student Dashboard</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+    <div class="dashboard-container">
+        <h1>School Dashboard</h1>
+        
+        <div class="controls">
+            <!-- Class ka dropdown yahan aayega -->
+            <div class="control-group">
+                <label for="class-selector">Select Class:</label>
+                <select id="class-selector">
+                    <option value="">-- Choose a Class --</option>
+                </select>
+            </div>
+
+            <!-- Student ka dropdown yahan aayega -->
+            <div class="control-group">
+                <label for="student-selector">Select Student:</label>
+                <select id="student-selector" disabled>
+                    <option value="">-- Choose a Student --</option>
+                </select>
+            </div>
+        </div>
+
+        <!-- Student ki details yahan dikhegi -->
+        <div id="student-details-card" class="card hidden">
+            <!-- Data JS se aayega -->
+        </div>
+
+    </div>
+
+    <script src="script.js"></script>
+</body>
+</html>

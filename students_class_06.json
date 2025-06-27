@@ -1,0 +1,266 @@
+[
+  {
+    "student_id": "601",
+    "name": "Aarohi Jha",
+    "class": "6th",
+    "parents": {
+      "father_name": "Manish Jha",
+      "mother_name": "Sarita Jha"
+    },
+    "contact": {
+      "phone": "9412345601"
+    }
+  },
+  {
+    "student_id": "602",
+    "name": "Bhavya Solanki",
+    "class": "6th",
+    "parents": {
+      "father_name": "Girish Solanki",
+      "mother_name": "Heena Solanki"
+    },
+    "contact": {
+      "phone": "9412345602"
+    }
+  },
+  {
+    "student_id": "603",
+    "name": "Daksh Rana",
+    "class": "6th",
+    "parents": {
+      "father_name": "Pawan Rana",
+      "mother_name": "Geeta Rana"
+    },
+    "contact": {
+      "phone": "9412345603"
+    }
+  },
+  {
+    "student_id": "604",
+    "name": "Esha Pant",
+    "class": "6th",
+    "parents": {
+      "father_name": "Mahesh Pant",
+      "mother_name": "Lata Pant"
+    },
+    "contact": {
+      "phone": "9412345604"
+    }
+  },
+  {
+    "student_id": "605",
+    "name": "Gaurang Bist",
+    "class": "6th",
+    "parents": {
+      "father_name": "Trilok Bist",
+      "mother_name": "Kamla Bist"
+    },
+    "contact": {
+      "phone": "9412345605"
+    }
+  },
+  {
+    "student_id": "606",
+    "name": "Hiya Choudhary",
+    "class": "6th",
+    "parents": {
+      "father_name": "Ramesh Choudhary",
+      "mother_name": "Suman Choudhary"
+    },
+    "contact": {
+      "phone": "9412345606"
+    }
+  },
+  {
+    "student_id": "607",
+    "name": "Ishan Negi",
+    "class": "6th",
+    "parents": {
+      "father_name": "Rajendra Negi",
+      "mother_name": "Shashi Negi"
+    },
+    "contact": {
+      "phone": "9412345607"
+    }
+  },
+  {
+    "student_id": "608",
+    "name": "Jivika Sharma",
+    "class": "6th",
+    "parents": {
+      "father_name": "Nitin Sharma",
+      "mother_name": "Poonam Sharma"
+    },
+    "contact": {
+      "phone": "9412345608"
+    }
+  },
+  {
+    "student_id": "609",
+    "name": "Kartik Kumar",
+    "class": "6th",
+    "parents": {
+      "father_name": "Ashok Kumar",
+      "mother_name": "Bimla Kumar"
+    },
+    "contact": {
+      "phone": "9412345609"
+    }
+  },
+  {
+    "student_id": "610",
+    "name": "Luvya Gupta",
+    "class": "6th",
+    "parents": {
+      "father_name": "Praveen Gupta",
+      "mother_name": "Renu Gupta"
+    },
+    "contact": {
+      "phone": "9412345610"
+    }
+  },
+  {
+    "student_id": "611",
+    "name": "Mihir Pandey",
+    "class": "6th",
+    "parents": {
+      "father_name": "Dinesh Pandey",
+      "mother_name": "Gauri Pandey"
+    },
+    "contact": {
+      "phone": "9412345611"
+    }
+  },
+  {
+    "student_id": "612",
+    "name": "Navya Singh",
+    "class": "6th",
+    "parents": {
+      "father_name": "Arvind Singh",
+      "mother_name": "Savita Singh"
+    },
+    "contact": {
+      "phone": "9412345612"
+    }
+  },
+  {
+    "student_id": "613",
+    "name": "Oviyan Das",
+    "class": "6th",
+    "parents": {
+      "father_name": "Pradeep Das",
+      "mother_name": "Mona Das"
+    },
+    "contact": {
+      "phone": "9412345613"
+    }
+  },
+  {
+    "student_id": "614",
+    "name": "Pranay Rawat",
+    "class": "6th",
+    "parents": {
+      "father_name": "Deepak Rawat",
+      "mother_name": "Rekha Rawat"
+    },
+    "contact": {
+      "phone": "9412345614"
+    }
+  },
+  {
+    "student_id": "615",
+    "name": "Rishabh Joshi",
+    "class": "6th",
+    "parents": {
+      "father_name": "Harish Joshi",
+      "mother_name": "Mohini Joshi"
+    },
+    "contact": {
+      "phone": "9412345615"
+    }
+  },
+  {
+    "student_id": "616",
+    "name": "Saanvi Bhatt",
+    "class": "6th",
+    "parents": {
+      "father_name": "Mohan Bhatt",
+      "mother_name": "Deepa Bhatt"
+    },
+    "contact": {
+      "phone": "9412345616"
+    }
+  },
+  {
+    "student_id": "617",
+    "name": "Tanishq Verma",
+    "class": "6th",
+    "parents": {
+      "father_name": "Rakesh Verma",
+      "mother_name": "Sonia Verma"
+    },
+    "contact": {
+      "phone": "9412345617"
+    }
+  },
+  {
+    "student_id": "618",
+    "name": "Urvi Shah",
+    "class": "6th",
+    "parents": {
+      "father_name": "Ketan Shah",
+      "mother_name": "Parul Shah"
+    },
+    "contact": {
+      "phone": "9412345618"
+    }
+  },
+  {
+    "student_id": "619",
+    "name": "Vedant Mishra",
+    "class": "6th",
+    "parents": {
+      "father_name": "Neeraj Mishra",
+      "mother_name": "Anjali Mishra"
+    },
+    "contact": {
+      "phone": "9412345619"
+    }
+  },
+  {
+    "student_id": "620",
+    "name": "Wafa Khan",
+    "class": "6th",
+    "parents": {
+      "father_name": "Yusuf Khan",
+      "mother_name": "Heena Khan"
+    },
+    "contact": {
+      "phone": "9412345620"
+    }
+  },
+  {
+    "student_id": "621",
+    "name": "Yuvika Chauhan",
+    "class": "6th",
+    "parents": {
+      "father_name": "Gajendra Chauhan",
+      "mother_name": "Sarika Chauhan"
+    },
+    "contact": {
+      "phone": "9412345621"
+    }
+  },
+  {
+    "student_id": "622",
+    "name": "Zian Ahmed",
+    "class": "6th",
+    "parents": {
+      "father_name": "Parvez Ahmed",
+      "mother_name": "Farida Ahmed"
+    },
+    "contact": {
+      "phone": "9412345622"
+    }
+  }
+]

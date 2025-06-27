@@ -1,0 +1,206 @@
+[
+  {
+    "student_id": "10A01",
+    "name": "Aarav Sharma",
+    "class": "10th A",
+    "parents": {
+      "father_name": "Rajesh Sharma",
+      "mother_name": "Pooja Sharma"
+    },
+    "contact": {
+      "phone": "9810101010"
+    }
+  },
+  {
+    "student_id": "10A02",
+    "name": "Isha Singh",
+    "class": "10th A",
+    "parents": {
+      "father_name": "Sandeep Singh",
+      "mother_name": "Kavita Singh"
+    },
+    "contact": {
+      "phone": "9820202020"
+    }
+  },
+  {
+    "student_id": "10A03",
+    "name": "Rohan Verma",
+    "class": "10th A",
+    "parents": {
+      "father_name": "Anil Verma",
+      "mother_name": "Sunita Verma"
+    },
+    "contact": {
+      "phone": "9830303030"
+    }
+  },
+  {
+    "student_id": "10A04",
+    "name": "Diya Gupta",
+    "class": "10th A",
+    "parents": {
+      "father_name": "Manoj Gupta",
+      "mother_name": "Rina Gupta"
+    },
+    "contact": {
+      "phone": "9840404040"
+    }
+  },
+  {
+    "student_id": "10A05",
+    "name": "Kabir Khan",
+    "class": "10th A",
+    "parents": {
+      "father_name": "Imran Khan",
+      "mother_name": "Ayesha Khan"
+    },
+    "contact": {
+      "phone": "9850505050"
+    }
+  },
+  {
+    "student_id": "10A06",
+    "name": "Ananya Patel",
+    "class": "10th A",
+    "parents": {
+      "father_name": "Jayesh Patel",
+      "mother_name": "Deepa Patel"
+    },
+    "contact": {
+      "phone": "9860606060"
+    }
+  },
+  {
+    "student_id": "10A07",
+    "name": "Vivaan Kumar",
+    "class": "10th A",
+    "parents": {
+      "father_name": "Sanjay Kumar",
+      "mother_name": "Poonam Kumar"
+    },
+    "contact": {
+      "phone": "9870707070"
+    }
+  },
+  {
+    "student_id": "10A08",
+    "name": "Myra Reddy",
+    "class": "10th A",
+    "parents": {
+      "father_name": "Vijay Reddy",
+      "mother_name": "Lakshmi Reddy"
+    },
+    "contact": {
+      "phone": "9880808080"
+    }
+  },
+  {
+    "student_id": "10A09",
+    "name": "Arjun Jain",
+    "class": "10th A",
+    "parents": {
+      "father_name": "Ashok Jain",
+      "mother_name": "Rekha Jain"
+    },
+    "contact": {
+      "phone": "9890909090"
+    }
+  },
+  {
+    "student_id": "10A10",
+    "name": "Saanvi Mishra",
+    "class": "10th A",
+    "parents": {
+      "father_name": "Dinesh Mishra",
+      "mother_name": "Usha Mishra"
+    },
+    "contact": {
+      "phone": "9910101010"
+    }
+  },
+  {
+    "student_id": "10A11",
+    "name": "Reyansh Mehra",
+    "class": "10th A",
+    "parents": {
+      "father_name": "Sunil Mehra",
+      "mother_name": "Seema Mehra"
+    },
+    "contact": {
+      "phone": "9920202020"
+    }
+  },
+  {
+    "student_id": "10A12",
+    "name": "Kiara Iyer",
+    "class": "10th A",
+    "parents": {
+      "father_name": "Ravi Iyer",
+      "mother_name": "Shanti Iyer"
+    },
+    "contact": {
+      "phone": "9930303030"
+    }
+  },
+  {
+    "student_id": "10A13",
+    "name": "Zayn Ali",
+    "class": "10th A",
+    "parents": {
+      "father_name": "Zakir Ali",
+      "mother_name": "Fatima Ali"
+    },
+    "contact": {
+      "phone": "9940404040"
+    }
+  },
+  {
+    "student_id": "10A14",
+    "name": "Pari Chauhan",
+    "class": "10th A",
+    "parents": {
+      "father_name": "Vikram Chauhan",
+      "mother_name": "Deepa Chauhan"
+    },
+    "contact": {
+      "phone": "9950505050"
+    }
+  },
+  {
+    "student_id": "10A15",
+    "name": "Advik Das",
+    "class": "10th A",
+    "parents": {
+      "father_name": "Hari Das",
+      "mother_name": "Maya Das"
+    },
+    "contact": {
+      "phone": "9960606060"
+    }
+  },
+  {
+    "student_id": "10A16",
+    "name": "Zara Begum",
+    "class": "10th A",
+    "parents": {
+      "father_name": "Aslam Begum",
+      "mother_name": "Nadia Begum"
+    },
+    "contact": {
+      "phone": "9970707070"
+    }
+  },
+  {
+    "student_id": "10A17",
+    "name": "Ishaan Joshi",
+    "class": "10th A",
+    "parents": {
+      "father_name": "Girish Joshi",
+      "mother_name": "Hema Joshi"
+    },
+    "contact": {
+      "phone": "9980808080"
+    }
+  }
+]
