@@ -24,7 +24,24 @@ document.addEventListener('DOMContentLoaded', () => {
         // Setup Chart.js global defaults for dark theme
         Chart.defaults.color = '#a9b1d6';
         Chart.defaults.borderColor = '#3b4261';
-        await loadClasses();
+        await loadClasses(); // <-- Yahan call ho raha tha
+    }
+    
+    // YAH FUNCTION MISSING THA
+    async function loadClasses() {
+        try {
+            const response = await fetch('classes.json');
+            allClassInfo = await response.json();
+            allClassInfo.forEach(cls => {
+                const option = document.createElement('option');
+                option.value = cls.fileName;
+                option.textContent = cls.displayText;
+                classSelector.appendChild(option);
+            });
+        } catch (error) {
+            console.error("Error loading classes:", error);
+            alert("Could not load class list.");
+        }
     }
 
     // --- NEW: TOP PERFORMERS LOGIC ---
@@ -234,7 +251,6 @@ document.addEventListener('DOMContentLoaded', () => {
             studentSelector.appendChild(option);
         });
         studentSelector.disabled = false;
-        // Calculate toppers as soon as class is selected
         await calculateAndDisplayTopPerformers(classFile, currentStudentsData);
     }
     
@@ -285,7 +301,7 @@ document.addEventListener('DOMContentLoaded', () => {
         if (student) {
             classSelector.value = classInfo.fileName;
             studentSelector.value = student.student_id;
-            studentSelector.dispatchEvent(new Event('change')); // Trigger change to load data
+            studentSelector.dispatchEvent(new Event('change'));
         } else { alert("Student not found."); }
     });
 
