@@ -1,26 +1,32 @@
 [
   {
     "displayText": "Class 10th A",
-    "fileName": "students_class_10_A.json"
+    "fileName": "students_class_10_A.json",
+    "idPrefix": "10A"
   },
   {
     "displayText": "Class 9th",
-    "fileName": "students_class_09.json"
+    "fileName": "students_class_09.json",
+    "idPrefix": "9"
   },
   {
     "displayText": "Class 8th",
-    "fileName": "students_class_08.json"
+    "fileName": "students_class_08.json",
+    "idPrefix": "8"
   },
   {
     "displayText": "Class 7th",
-    "fileName": "students_class_07.json"
+    "fileName": "students_class_07.json",
+    "idPrefix": "7"
   },
   {
     "displayText": "Class 6th",
-    "fileName": "students_class_06.json"
+    "fileName": "students_class_06.json",
+    "idPrefix": "6"
   },
   {
     "displayText": "Class 5th",
-    "fileName": "students_class_05.json"
+    "fileName": "students_class_05.json",
+    "idPrefix": "5"
   }
 ]

@@ -12,7 +12,7 @@
         <h1>School Dashboard</h1>
         
         <div class="controls">
-            <!-- Class ka dropdown yahan aayega -->
+            <!-- Class ka dropdown -->
             <div class="control-group">
                 <label for="class-selector">Select Class:</label>
                 <select id="class-selector">
@@ -20,13 +20,19 @@
                 </select>
             </div>
 
-            <!-- Student ka dropdown yahan aayega -->
+            <!-- Student ka dropdown -->
             <div class="control-group">
                 <label for="student-selector">Select Student:</label>
                 <select id="student-selector" disabled>
                     <option value="">-- Choose a Student --</option>
                 </select>
             </div>
+        </div>
+
+        <!-- Naya Search Box -->
+        <div class="search-container">
+            <input type="text" id="student-id-input" placeholder="Or Enter Student ID...">
+            <button id="find-btn">Find Student</button>
         </div>
 
         <!-- Student ki details yahan dikhegi -->

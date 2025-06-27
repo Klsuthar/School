@@ -108,3 +108,34 @@ select:disabled {
         transform: translateY(0);
     }
 }
+/* Search Box Styling */
+.search-container {
+    display: flex;
+    gap: 10px;
+    margin-bottom: 30px;
+    margin-top: -10px; /* Thoda upar le jaane ke liye */
+}
+
+#student-id-input {
+    flex-grow: 1; /* Input field ko poori jagah dega */
+    padding: 12px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    font-size: 16px;
+}
+
+#find-btn {
+    padding: 0 20px;
+    font-size: 16px;
+    font-weight: bold;
+    color: #fff;
+    background-color: #007bff;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: background-color 0.2s;
+}
+
+#find-btn:hover {
+    background-color: #0056b3;
+}
