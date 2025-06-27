@@ -4,112 +4,128 @@ document.addEventListener('DOMContentLoaded', () => {
     const studentSelector = document.getElementById('student-selector');
     const studentIdInput = document.getElementById('student-id-input');
     const findBtn = document.getElementById('find-btn');
-    const studentDetailsCard = document.getElementById('student-details-card');
-    const performanceCard = document.getElementById('student-performance-card');
-    const loader = document.getElementById('loader');
-    const performanceContent = document.getElementById('performance-content');
-    const noDataMessage = document.getElementById('no-data-message');
+    const studentDetailsHeader = document.getElementById('student-details-header');
     const testReportsContainer = document.getElementById('test-reports-container');
     const testTypeFilter = document.getElementById('test-type-filter');
+    const topPerformersCard = document.getElementById('top-performers-card');
+    const topPerformersList = document.getElementById('top-performers-list');
+    const topPerformersLoader = document.getElementById('top-performers-loader');
+    const studentContentArea = document.getElementById('student-content-area');
+    const welcomeMessage = document.getElementById('welcome-message');
+    const tabs = document.querySelectorAll('.tab-link');
+    const tabContents = document.querySelectorAll('.tab-content');
 
     // Global variables
-    let allClassInfo = [];
-    let currentStudentsData = [];
-    let studentPerformanceData = [];
+    let allClassInfo = [], currentStudentsData = [], studentPerformanceData = [];
     let subjectChartInstance, progressChartInstance;
 
     // --- INITIALIZATION ---
     async function initialize() {
+        // Setup Chart.js global defaults for dark theme
+        Chart.defaults.color = '#a9b1d6';
+        Chart.defaults.borderColor = '#3b4261';
         await loadClasses();
     }
 
-    async function loadClasses() {
-        try {
-            const response = await fetch('classes.json');
-            allClassInfo = await response.json();
-            allClassInfo.forEach(cls => {
-                const option = document.createElement('option');
-                option.value = cls.fileName;
-                option.textContent = cls.displayText;
-                classSelector.appendChild(option);
-            });
-        } catch (error) {
-            console.error("Error loading classes:", error);
-            alert("Could not load class list.");
-        }
-    }
-
-    // --- STUDENT SELECTION & DATA LOADING ---
-    async function handleStudentSelection(studentId, studentClass) {
-        if (!studentId || !studentClass) return;
-        resetPerformanceUI();
+    // --- NEW: TOP PERFORMERS LOGIC ---
+    async function calculateAndDisplayTopPerformers(classFile, studentList) {
+        topPerformersList.innerHTML = '';
+        topPerformersCard.classList.remove('hidden');
+        topPerformersLoader.classList.remove('hidden');
 
         try {
             const testsDirectory = await fetch('tests-directory.json').then(res => res.json());
-            const studentTestsMeta = testsDirectory.filter(test => test.class === studentClass);
+            const classTests = testsDirectory.filter(test => test.marksFile.startsWith(classFile.split('.')[0].replace('students_', 'marks_')));
 
-            if (studentTestsMeta.length === 0) {
-                noDataMessage.classList.remove('hidden');
+            if (classTests.length === 0) {
+                topPerformersList.innerHTML = '<li>No test data available for this class.</li>';
                 return;
             }
 
-            const marksPromises = studentTestsMeta.map(test => fetch(`test_marks/${test.marksFile}`).then(res => res.json()));
-            const allMarksData = await Promise.all(marksPromises);
-
-            processAndStorePerformanceData(studentId, studentTestsMeta, allMarksData);
+            const marksPromises = classTests.map(test => fetch(`test_marks/${test.marksFile}`).then(res => res.json()));
+            const allClassMarks = await Promise.all(marksPromises);
             
+            const studentAverages = studentList.map(student => {
+                let totalObtained = 0, totalMax = 0;
+                allClassMarks.forEach(test => {
+                    const result = test.results.find(r => r.studentId === student.student_id);
+                    if (result) {
+                        totalObtained += Object.values(result.scores).reduce((a, b) => a + b, 0);
+                        const subjectsInTest = test.testInfo.subjects;
+                        subjectsInTest.forEach((subj, i) => {
+                            totalMax += test.testInfo.maxmarks[i];
+                        });
+                    }
+                });
+                const percentage = totalMax > 0 ? (totalObtained / totalMax * 100) : 0;
+                return { name: student.name, percentage: percentage.toFixed(2) };
+            });
+
+            const topPerformers = studentAverages.sort((a, b) => b.percentage - a.percentage).slice(0, 3);
+            renderTopPerformers(topPerformers);
+
         } catch (error) {
-            handleError("Error loading performance data.");
+            console.error("Error calculating top performers:", error);
+            topPerformersList.innerHTML = '<li>Could not load data.</li>';
         } finally {
-            loader.classList.add('hidden');
+            topPerformersLoader.classList.add('hidden');
         }
     }
 
-    // --- DATA PROCESSING & DISPLAY ---
+    function renderTopPerformers(topPerformers) {
+        topPerformersList.innerHTML = topPerformers.map((topper, index) => `
+            <li class="topper-item">
+                <span class="topper-rank">#${index + 1}</span>
+                <div class="topper-details">
+                    <div class="topper-name">${topper.name}</div>
+                    <div class="topper-percentage">${topper.percentage}% Overall</div>
+                </div>
+            </li>
+        `).join('');
+    }
+
+    // --- DATA LOADING & PROCESSING (Existing logic, adapted for new UI) ---
+    async function handleStudentSelection(studentId, studentClass) {
+        if (!studentId || !studentClass) return;
+        studentContentArea.classList.remove('hidden');
+        welcomeMessage.classList.add('hidden');
+        // Reset and show loader can be added here
+        
+        try {
+            const testsDirectory = await fetch('tests-directory.json').then(res => res.json());
+            const studentTestsMeta = testsDirectory.filter(test => test.class === studentClass);
+            if (studentTestsMeta.length === 0) { /* handle no tests */ return; }
+
+            const marksPromises = studentTestsMeta.map(test => fetch(`test_marks/${test.marksFile}`).then(res => res.json()));
+            const allMarksData = await Promise.all(marksPromises);
+            processAndStorePerformanceData(studentId, studentTestsMeta, allMarksData);
+        } catch (error) { console.error("Error loading performance data:", error); }
+    }
+    
     function processAndStorePerformanceData(studentId, studentTestsMeta, allMarksData) {
         studentPerformanceData = [];
-
         allMarksData.forEach((marksData, index) => {
             const studentResult = marksData.results.find(res => res.studentId === studentId);
             if (studentResult) {
                 const testMeta = studentTestsMeta[index];
                 const testInfo = marksData.testInfo;
-                
                 let combinedMaxMarks = {};
                 testInfo.subjects.forEach((subj, i) => combinedMaxMarks[subj] = testInfo.maxmarks[i]);
-
                 studentPerformanceData.push({ ...testMeta, scores: studentResult.scores, maxmarks: combinedMaxMarks });
             }
         });
-
-        if (studentPerformanceData.length === 0) {
-            noDataMessage.classList.remove('hidden');
-            return;
-        }
-
+        if (studentPerformanceData.length === 0) { /* handle no data */ return; }
         studentPerformanceData.sort((a, b) => new Date(a.date) - new Date(b.date));
-        
         populateTestFilter(studentPerformanceData);
         renderFilteredPerformance("All Tests");
-        
-        performanceContent.classList.remove('hidden');
     }
     
     function renderFilteredPerformance(filterType) {
-        const filteredData = filterType === "All Tests" 
-            ? studentPerformanceData 
-            : studentPerformanceData.filter(test => test.testType === filterType);
-        
-        if (filteredData.length === 0) {
-            testReportsContainer.innerHTML = `<p>No tests found for the selected type.</p>`;
-            if (subjectChartInstance) subjectChartInstance.destroy();
-            if (progressChartInstance) progressChartInstance.destroy();
-            return;
-        }
-
+        const filteredData = filterType === "All Tests" ? studentPerformanceData : studentPerformanceData.filter(test => test.testType === filterType);
+        if (filteredData.length === 0) { /* handle no filtered data */ return; }
         renderPerformanceReports(filteredData);
         renderProgressChart(filteredData);
-        renderSubjectChart(filteredData); // BADLAV: Poora filtered data bhejenge
+        renderSubjectChart(filteredData);
     }
 
     function renderPerformanceReports(testData) {
@@ -123,78 +139,51 @@ document.addEventListener('DOMContentLoaded', () => {
     }
 
     function generateReportTableHTML(test) {
-        const subjects = Object.keys(test.scores);
+        const subjects = Object.keys(test.maxmarks);
         let totalObtained = 0, totalMax = 0;
-
         let tableRows = subjects.map(subject => {
             const obtained = test.scores[subject] || 0;
             const max = test.maxmarks[subject] || 0;
             const percentage = max > 0 ? (obtained / max * 100).toFixed(1) : 0;
-            totalObtained += obtained;
-            totalMax += max;
+            totalObtained += obtained; totalMax += max;
             return `<tr><td>${subject}</td><td>${obtained}</td><td>${max}</td><td class="percentage ${getPercentageClass(percentage)}">${percentage}%</td></tr>`;
         }).join('');
-
         const overallPercentage = totalMax > 0 ? (totalObtained / totalMax * 100).toFixed(1) : 0;
-
-        return `
-            <h3>${test.testName} (${new Date(test.date).toLocaleDateString()})</h3>
-            <table class="marks-table">
-                <thead><tr><th>Subject</th><th>Obtained</th><th>Max</th><th>%</th></tr></thead>
-                <tbody>
-                    ${tableRows}
-                    <tr><th>Overall</th><th>${totalObtained}</th><th>${totalMax}</th><th class="percentage ${getPercentageClass(overallPercentage)}">${overallPercentage}%</th></tr>
-                </tbody>
-            </table>
-        `;
+        return `<h3>${test.testName} (${new Date(test.date).toLocaleDateString()})</h3>
+                <table class="marks-table">
+                    <thead><tr><th>Subject</th><th>Obtained</th><th>Max</th><th>%</th></tr></thead>
+                    <tbody>${tableRows}<tr><th>Overall</th><th>${totalObtained}</th><th>${totalMax}</th><th class="percentage ${getPercentageClass(overallPercentage)}">${overallPercentage}%</th></tr></tbody>
+                </table>`;
     }
 
-    // --- CHART RENDERING ---
-    // NAYA: Grouped Bar Chart ka poora logic
+    // --- CHART RENDERING (New Grouped Chart Logic) ---
     function renderSubjectChart(performanceData) {
         if (subjectChartInstance) subjectChartInstance.destroy();
-        
         const ctx = document.getElementById('subject-chart').getContext('2d');
-        
-        // 1. Sabhi unique subjects ki list banayein
         const subjects = [...new Set(performanceData.flatMap(test => Object.keys(test.scores)))];
-        
-        // 2. Har test ke liye alag dataset banayein
-        const chartColors = ['rgba(74, 144, 226, 0.7)', 'rgba(245, 166, 35, 0.7)', 'rgba(126, 211, 33, 0.7)', 'rgba(208, 2, 27, 0.7)', 'rgba(189, 16, 224, 0.7)', 'rgba(80, 227, 194, 0.7)'];
-        const datasets = performanceData.map((test, index) => {
-            return {
-                label: test.testName,
-                data: subjects.map(subject => {
-                    const score = test.scores[subject] || 0;
-                    const max = test.maxmarks[subject] || 0;
-                    // Hum percentage dikha rahe hain taaki comparison aasan ho
-                    return max > 0 ? (score / max * 100).toFixed(1) : 0;
-                }),
-                backgroundColor: chartColors[index % chartColors.length]
-            };
-        });
-
+        const chartColors = ['#4a90e2', '#ff9e64', '#9ece6a', '#f7768e', '#bb9af7', '#7dcfff'];
+        const datasets = performanceData.map((test, index) => ({
+            label: test.testName,
+            data: subjects.map(subject => {
+                const score = test.scores[subject] || 0;
+                const max = test.maxmarks[subject] || 0;
+                return max > 0 ? (score / max * 100).toFixed(1) : 0;
+            }),
+            backgroundColor: chartColors[index % chartColors.length]
+        }));
         subjectChartInstance = new Chart(ctx, {
             type: 'bar',
-            data: {
-                labels: subjects, // X-axis par subjects
-                datasets: datasets // Har test ek alag bar group
-            },
+            data: { labels: subjects, datasets: datasets },
             options: {
-                plugins: {
-                    title: { display: true, text: 'Subject Performance (in %)' },
-                    tooltip: { callbacks: { label: (context) => `${context.dataset.label}: ${context.formattedValue}%` } }
-                },
+                plugins: { tooltip: { callbacks: { label: (c) => `${c.dataset.label}: ${c.formattedValue}%` } } },
                 scales: { y: { beginAtZero: true, max: 100, title: { display: true, text: 'Percentage (%)' } } },
-                responsive: true,
-                maintainAspectRatio: false
+                responsive: true, maintainAspectRatio: false
             }
         });
     }
 
     function renderProgressChart(performanceData) {
         if (progressChartInstance) progressChartInstance.destroy();
-
         const ctx = document.getElementById('progress-chart').getContext('2d');
         const labels = performanceData.map(test => `${test.testName}`);
         const percentages = performanceData.map(test => {
@@ -202,24 +191,13 @@ document.addEventListener('DOMContentLoaded', () => {
             const totalMax = Object.values(test.maxmarks).reduce((a, b) => a + b, 0);
             return totalMax > 0 ? (totalObtained / totalMax * 100).toFixed(1) : 0;
         });
-
         progressChartInstance = new Chart(ctx, {
             type: 'line',
             data: {
                 labels: labels,
-                datasets: [{
-                    label: 'Overall Performance (%)',
-                    data: percentages,
-                    fill: false,
-                    borderColor: '#28a745',
-                    tension: 0.1
-                }]
+                datasets: [{ label: 'Overall Performance (%)', data: percentages, borderColor: '#9ece6a', tension: 0.1 }]
             },
-            options: {
-                scales: { y: { beginAtZero: true, max: 100 } },
-                responsive: true,
-                maintainAspectRatio: false
-            }
+            options: { scales: { y: { beginAtZero: true, max: 100 } }, responsive: true, maintainAspectRatio: false }
         });
     }
 
@@ -235,43 +213,17 @@ document.addEventListener('DOMContentLoaded', () => {
         });
     }
 
-    function getPercentageClass(percentage) {
-        if (percentage >= 75) return 'percentage-good';
-        if (percentage >= 50) return 'percentage-ok';
-        return 'percentage-bad';
-    }
+    function getPercentageClass(p) { return p >= 75 ? 'percentage-good' : p >= 50 ? 'percentage-ok' : 'percentage-bad'; }
 
-    function resetPerformanceUI() {
-        performanceCard.classList.remove('hidden');
-        performanceContent.classList.add('hidden');
-        noDataMessage.classList.add('hidden');
-        loader.classList.remove('hidden');
-    }
-
-    function handleError(message) {
-        loader.classList.add('hidden');
-        noDataMessage.textContent = message;
-        noDataMessage.classList.remove('hidden');
-    }
-
-    function displayStudentDetails(student) {
-        studentDetailsCard.innerHTML = `
-            <div class="detail-item"><strong>Student Name:</strong><span>${student.name}</span></div>
-            <div class="detail-item"><strong>Student ID:</strong><span>${student.student_id}</span></div>
-            <div class="detail-item"><strong>Class:</strong><span>${student.class}</span></div>
-            <div class="detail-item"><strong>Father's Name:</strong><span>${student.parents.father_name}</span></div>
-            <div class="detail-item"><strong>Mother's Name:</strong><span>${student.parents.mother_name}</span></div>
-            <div class="detail-item"><strong>Contact:</strong><span>${student.contact.phone}</span></div>
+    function displayStudentDetailsHeader(student) {
+        studentDetailsHeader.innerHTML = `
+            <div class="detail-item"><strong>Student Name</strong><span>${student.name}</span></div>
+            <div class="detail-item"><strong>Student ID</strong><span>${student.student_id}</span></div>
+            <div class="detail-item"><strong>Class</strong><span>${student.class}</span></div>
         `;
-        studentDetailsCard.classList.remove('hidden');
     }
 
     async function loadStudentList(classFile) {
-        if (!classFile) {
-            studentSelector.innerHTML = '<option value="">-- Choose a Student --</option>';
-            studentSelector.disabled = true;
-            return;
-        }
         const response = await fetch(classFile);
         currentStudentsData = await response.json();
         studentSelector.innerHTML = '<option value="">-- Choose a Student --</option>';
@@ -282,50 +234,59 @@ document.addEventListener('DOMContentLoaded', () => {
             studentSelector.appendChild(option);
         });
         studentSelector.disabled = false;
+        // Calculate toppers as soon as class is selected
+        await calculateAndDisplayTopPerformers(classFile, currentStudentsData);
     }
-
+    
     // --- EVENT LISTENERS ---
+    tabs.forEach(tab => {
+        tab.addEventListener('click', () => {
+            tabs.forEach(item => item.classList.remove('active'));
+            tab.classList.add('active');
+            const target = document.getElementById(tab.dataset.tab);
+            tabContents.forEach(content => content.classList.remove('active'));
+            target.classList.add('active');
+        });
+    });
+
     classSelector.addEventListener('change', async (event) => {
-        studentIdInput.value = "";
-        studentDetailsCard.classList.add('hidden');
-        performanceCard.classList.add('hidden');
-        await loadStudentList(event.target.value);
+        const classFile = event.target.value;
+        studentContentArea.classList.add('hidden');
+        welcomeMessage.classList.remove('hidden');
+        if (!classFile) {
+            studentSelector.disabled = true;
+            topPerformersCard.classList.add('hidden');
+            return;
+        }
+        await loadStudentList(classFile);
     });
 
     studentSelector.addEventListener('change', (event) => {
         const studentId = event.target.value;
         if (!studentId) {
-            studentDetailsCard.classList.add('hidden');
-            performanceCard.classList.add('hidden');
+            studentContentArea.classList.add('hidden');
+            welcomeMessage.classList.remove('hidden');
             return;
         }
         const student = currentStudentsData.find(s => s.student_id === studentId);
-        displayStudentDetails(student);
+        displayStudentDetailsHeader(student);
         handleStudentSelection(student.student_id, student.class);
     });
     
-    testTypeFilter.addEventListener('change', (event) => {
-        renderFilteredPerformance(event.target.value);
-    });
+    testTypeFilter.addEventListener('change', (event) => renderFilteredPerformance(event.target.value));
 
     findBtn.addEventListener('click', async () => {
         const studentId = studentIdInput.value.trim();
         if (!studentId) return;
-
         const classInfo = allClassInfo.find(cls => studentId.startsWith(cls.idPrefix));
         if (!classInfo) { alert("Invalid Student ID format."); return; }
-
         await loadStudentList(classInfo.fileName);
         const student = currentStudentsData.find(s => s.student_id === studentId);
-
         if (student) {
             classSelector.value = classInfo.fileName;
             studentSelector.value = student.student_id;
-            displayStudentDetails(student);
-            handleStudentSelection(student.student_id, student.class);
-        } else {
-            alert("Student not found.");
-        }
+            studentSelector.dispatchEvent(new Event('change')); // Trigger change to load data
+        } else { alert("Student not found."); }
     });
 
     studentIdInput.addEventListener('keypress', (e) => e.key === 'Enter' && findBtn.click());

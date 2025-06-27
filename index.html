@@ -4,78 +4,94 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Student Performance Dashboard</title>
-    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;500;700&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="style.css">
-    <!-- Chart.js Library -->
     <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
 </head>
 <body>
+    <div class="dashboard-layout">
+        <!-- ===== SIDEBAR ===== -->
+        <aside class="sidebar">
+            <header class="sidebar-header">
+                <h2>School Dashboard</h2>
+            </header>
 
-    <div class="dashboard-container">
-        <header>
-            <h1>Student Performance Dashboard</h1>
-        </header>
-        
-        <div class="card">
-            <div class="controls">
-                <div class="control-group">
-                    <label for="class-selector">Select Class:</label>
-                    <select id="class-selector">
-                        <option value="">-- Choose a Class --</option>
-                    </select>
-                </div>
-                <div class="control-group">
-                    <label for="student-selector">Select Student:</label>
-                    <select id="student-selector" disabled>
-                        <option value="">-- Choose a Student --</option>
-                    </select>
-                </div>
+            <div class="sidebar-section">
+                <label for="class-selector">Select Class</label>
+                <select id="class-selector">
+                    <option value="">-- Choose a Class --</option>
+                </select>
             </div>
-            <div class="search-container">
-                <input type="text" id="student-id-input" placeholder="Or Enter Student ID to find...">
-                <button id="find-btn">Find</button>
+
+            <!-- NAYA: Top Performers Card -->
+            <div id="top-performers-card" class="sidebar-section hidden">
+                <h3><span class="icon">🏆</span> Top Performers</h3>
+                <div id="top-performers-loader" class="hidden">Calculating...</div>
+                <ul id="top-performers-list">
+                    <!-- Toppers will be injected here -->
+                </ul>
             </div>
-        </div>
-
-        <!-- Student Details Card -->
-        <div id="student-details-card" class="card hidden"></div>
-
-        <!-- Performance Report Card -->
-        <div id="student-performance-card" class="card hidden">
-            <h2>Performance Report</h2>
             
-            <!-- NAYA: Test Type Filter Dropdown -->
-            <div class="filter-container">
-                <label for="test-type-filter">Filter by Test Type:</label>
-                <select id="test-type-filter"></select>
+            <div class="sidebar-section">
+                <label for="student-selector">Select Student</label>
+                <select id="student-selector" disabled>
+                    <option value="">-- Choose a Student --</option>
+                </select>
+            </div>
+            
+            <div class="sidebar-section">
+                <label for="student-id-input">Find by ID</label>
+                <div class="search-container">
+                    <input type="text" id="student-id-input" placeholder="Enter Student ID...">
+                    <button id="find-btn">Find</button>
+                </div>
+            </div>
+        </aside>
+
+        <!-- ===== MAIN CONTENT ===== -->
+        <main class="main-content">
+            <div id="welcome-message">
+                <h1>Welcome!</h1>
+                <p>Please select a class and student from the sidebar to view their performance.</p>
             </div>
 
-            <!-- Loader -->
-            <div id="loader" class="hidden">Loading Performance Data...</div>
-
-            <!-- Performance content -->
-            <div id="performance-content" class="hidden">
-                <!-- BADLAV: Ab yahan multiple reports aayengi -->
-                <div id="test-reports-container"></div>
+            <div id="student-content-area" class="hidden">
+                <!-- Student Details Header -->
+                <div id="student-details-header" class="card"></div>
                 
-                <div class="charts-grid">
-                    <div class="chart-container">
-                        <h3>Subject Performance Comparison</h3>
-                        <canvas id="subject-chart"></canvas>
+                <!-- NAYA: Tab Navigation -->
+                <nav class="tabs">
+                    <button class="tab-link active" data-tab="overview">Overview</button>
+                    <button class="tab-link" data-tab="reports">Detailed Reports</button>
+                </nav>
+
+                <!-- NAYA: Tab Content -->
+                <div id="overview" class="tab-content active">
+                    <div class="charts-grid">
+                        <div class="chart-container">
+                            <h3>Subject Performance Comparison</h3>
+                            <canvas id="subject-chart"></canvas>
+                        </div>
+                        <div class="chart-container">
+                            <h3>Overall Progress (%)</h3>
+                            <canvas id="progress-chart"></canvas>
+                        </div>
                     </div>
-                    <div class="chart-container">
-                        <h3>Overall Progress (%)</h3>
-                        <canvas id="progress-chart"></canvas>
+                </div>
+
+                <div id="reports" class="tab-content">
+                    <div class="filter-container">
+                        <label for="test-type-filter">Filter Reports:</label>
+                        <select id="test-type-filter"></select>
                     </div>
+                    <div id="test-reports-container"></div>
                 </div>
             </div>
 
-             <!-- No data message -->
-             <div id="no-data-message" class="hidden">
-                <p>No performance data available for this student yet.</p>
+            <div id="loading-student-data" class="hidden">
+                <p>Loading Student Performance Data...</p>
             </div>
-        </div>
-
+        </main>
     </div>
 
     <script src="script.js"></script>
