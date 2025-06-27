@@ -44,17 +44,23 @@
         <div id="student-performance-card" class="card hidden">
             <h2>Performance Report</h2>
             
+            <!-- NAYA: Test Type Filter Dropdown -->
+            <div class="filter-container">
+                <label for="test-type-filter">Filter by Test Type:</label>
+                <select id="test-type-filter"></select>
+            </div>
+
             <!-- Loader -->
             <div id="loader" class="hidden">Loading Performance Data...</div>
 
             <!-- Performance content -->
             <div id="performance-content" class="hidden">
-                <div id="latest-test-report">
-                    <!-- Latest test table will be injected here -->
-                </div>
+                <!-- BADLAV: Ab yahan multiple reports aayengi -->
+                <div id="test-reports-container"></div>
+                
                 <div class="charts-grid">
                     <div class="chart-container">
-                        <h3>Subject Performance (Latest Test)</h3>
+                        <h3>Subject Performance (Latest Filtered Test)</h3>
                         <canvas id="subject-chart"></canvas>
                     </div>
                     <div class="chart-container">

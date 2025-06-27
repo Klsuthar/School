@@ -9,11 +9,13 @@ document.addEventListener('DOMContentLoaded', () => {
     const loader = document.getElementById('loader');
     const performanceContent = document.getElementById('performance-content');
     const noDataMessage = document.getElementById('no-data-message');
-    const latestTestReport = document.getElementById('latest-test-report');
+    const testReportsContainer = document.getElementById('test-reports-container');
+    const testTypeFilter = document.getElementById('test-type-filter');
 
-    // Global variables to hold data and chart instances
+    // Global variables
     let allClassInfo = [];
     let currentStudentsData = [];
+    let studentPerformanceData = []; // Store all performance data for a student
     let subjectChartInstance, progressChartInstance;
 
     // --- INITIALIZATION ---
@@ -40,119 +42,109 @@ document.addEventListener('DOMContentLoaded', () => {
     // --- STUDENT SELECTION & DATA LOADING ---
     async function handleStudentSelection(studentId, studentClass) {
         if (!studentId || !studentClass) return;
-
-        // Reset UI
-        performanceCard.classList.remove('hidden');
-        performanceContent.classList.add('hidden');
-        noDataMessage.classList.add('hidden');
-        loader.classList.remove('hidden');
+        resetPerformanceUI();
 
         try {
             const testsDirectory = await fetch('tests-directory.json').then(res => res.json());
-            const studentTests = testsDirectory.filter(test => test.class === studentClass);
+            const studentTestsMeta = testsDirectory.filter(test => test.class === studentClass);
 
-            if (studentTests.length === 0) {
+            if (studentTestsMeta.length === 0) {
                 noDataMessage.classList.remove('hidden');
                 return;
             }
 
-            const marksPromises = studentTests.map(test => fetch(`test_marks/${test.marksFile}`).then(res => res.json()));
+            const marksPromises = studentTestsMeta.map(test => fetch(`test_marks/${test.marksFile}`).then(res => res.json()));
             const allMarksData = await Promise.all(marksPromises);
 
-            processAndDisplayPerformance(studentId, studentTests, allMarksData);
+            processAndStorePerformanceData(studentId, studentTestsMeta, allMarksData);
             
         } catch (error) {
-            console.error("Error loading performance data:", error);
-            noDataMessage.textContent = "Error loading performance data.";
-            noDataMessage.classList.remove('hidden');
+            handleError("Error loading performance data.");
         } finally {
             loader.classList.add('hidden');
         }
     }
 
     // --- DATA PROCESSING & DISPLAY ---
-    function processAndDisplayPerformance(studentId, studentTests, allMarksData) {
-        let studentPerformance = [];
+    function processAndStorePerformanceData(studentId, studentTestsMeta, allMarksData) {
+        studentPerformanceData = []; // Clear previous student's data
 
         allMarksData.forEach((marksData, index) => {
             const studentResult = marksData.results.find(res => res.studentId === studentId);
             if (studentResult) {
-                const testMeta = studentTests[index];
+                const testMeta = studentTestsMeta[index];
                 const testInfo = marksData.testInfo;
                 
                 let combinedMaxMarks = {};
-                testInfo.subjects.forEach((subj, i) => {
-                    combinedMaxMarks[subj] = testInfo.maxmarks[i];
-                });
+                testInfo.subjects.forEach((subj, i) => combinedMaxMarks[subj] = testInfo.maxmarks[i]);
 
-                studentPerformance.push({
-                    ...testMeta,
-                    scores: studentResult.scores,
-                    maxmarks: combinedMaxMarks
-                });
+                studentPerformanceData.push({ ...testMeta, scores: studentResult.scores, maxmarks: combinedMaxMarks });
             }
         });
 
-        if (studentPerformance.length === 0) {
+        if (studentPerformanceData.length === 0) {
             noDataMessage.classList.remove('hidden');
             return;
         }
 
-        // Sort tests by date, oldest to newest
-        studentPerformance.sort((a, b) => new Date(a.date) - new Date(b.date));
+        studentPerformanceData.sort((a, b) => new Date(a.date) - new Date(b.date));
         
-        const latestTest = studentPerformance[studentPerformance.length - 1];
-        
-        displayLatestTest(latestTest);
-        renderSubjectChart(latestTest);
-        renderProgressChart(studentPerformance);
+        populateTestFilter(studentPerformanceData);
+        renderFilteredPerformance("All Tests"); // Show all tests by default
         
         performanceContent.classList.remove('hidden');
     }
+    
+    function renderFilteredPerformance(filterType) {
+        const filteredData = filterType === "All Tests" 
+            ? studentPerformanceData 
+            : studentPerformanceData.filter(test => test.testType === filterType);
+        
+        if (filteredData.length === 0) {
+            testReportsContainer.innerHTML = `<p>No tests found for the selected type.</p>`;
+            if (subjectChartInstance) subjectChartInstance.destroy();
+            if (progressChartInstance) progressChartInstance.destroy();
+            return;
+        }
 
-    function displayLatestTest(latestTest) {
-        const subjects = Object.keys(latestTest.scores);
+        renderPerformanceReports(filteredData);
+        renderProgressChart(filteredData);
+        renderSubjectChart(filteredData[filteredData.length - 1]); // Chart for the latest test in the filtered group
+    }
+
+    function renderPerformanceReports(testData) {
+        testReportsContainer.innerHTML = ''; // Clear previous reports
+        testData.forEach(test => {
+            const reportBlock = document.createElement('div');
+            reportBlock.className = 'test-report-block';
+            reportBlock.innerHTML = generateReportTableHTML(test);
+            testReportsContainer.appendChild(reportBlock);
+        });
+    }
+
+    function generateReportTableHTML(test) {
+        const subjects = Object.keys(test.scores);
         let totalObtained = 0;
         let totalMax = 0;
 
         let tableRows = subjects.map(subject => {
-            const obtained = latestTest.scores[subject];
-            const max = latestTest.maxmarks[subject];
-            const percentage = (obtained / max * 100).toFixed(2);
+            const obtained = test.scores[subject];
+            const max = test.maxmarks[subject];
+            const percentage = (obtained / max * 100).toFixed(1);
             totalObtained += obtained;
             totalMax += max;
-
-            return `
-                <tr>
-                    <td>${subject}</td>
-                    <td>${obtained}</td>
-                    <td>${max}</td>
-                    <td class="percentage ${getPercentageClass(percentage)}">${percentage}%</td>
-                </tr>
-            `;
+            return `<tr><td>${subject}</td><td>${obtained}</td><td>${max}</td><td class="percentage ${getPercentageClass(percentage)}">${percentage}%</td></tr>`;
         }).join('');
 
-        const overallPercentage = (totalObtained / totalMax * 100).toFixed(2);
+        const overallPercentage = (totalObtained / totalMax * 100).toFixed(1);
 
-        latestTestReport.innerHTML = `
-            <h3>${latestTest.testName} (${new Date(latestTest.date).toLocaleDateString()})</h3>
+        return `
+            <h3>${test.testName} (${new Date(test.date).toLocaleDateString()})</h3>
             <table class="marks-table">
-                <thead>
-                    <tr>
-                        <th>Subject</th>
-                        <th>Marks Obtained</th>
-                        <th>Max Marks</th>
-                        <th>Percentage</th>
-                    </tr>
-                </thead>
+                <thead><tr><th>Subject</th><th>Obtained</th><th>Max</th><th>%</th></tr></thead>
                 <tbody>
                     ${tableRows}
-                    <tr>
-                        <th>Overall</th>
-                        <th>${totalObtained}</th>
-                        <th>${totalMax}</th>
-                        <th class="percentage ${getPercentageClass(overallPercentage)}">${overallPercentage}%</th>
-                    </tr>
+                    <tr><th>Overall</th><th>${totalObtained}</th><th>${totalMax}</th><th class="percentage ${getPercentageClass(overallPercentage)}">${overallPercentage}%</th></tr>
                 </tbody>
             </table>
         `;
@@ -165,7 +157,6 @@ document.addEventListener('DOMContentLoaded', () => {
         const ctx = document.getElementById('subject-chart').getContext('2d');
         const subjects = Object.keys(latestTest.scores);
         const scores = subjects.map(s => latestTest.scores[s]);
-        const maxscores = subjects.map(s => latestTest.maxmarks[s]);
 
         subjectChartInstance = new Chart(ctx, {
             type: 'bar',
@@ -180,14 +171,9 @@ document.addEventListener('DOMContentLoaded', () => {
                 }]
             },
             options: {
-                scales: {
-                    y: {
-                        beginAtZero: true,
-                        suggestedMax: Math.max(...maxscores)
-                    }
-                },
+                scales: { y: { beginAtZero: true } },
                 responsive: true,
-                maintainAspectRatio: false // <<<--- BADLAV YAHAN HAI
+                maintainAspectRatio: false
             }
         });
     }
@@ -200,7 +186,7 @@ document.addEventListener('DOMContentLoaded', () => {
         const percentages = performanceData.map(test => {
             const totalObtained = Object.values(test.scores).reduce((a, b) => a + b, 0);
             const totalMax = Object.values(test.maxmarks).reduce((a, b) => a + b, 0);
-            return (totalObtained / totalMax * 100).toFixed(2);
+            return (totalObtained / totalMax * 100).toFixed(1);
         });
 
         progressChartInstance = new Chart(ctx, {
@@ -216,23 +202,42 @@ document.addEventListener('DOMContentLoaded', () => {
                 }]
             },
             options: {
-                scales: {
-                    y: {
-                        beginAtZero: true,
-                        max: 100
-                    }
-                },
+                scales: { y: { beginAtZero: true, max: 100 } },
                 responsive: true,
-                maintainAspectRatio: false // <<<--- BADLAV YAHAN HAI
+                maintainAspectRatio: false
             }
         });
     }
 
     // --- UI HELPERS ---
+    function populateTestFilter(performanceData) {
+        const testTypes = [...new Set(performanceData.map(test => test.testType))];
+        testTypeFilter.innerHTML = `<option value="All Tests">All Tests</option>`;
+        testTypes.forEach(type => {
+            const option = document.createElement('option');
+            option.value = type;
+            option.textContent = type;
+            testTypeFilter.appendChild(option);
+        });
+    }
+
     function getPercentageClass(percentage) {
         if (percentage >= 75) return 'percentage-good';
         if (percentage >= 50) return 'percentage-ok';
         return 'percentage-bad';
+    }
+
+    function resetPerformanceUI() {
+        performanceCard.classList.remove('hidden');
+        performanceContent.classList.add('hidden');
+        noDataMessage.classList.add('hidden');
+        loader.classList.remove('hidden');
+    }
+
+    function handleError(message) {
+        loader.classList.add('hidden');
+        noDataMessage.textContent = message;
+        noDataMessage.classList.remove('hidden');
     }
 
     function displayStudentDetails(student) {
@@ -284,16 +289,17 @@ document.addEventListener('DOMContentLoaded', () => {
         displayStudentDetails(student);
         handleStudentSelection(student.student_id, student.class);
     });
+    
+    testTypeFilter.addEventListener('change', (event) => {
+        renderFilteredPerformance(event.target.value);
+    });
 
     findBtn.addEventListener('click', async () => {
         const studentId = studentIdInput.value.trim();
         if (!studentId) return;
 
         const classInfo = allClassInfo.find(cls => studentId.startsWith(cls.idPrefix));
-        if (!classInfo) {
-            alert("Invalid Student ID format.");
-            return;
-        }
+        if (!classInfo) { alert("Invalid Student ID format."); return; }
 
         await loadStudentList(classInfo.fileName);
         const student = currentStudentsData.find(s => s.student_id === studentId);

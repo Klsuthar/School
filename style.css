@@ -50,13 +50,16 @@ header h1 {
     gap: 20px;
     margin-bottom: 15px;
 }
+
 .control-group label {
     display: block;
     margin-bottom: 8px;
     color: var(--text-light);
     font-weight: 500;
 }
-select, #student-id-input {
+
+select,
+#student-id-input {
     width: 100%;
     padding: 12px;
     border: 1px solid var(--border-color);
@@ -64,6 +67,7 @@ select, #student-id-input {
     font-size: 16px;
     box-sizing: border-box;
 }
+
 select:disabled {
     background-color: #f8f8f8;
 }
@@ -72,9 +76,11 @@ select:disabled {
     display: flex;
     gap: 10px;
 }
+
 #student-id-input {
     flex-grow: 1;
 }
+
 #find-btn {
     padding: 0 25px;
     font-size: 16px;
@@ -86,6 +92,7 @@ select:disabled {
     cursor: pointer;
     transition: background-color 0.2s;
 }
+
 #find-btn:hover {
     background-color: #357ABD;
 }
@@ -96,18 +103,21 @@ select:disabled {
     grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
     gap: 15px;
 }
+
 .detail-item {
     padding: 10px;
     border-left: 3px solid var(--primary-color);
     background-color: #f8f9fa;
     border-radius: 5px;
 }
+
 .detail-item strong {
     display: block;
     color: var(--text-light);
     font-size: 0.9em;
     margin-bottom: 4px;
 }
+
 .detail-item span {
     font-weight: 500;
     font-size: 1.1em;
@@ -127,29 +137,44 @@ select:disabled {
 #latest-test-report h3 {
     margin-bottom: 15px;
 }
+
 .marks-table {
     width: 100%;
     border-collapse: collapse;
     margin-bottom: 30px;
 }
-.marks-table th, .marks-table td {
+
+.marks-table th,
+.marks-table td {
     padding: 12px 15px;
     text-align: left;
     border-bottom: 1px solid var(--border-color);
 }
+
 .marks-table th {
     background-color: #f8f9fa;
     font-weight: 500;
 }
+
 .marks-table tr:last-child td {
     border-bottom: none;
 }
+
 .marks-table .percentage {
     font-weight: bold;
 }
-.percentage-good { color: var(--green); }
-.percentage-ok { color: var(--orange); }
-.percentage-bad { color: var(--red); }
+
+.percentage-good {
+    color: var(--green);
+}
+
+.percentage-ok {
+    color: var(--orange);
+}
+
+.percentage-bad {
+    color: var(--red);
+}
 
 /* Charts */
 .charts-grid {
@@ -157,14 +182,18 @@ select:disabled {
     grid-template-columns: 1fr 1fr;
     gap: 30px;
 }
+
 .chart-container {
     background-color: #fdfdfd;
     padding: 20px;
     border-radius: 8px;
     border: 1px solid var(--border-color);
-    height: 350px; /* <-- YAH LINE ADD KAREIN */
-    position: relative; /* Yah zaroori hai taki canvas sahi se fit ho */
+    height: 350px;
+    /* <-- YAH LINE ADD KAREIN */
+    position: relative;
+    /* Yah zaroori hai taki canvas sahi se fit ho */
 }
+
 .chart-container h3 {
     text-align: center;
     margin-top: 0;
@@ -173,15 +202,55 @@ select:disabled {
 }
 
 /* Loader and Messages */
-#loader, #no-data-message {
+#loader,
+#no-data-message {
     text-align: center;
     padding: 40px;
     font-size: 1.2em;
     color: var(--text-light);
 }
 
+/* Filter Container Styling */
+.filter-container {
+    margin-bottom: 25px;
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    max-width: 400px;
+}
+
+.filter-container label {
+    font-weight: 500;
+    white-space: nowrap;
+}
+
+#test-type-filter {
+    width: 100%;
+    padding: 10px;
+    border: 1px solid var(--border-color);
+    border-radius: 8px;
+    font-size: 15px;
+}
+
+/* Individual Test Report Styling */
+.test-report-block {
+    margin-bottom: 30px;
+    padding: 20px;
+    background-color: #fafafa;
+    border: 1px solid #e9e9e9;
+    border-radius: 8px;
+}
+
+.test-report-block h3 {
+    margin-top: 0;
+    color: var(--primary-color);
+    font-size: 1.3em;
+}
+
 @media (max-width: 768px) {
-    .controls, .charts-grid {
+
+    .controls,
+    .charts-grid {
         grid-template-columns: 1fr;
     }
 }
