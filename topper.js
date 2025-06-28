@@ -6,7 +6,8 @@
  * @returns {Promise<Array>} - Top 3 students ka array, jismein har student ka naam aur overall percentage hoga.
  */
 async function calculateTopPerformers(classTests, studentList) {
-    if (!classTests || classTests.length === 0 || !studentList) {
+    // Shuruaat mein hi check kar lein ki data hai ya nahi.
+    if (!classTests || classTests.length === 0 || !studentList || studentList.length === 0) {
         return [];
     }
 
@@ -30,10 +31,10 @@ async function calculateTopPerformers(classTests, studentList) {
                 const result = testData.results.find(r => r.studentId === student.student_id);
                 if (result) {
                     // Us test mein praapt ankon ko jodein.
-                    totalObtained += Object.values(result.scores).reduce((sum, score) => sum + score, 0);
+                    totalObtained += Object.values(result.scores).reduce((sum, score) => sum + (score || 0), 0);
                     
                     // Us test ke kul ankon (max marks) ko jodein.
-                    totalMax += testData.testInfo.maxmarks.reduce((sum, max) => sum + max, 0);
+                    totalMax += testData.testInfo.maxmarks.reduce((sum, max) => sum + (max || 0), 0);
                 }
             });
 
