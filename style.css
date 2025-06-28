@@ -163,3 +163,15 @@ select:disabled { background-color: #2a2d37; cursor: not-allowed; }
     .charts-grid { grid-template-columns: 1fr; }
     #test-reports-container { grid-template-columns: 1fr; }
 }
+/* Students Needing Support Card Styling */
+#support-card {
+    background-color: var(--bg-dark);
+    padding: 15px;
+    border-radius: 8px;
+}
+
+/* Ismein hum .topper-* classes ko reuse kar sakte hain, lekin percentage ka color alag hoga */
+.support-percentage {
+    font-size: 0.9em;
+    color: var(--orange); /* Orange color for attention */
+}

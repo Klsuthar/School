@@ -14,12 +14,16 @@ document.addEventListener('DOMContentLoaded', () => {
     const welcomeMessage = document.getElementById('welcome-message');
     const tabs = document.querySelectorAll('.tab-link');
     const tabContents = document.querySelectorAll('.tab-content');
+    
+    // Naye elements
+    const supportCard = document.getElementById('support-card');
+    const supportList = document.getElementById('support-list');
+    const supportLoader = document.getElementById('support-loader');
 
     // Global variables
     let allClassInfo = [], currentStudentsData = [], studentPerformanceData = [];
     let subjectChartInstance, progressChartInstance;
 
-    // --- INITIALIZATION ---
     async function initialize() {
         Chart.defaults.color = '#a9b1d6';
         Chart.defaults.borderColor = '#3b4261';
@@ -34,38 +38,47 @@ document.addEventListener('DOMContentLoaded', () => {
                 const option = new Option(cls.displayText, cls.fileName);
                 classSelector.add(option);
             });
-        } catch (error) {
-            console.error("Error loading classes:", error);
-            alert("Could not load class list.");
-        }
+        } catch (error) { console.error("Error loading classes:", error); }
     }
 
-    // --- TOP PERFORMERS LOGIC (The Fix is Here) ---
-    async function displayTopPerformers(className, studentList) {
+    // --- TOP PERFORMERS & SUPPORT LOGIC ---
+    async function displayClassHighlights(className, studentList) {
         topPerformersList.innerHTML = '';
+        supportList.innerHTML = '';
         topPerformersCard.classList.remove('hidden');
+        supportCard.classList.remove('hidden');
         topPerformersLoader.classList.remove('hidden');
+        supportLoader.classList.remove('hidden');
         
         try {
             const testsDirectory = await fetch('tests-directory.json').then(res => res.json());
-
-            // THE FIX: Filter using the actual class name (e.g., "10th A")
             const classTests = testsDirectory.filter(test => test.class === className);
 
-            // Call the function from topper.js
-            const topPerformers = await calculateTopPerformers(classTests, studentList);
-
+            // Dono functions ko ek saath call karein
+            const [topPerformers, supportStudents] = await Promise.all([
+                calculateTopPerformers(classTests, studentList),
+                calculateStudentsNeedingSupport(classTests, studentList)
+            ]);
+            
             if (topPerformers && topPerformers.length > 0) {
                 renderTopPerformers(topPerformers);
             } else {
-                topPerformersList.innerHTML = '<li>No test data to calculate toppers.</li>';
+                topPerformersList.innerHTML = '<li>No test data available.</li>';
+            }
+            
+            if (supportStudents && supportStudents.length > 0) {
+                renderSupportStudents(supportStudents);
+            } else {
+                supportList.innerHTML = '<li>No test data available.</li>';
             }
 
         } catch (error) {
-            console.error("Error displaying top performers:", error);
-            topPerformersList.innerHTML = '<li>Could not load topper data.</li>';
+            console.error("Error displaying class highlights:", error);
+            topPerformersList.innerHTML = '<li>Could not load data.</li>';
+            supportList.innerHTML = '<li>Could not load data.</li>';
         } finally {
             topPerformersLoader.classList.add('hidden');
+            supportLoader.classList.add('hidden');
         }
     }
 
@@ -76,6 +89,18 @@ document.addEventListener('DOMContentLoaded', () => {
                 <div class="topper-details">
                     <div class="topper-name">${topper.name}</div>
                     <div class="topper-percentage">${topper.percentage}% Overall</div>
+                </div>
+            </li>
+        `).join('');
+    }
+    
+    function renderSupportStudents(supportStudents) {
+        supportList.innerHTML = supportStudents.map((student, index) => `
+            <li class="topper-item">
+                <span class="topper-rank">#${index + 1}</span>
+                <div class="topper-details">
+                    <div class="topper-name">${student.name}</div>
+                    <div class="support-percentage">${student.percentage}% Overall</div>
                 </div>
             </li>
         `).join('');
@@ -170,11 +195,7 @@ document.addEventListener('DOMContentLoaded', () => {
         subjectChartInstance = new Chart(ctx, {
             type: 'bar',
             data: { labels: subjects, datasets: datasets },
-            options: {
-                plugins: { tooltip: { callbacks: { label: (c) => `${c.dataset.label}: ${c.formattedValue}%` } } },
-                scales: { y: { beginAtZero: true, max: 100, title: { display: true, text: 'Percentage (%)' } } },
-                responsive: true, maintainAspectRatio: false
-            }
+            options: { plugins: { tooltip: { callbacks: { label: (c) => `${c.dataset.label}: ${c.formattedValue}%` } } }, scales: { y: { beginAtZero: true, max: 100, title: { display: true, text: 'Percentage (%)' } } }, responsive: true, maintainAspectRatio: false }
         });
     }
 
@@ -189,10 +210,7 @@ document.addEventListener('DOMContentLoaded', () => {
         });
         progressChartInstance = new Chart(ctx, {
             type: 'line',
-            data: {
-                labels: labels,
-                datasets: [{ label: 'Overall Performance (%)', data: percentages, borderColor: '#9ece6a', tension: 0.1 }]
-            },
+            data: { labels: labels, datasets: [{ label: 'Overall Performance (%)', data: percentages, borderColor: '#9ece6a', tension: 0.1 }] },
             options: { scales: { y: { beginAtZero: true, max: 100 } }, responsive: true, maintainAspectRatio: false }
         });
     }
@@ -210,11 +228,7 @@ document.addEventListener('DOMContentLoaded', () => {
     function getPercentageClass(p) { return p >= 75 ? 'percentage-good' : p >= 50 ? 'percentage-ok' : 'percentage-bad'; }
 
     function displayStudentDetailsHeader(student) {
-        studentDetailsHeader.innerHTML = `
-            <div class="detail-item"><strong>Student Name</strong><span>${student.name}</span></div>
-            <div class="detail-item"><strong>Student ID</strong><span>${student.student_id}</span></div>
-            <div class="detail-item"><strong>Class</strong><span>${student.class}</span></div>
-        `;
+        studentDetailsHeader.innerHTML = `<div class="detail-item"><strong>Student Name</strong><span>${student.name}</span></div><div class="detail-item"><strong>Student ID</strong><span>${student.student_id}</span></div><div class="detail-item"><strong>Class</strong><span>${student.class}</span></div>`;
     }
 
     async function loadStudentList(classFile) {
@@ -226,13 +240,12 @@ document.addEventListener('DOMContentLoaded', () => {
             studentSelector.add(option);
         });
         studentSelector.disabled = false;
-        
-        // THE FIX: Pass the correct class name to the topper calculation function
         if (currentStudentsData.length > 0) {
-            const className = currentStudentsData[0].class; // Get "10th A" from student data
-            await displayTopPerformers(className, currentStudentsData);
+            const className = currentStudentsData[0].class;
+            await displayClassHighlights(className, currentStudentsData);
         } else {
             topPerformersCard.classList.add('hidden');
+            supportCard.classList.add('hidden');
         }
     }
     
@@ -256,6 +269,7 @@ document.addEventListener('DOMContentLoaded', () => {
         studentSelector.disabled = true;
         if (!classFile) {
             topPerformersCard.classList.add('hidden');
+            supportCard.classList.add('hidden');
             return;
         }
         await loadStudentList(classFile);
@@ -280,12 +294,10 @@ document.addEventListener('DOMContentLoaded', () => {
         if (!studentId) return;
         const classInfo = allClassInfo.find(cls => studentId.startsWith(cls.idPrefix));
         if (!classInfo) { alert("Invalid Student ID format."); return; }
-        
         if(classSelector.value !== classInfo.fileName){
             await loadStudentList(classInfo.fileName);
             classSelector.value = classInfo.fileName;
         }
-
         const student = currentStudentsData.find(s => s.student_id === studentId);
         if (student) {
             studentSelector.value = student.student_id;
