@@ -48,6 +48,14 @@
     "marksFile": "marks_12SB_MT3.json"
   },
   {
+    "testId": "12SB_MT3",
+    "class": "12th Science Bio",
+    "testType": "Monthly Test",
+    "testName": "October Monthly Test",
+    "date": "2024-10-25",
+    "marksFile": "marks_12SB_MT3.json"
+  },
+  {
     "testId": "11SM_MT1",
     "class": "11th Science Math",
     "testType": "Monthly Test",
