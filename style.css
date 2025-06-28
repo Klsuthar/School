@@ -240,12 +240,35 @@ select:disabled {
     }
 }
 
-/* Reports and Charts */
-.filter-container {
-    margin-bottom: 25px;
+/* Filter Pills Styling */
+.filter-pills {
     display: flex;
-    align-items: center;
-    gap: 10px;
+    justify-content: center; /* Center the pills */
+    gap: 8px;
+    margin-bottom: 25px;
+}
+
+.filter-pills button {
+    background-color: var(--bg-card);
+    color: var(--text-secondary);
+    border: 1px solid var(--border-color);
+    padding: 8px 16px;
+    border-radius: 20px; /* Rounded corners for a "pill" shape */
+    font-size: 0.9em;
+    font-weight: 500;
+    cursor: pointer;
+    transition: all 0.2s ease-in-out;
+}
+
+.filter-pills button:hover {
+    background-color: #3b4261;
+    color: var(--text-primary);
+}
+
+.filter-pills button.active {
+    background-color: var(--primary-color);
+    color: #fff;
+    border-color: var(--primary-color);
 }
 
 #test-reports-container {
