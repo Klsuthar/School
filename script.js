@@ -156,20 +156,7 @@ document.addEventListener('DOMContentLoaded', () => {
     }
 
     function renderProgressChart(performanceData) {
-        const chartContainer = document.getElementById('progress-chart').parentElement;
-        if (progressChartInstance) {
-            progressChartInstance.destroy();
-        }
-
-        // NAYA LOGIC: Check karein ki progress dikhane ke liye पर्याप्त data hai ya nahi.
-        if (performanceData.length < 2) {
-            chartContainer.style.display = 'none'; // Chart ko hide kar dein.
-            return;
-        }
-        
-        // Agar data hai, to chart container ko visible karein.
-        chartContainer.style.display = 'block';
-
+        if (progressChartInstance) progressChartInstance.destroy();
         const ctx = document.getElementById('progress-chart').getContext('2d');
         const labels = performanceData.map(test => `${test.testName}`);
         const percentages = performanceData.map(test => {
@@ -177,17 +164,13 @@ document.addEventListener('DOMContentLoaded', () => {
             const totalMax = Object.values(test.maxmarks).reduce((a, b) => a + b, 0);
             return totalMax > 0 ? (totalObtained / totalMax * 100).toFixed(1) : 0;
         });
-        progressChartInstance = new Chart(ctx, {
-            type: 'line',
-            data: { labels: labels, datasets: [{ label: 'Overall Performance (%)', data: percentages, borderColor: '#9ece6a', tension: 0.1 }] },
-            options: { scales: { y: { beginAtZero: true, max: 100 } }, responsive: true, maintainAspectRatio: false }
-        });
+        progressChartInstance = new Chart(ctx, { type: 'line', data: { labels: labels, datasets: [{ label: 'Overall Performance (%)', data: percentages, borderColor: '#9ece6a', tension: 0.1 }] }, options: { scales: { y: { beginAtZero: true, max: 100 } }, responsive: true, maintainAspectRatio: false } });
     }
 
     function populateTestFilter(performanceData) {
         testTypeFilterPills.innerHTML = '';
         const testTypes = ['All Tests', ...new Set(performanceData.map(test => test.testType))];
-        testTypeFilterPills.forEach((type, index) => {
+        testTypes.forEach((type, index) => {
             const button = document.createElement('button');
             button.textContent = type;
             button.dataset.filter = type;
@@ -199,7 +182,18 @@ document.addEventListener('DOMContentLoaded', () => {
     function getPercentageClass(p) { return p >= 75 ? 'percentage-good' : p >= 50 ? 'percentage-ok' : 'percentage-bad'; }
 
     function displayStudentDetailsHeader(student) {
-        studentDetailsHeader.innerHTML = `<div class="header-info-container"><div class="header-detail-item"><span class="icon">👤</span><div class="text-content"><strong>Student Name</strong><span>${student.name}</span></div></div><div class="header-detail-item"><span class="icon">🆔</span><div class="text-content"><strong>Student ID</strong><span>${student.student_id}</span></div></div><div class="header-detail-item"><span class="icon">🏫</span><div class="text-content"><strong>Class</strong><span>${student.class}</span></div></div></div><div id="student-nav-buttons"><button id="prev-student-btn" title="Previous Student">←</button><button id="next-student-btn" title="Next Student">→</button></div>`;
+        studentDetailsHeader.innerHTML = `
+            <div class="header-info-container">
+                <div class="header-detail-item"><span class="icon">👤</span><div class="text-content"><strong>Student Name</strong><span>${student.name}</span></div></div>
+                <div class="header-detail-item"><span class="icon">🆔</span><div class="text-content"><strong>Student ID</strong><span>${student.student_id}</span></div></div>
+                <div class="header-detail-item"><span class="icon">🏫</span><div class="text-content"><strong>Class</strong><span>${student.class}</span></div></div>
+            </div>
+            <div id="student-nav-buttons">
+                <button id="prev-student-btn" title="Previous Student">←</button>
+                <button id="next-student-btn" title="Next Student">→</button>
+            </div>
+        `;
+        // Nav buttons ke liye event listeners yahan add karein, kyunki ye abhi bane hain.
         document.getElementById('prev-student-btn').addEventListener('click', navigateToPreviousStudent);
         document.getElementById('next-student-btn').addEventListener('click', navigateToNextStudent);
         updateNavButtons();
@@ -220,6 +214,7 @@ document.addEventListener('DOMContentLoaded', () => {
         }
     }
 
+    // --- NAVIGATION LOGIC ---
     function updateNavButtons() {
         const prevBtn = document.getElementById('prev-student-btn');
         const nextBtn = document.getElementById('next-student-btn');
@@ -265,11 +260,12 @@ document.addEventListener('DOMContentLoaded', () => {
             return;
         }
         const student = currentStudentsData.find(s => s.student_id === studentId);
-        currentStudentIndex = currentStudentsData.findIndex(s => s.student_id === studentId);
+        currentStudentIndex = currentStudentsData.findIndex(s => s.student_id === studentId); // Current index set karein
         displayStudentDetailsHeader(student);
         handleStudentSelection(student.student_id, student.class);
     });
     
+    // Clickable Toppers/Support List
     [topPerformersList, supportList].forEach(list => {
         list.addEventListener('click', (event) => {
             const listItem = event.target.closest('li');

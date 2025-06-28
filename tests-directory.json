@@ -198,5 +198,13 @@
     "testName": "October Monthly Test",
     "date": "2024-10-28",
     "marksFile": "marks_8_MT3.json"
-  }
+  },
+      {
+      "testId": "7_MT1",
+      "class": "7th",
+      "testType": "Monthly Test",
+      "testName": "August Monthly Test",
+      "date": "2024-08-29",
+      "marksFile": "marks_7_MT1.json"
+    }
 ]
