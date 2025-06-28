@@ -1,0 +1,29 @@
+{
+  "testInfo": {
+    "testId": "10B_MT1",
+    "subjects": ["Hindi", "English", "Social Science", "Science", "Sanskrit", "Math"],
+    "maxmarks": [50, 50, 50, 50, 50, 50]
+  },
+  "results": [
+    {"studentId": "10B01", "scores": {"Hindi": 41, "English": 43, "Social Science": 40, "Science": 42, "Sanskrit": 44, "Math": 45}},
+    {"studentId": "10B02", "scores": {"Hindi": 33, "English": 35, "Social Science": 31, "Science": 34, "Sanskrit": 36, "Math": 30}},
+    {"studentId": "10B03", "scores": {"Hindi": 48, "English": 47, "Social Science": 46, "Science": 49, "Sanskrit": 45, "Math": 48}},
+    {"studentId": "10B04", "scores": {"Hindi": 40, "English": 38, "Social Science": 42, "Science": 41, "Sanskrit": 43, "Math": 39}},
+    {"studentId": "10B05", "scores": {"Hindi": 28, "English": 26, "Social Science": 30, "Science": 27, "Sanskrit": 29, "Math": 25}},
+    {"studentId": "10B06", "scores": {"Hindi": 44, "English": 42, "Social Science": 45, "Science": 43, "Sanskrit": 46, "Math": 41}},
+    {"studentId": "10B07", "scores": {"Hindi": 36, "English": 37, "Social Science": 35, "Science": 39, "Sanskrit": 38, "Math": 34}},
+    {"studentId": "10B08", "scores": {"Hindi": 47, "English": 49, "Social Science": 48, "Science": 46, "Sanskrit": 47, "Math": 47}},
+    {"studentId": "10B09", "scores": {"Hindi": 30, "English": 29, "Social Science": 31, "Science": 32, "Sanskrit": 33, "Math": 28}},
+    {"studentId": "10B10", "scores": {"Hindi": 42, "English": 41, "Social Science": 40, "Science": 43, "Sanskrit": 45, "Math": 44}},
+    {"studentId": "10B11", "scores": {"Hindi": 37, "English": 39, "Social Science": 38, "Science": 40, "Sanskrit": 41, "Math": 36}},
+    {"studentId": "10B12", "scores": {"Hindi": 43, "English": 44, "Social Science": 41, "Science": 46, "Sanskrit": 42, "Math": 47}},
+    {"studentId": "10B13", "scores": {"Hindi": 31, "English": 33, "Social Science": 32, "Science": 35, "Sanskrit": 34, "Math": 30}},
+    {"studentId": "10B14", "scores": {"Hindi": 46, "English": 45, "Social Science": 47, "Science": 44, "Sanskrit": 48, "Math": 46}},
+    {"studentId": "10B15", "scores": {"Hindi": 26, "English": 27, "Social Science": 25, "Science": 28, "Sanskrit": 30, "Math": 26}},
+    {"studentId": "10B16", "scores": {"Hindi": 40, "English": 41, "Social Science": 43, "Science": 42, "Sanskrit": 40, "Math": 43}},
+    {"studentId": "10B17", "scores": {"Hindi": 35, "English": 36, "Social Science": 37, "Science": 38, "Sanskrit": 39, "Math": 35}},
+    {"studentId": "10B18", "scores": {"Hindi": 45, "English": 46, "Social Science": 44, "Science": 43, "Sanskrit": 47, "Math": 46}},
+    {"studentId": "10B19", "scores": {"Hindi": 39, "English": 38, "Social Science": 36, "Science": 41, "Sanskrit": 40, "Math": 38}},
+    {"studentId": "10B20", "scores": {"Hindi": 48, "English": 47, "Social Science": 49, "Science": 47, "Sanskrit": 46, "Math": 49}}
+  ]
+}

@@ -25,6 +25,11 @@
     "idPrefix": "10A"
   },
   {
+    "displayText": "Class 10th B",
+    "fileName": "students_class_10_B.json",
+    "idPrefix": "10B"
+  },
+  {
     "displayText": "Class 9th",
     "fileName": "students_class_09.json",
     "idPrefix": "9"

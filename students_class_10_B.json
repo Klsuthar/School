@@ -1,206 +1,22 @@
 [
-  {
-    "student_id": "10A01",
-    "name": "Aarav Sharma",
-    "class": "10th A",
-    "parents": {
-      "father_name": "Rajesh Sharma",
-      "mother_name": "Pooja Sharma"
-    },
-    "contact": {
-      "phone": "9810101010"
-    }
-  },
-  {
-    "student_id": "10A02",
-    "name": "Isha Singh",
-    "class": "10th A",
-    "parents": {
-      "father_name": "Sandeep Singh",
-      "mother_name": "Kavita Singh"
-    },
-    "contact": {
-      "phone": "9820202020"
-    }
-  },
-  {
-    "student_id": "10A03",
-    "name": "Rohan Verma",
-    "class": "10th A",
-    "parents": {
-      "father_name": "Anil Verma",
-      "mother_name": "Sunita Verma"
-    },
-    "contact": {
-      "phone": "9830303030"
-    }
-  },
-  {
-    "student_id": "10A04",
-    "name": "Diya Gupta",
-    "class": "10th A",
-    "parents": {
-      "father_name": "Manoj Gupta",
-      "mother_name": "Rina Gupta"
-    },
-    "contact": {
-      "phone": "9840404040"
-    }
-  },
-  {
-    "student_id": "10A05",
-    "name": "Kabir Khan",
-    "class": "10th A",
-    "parents": {
-      "father_name": "Imran Khan",
-      "mother_name": "Ayesha Khan"
-    },
-    "contact": {
-      "phone": "9850505050"
-    }
-  },
-  {
-    "student_id": "10A06",
-    "name": "Ananya Patel",
-    "class": "10th A",
-    "parents": {
-      "father_name": "Jayesh Patel",
-      "mother_name": "Deepa Patel"
-    },
-    "contact": {
-      "phone": "9860606060"
-    }
-  },
-  {
-    "student_id": "10A07",
-    "name": "Vivaan Kumar",
-    "class": "10th A",
-    "parents": {
-      "father_name": "Sanjay Kumar",
-      "mother_name": "Poonam Kumar"
-    },
-    "contact": {
-      "phone": "9870707070"
-    }
-  },
-  {
-    "student_id": "10A08",
-    "name": "Myra Reddy",
-    "class": "10th A",
-    "parents": {
-      "father_name": "Vijay Reddy",
-      "mother_name": "Lakshmi Reddy"
-    },
-    "contact": {
-      "phone": "9880808080"
-    }
-  },
-  {
-    "student_id": "10A09",
-    "name": "Arjun Jain",
-    "class": "10th A",
-    "parents": {
-      "father_name": "Ashok Jain",
-      "mother_name": "Rekha Jain"
-    },
-    "contact": {
-      "phone": "9890909090"
-    }
-  },
-  {
-    "student_id": "10A10",
-    "name": "Saanvi Mishra",
-    "class": "10th A",
-    "parents": {
-      "father_name": "Dinesh Mishra",
-      "mother_name": "Usha Mishra"
-    },
-    "contact": {
-      "phone": "9910101010"
-    }
-  },
-  {
-    "student_id": "10A11",
-    "name": "Reyansh Mehra",
-    "class": "10th A",
-    "parents": {
-      "father_name": "Sunil Mehra",
-      "mother_name": "Seema Mehra"
-    },
-    "contact": {
-      "phone": "9920202020"
-    }
-  },
-  {
-    "student_id": "10A12",
-    "name": "Kiara Iyer",
-    "class": "10th A",
-    "parents": {
-      "father_name": "Ravi Iyer",
-      "mother_name": "Shanti Iyer"
-    },
-    "contact": {
-      "phone": "9930303030"
-    }
-  },
-  {
-    "student_id": "10A13",
-    "name": "Zayn Ali",
-    "class": "10th A",
-    "parents": {
-      "father_name": "Zakir Ali",
-      "mother_name": "Fatima Ali"
-    },
-    "contact": {
-      "phone": "9940404040"
-    }
-  },
-  {
-    "student_id": "10A14",
-    "name": "Pari Chauhan",
-    "class": "10th A",
-    "parents": {
-      "father_name": "Vikram Chauhan",
-      "mother_name": "Deepa Chauhan"
-    },
-    "contact": {
-      "phone": "9950505050"
-    }
-  },
-  {
-    "student_id": "10A15",
-    "name": "Advik Das",
-    "class": "10th A",
-    "parents": {
-      "father_name": "Hari Das",
-      "mother_name": "Maya Das"
-    },
-    "contact": {
-      "phone": "9960606060"
-    }
-  },
-  {
-    "student_id": "10A16",
-    "name": "Zara Begum",
-    "class": "10th A",
-    "parents": {
-      "father_name": "Aslam Begum",
-      "mother_name": "Nadia Begum"
-    },
-    "contact": {
-      "phone": "9970707070"
-    }
-  },
-  {
-    "student_id": "10A17",
-    "name": "Ishaan Joshi",
-    "class": "10th A",
-    "parents": {
-      "father_name": "Girish Joshi",
-      "mother_name": "Hema Joshi"
-    },
-    "contact": {
-      "phone": "9980808080"
-    }
-  }
+  {"student_id": "10B01", "name": "Ajay Rana", "class": "10th B", "parents": {"father_name": "Sandeep Rana", "mother_name": "Kavita Rana"}, "contact": {"phone": "9711001501"}},
+  {"student_id": "10B02", "name": "Babita Kumari", "class": "10th B", "parents": {"father_name": "Manoj Kumar", "mother_name": "Sunita Kumari"}, "contact": {"phone": "9711001502"}},
+  {"student_id": "10B03", "name": "Chirag Mehta", "class": "10th B", "parents": {"father_name": "Rajesh Mehta", "mother_name": "Pooja Mehta"}, "contact": {"phone": "9711001503"}},
+  {"student_id": "10B04", "name": "Deepak Verma", "class": "10th B", "parents": {"father_name": "Anil Verma", "mother_name": "Geeta Verma"}, "contact": {"phone": "9711001504"}},
+  {"student_id": "10B05", "name": "Garima Singh", "class": "10th B", "parents": {"father_name": "Vikas Singh", "mother_name": "Ritu Singh"}, "contact": {"phone": "9711001505"}},
+  {"student_id": "10B06", "name": "Harish Patel", "class": "10th B", "parents": {"father_name": "Suresh Patel", "mother_name": "Kiran Patel"}, "contact": {"phone": "9711001506"}},
+  {"student_id": "10B07", "name": "Ishwar Joshi", "class": "10th B", "parents": {"father_name": "Girish Joshi", "mother_name": "Hema Joshi"}, "contact": {"phone": "9711001507"}},
+  {"student_id": "10B08", "name": "Jaya Mishra", "class": "10th B", "parents": {"father_name": "Dinesh Mishra", "mother_name": "Usha Mishra"}, "contact": {"phone": "9711001508"}},
+  {"student_id": "10B09", "name": "Kamal Reddy", "class": "10th B", "parents": {"father_name": "Vijay Reddy", "mother_name": "Lakshmi Reddy"}, "contact": {"phone": "9711001509"}},
+  {"student_id": "10B10", "name": "Lalit Chauhan", "class": "10th B", "parents": {"father_name": "Vikram Chauhan", "mother_name": "Deepa Chauhan"}, "contact": {"phone": "9711001510"}},
+  {"student_id": "10B11", "name": "Manju Das", "class": "10th B", "parents": {"father_name": "Hari Das", "mother_name": "Maya Das"}, "contact": {"phone": "9711001511"}},
+  {"student_id": "10B12", "name": "Naveen Saxena", "class": "10th B", "parents": {"father_name": "Alok Saxena", "mother_name": "Nisha Saxena"}, "contact": {"phone": "9711001512"}},
+  {"student_id": "10B13", "name": "Poonam Yadav", "class": "10th B", "parents": {"father_name": "Mukesh Yadav", "mother_name": "Sarita Yadav"}, "contact": {"phone": "9711001513"}},
+  {"student_id": "10B14", "name": "Rajesh Nair", "class": "10th B", "parents": {"father_name": "Gopal Nair", "mother_name": "Vidya Nair"}, "contact": {"phone": "9711001514"}},
+  {"student_id": "10B15", "name": "Sarika Tiwari", "class": "10th B", "parents": {"father_name": "Prakash Tiwari", "mother_name": "Savita Tiwari"}, "contact": {"phone": "9711001515"}},
+  {"student_id": "10B16", "name": "Tarun Chaudhary", "class": "10th B", "parents": {"father_name": "Ram Chaudhary", "mother_name": "Suman Chaudhary"}, "contact": {"phone": "9711001516"}},
+  {"student_id": "10B17", "name": "Umesh Agarwal", "class": "10th B", "parents": {"father_name": "Pawan Agarwal", "mother_name": "Ritu Agarwal"}, "contact": {"phone": "9711001517"}},
+  {"student_id": "10B18", "name": "Vandana Soni", "class": "10th B", "parents": {"father_name": "Deepak Soni", "mother_name": "Pooja Soni"}, "contact": {"phone": "9711001518"}},
+  {"student_id": "10B19", "name": "Yogesh Malhotra", "class": "10th B", "parents": {"father_name": "Rajiv Malhotra", "mother_name": "Tina Malhotra"}, "contact": {"phone": "9711001519"}},
+  {"student_id": "10B20", "name": "Zeenat Ali", "class": "10th B", "parents": {"father_name": "Iqbal Ali", "mother_name": "Sana Ali"}, "contact": {"phone": "9711001520"}}
 ]
