@@ -10,11 +10,8 @@
 </head>
 <body>
     <div class="dashboard-layout">
-        <!-- ===== SIDEBAR ===== -->
         <aside class="sidebar">
             <header class="sidebar-header"><h2>School Dashboard</h2></header>
-
-            <!-- Compact selection grid -->
             <div class="selection-grid">
                 <div class="sidebar-section">
                     <label for="class-selector">Select Class</label>
@@ -25,7 +22,6 @@
                     <select id="student-selector" disabled><option value="">-- Choose a Student --</option></select>
                 </div>
             </div>
-            
             <div class="sidebar-section">
                 <label for="student-id-input">Find by ID</label>
                 <div class="search-container">
@@ -33,13 +29,11 @@
                     <button id="find-btn">Find</button>
                 </div>
             </div>
-
             <div id="top-performers-card" class="sidebar-section hidden">
                 <h3><span class="icon">🏆</span> Top Performers</h3>
                 <div id="top-performers-loader" class="hidden">Calculating...</div>
                 <ul id="top-performers-list"></ul>
             </div>
-            
             <div id="support-card" class="sidebar-section hidden">
                 <h3><span class="icon">💡</span> Students Needing Support</h3>
                 <div id="support-loader" class="hidden">Calculating...</div>
@@ -47,36 +41,53 @@
             </div>
         </aside>
 
-        <!-- ===== MAIN CONTENT ===== -->
         <main class="main-content">
             <div id="welcome-message">
                 <h1>Welcome!</h1>
-                <p>Please select a class and student from the sidebar to view their performance.</p>
+                <p>Please select a class from the sidebar to view its performance analytics.</p>
+            </div>
+
+            <div id="class-analytics-area" class="hidden">
+                <!-- THE FIX: Added the missing h1 title element -->
+                <h1 id="class-analytics-title"></h1>
+                <div class="stats-grid">
+                    <div class="stat-card"><strong>Total Students</strong><span id="stat-total-students"></span></div>
+                    <div class="stat-card"><strong>Class Average</strong><span id="stat-class-average"></span></div>
+                    <div class="stat-card"><strong>Tests Conducted</strong><span id="stat-tests-conducted"></span></div>
+                </div>
+                <div class="analytics-charts-grid">
+                    <div class="card chart-container">
+                        <h3>Subject Difficulty (Lowest to Highest Avg.)</h3>
+                        <canvas id="subject-difficulty-chart"></canvas>
+                    </div>
+                    <div class="card chart-container">
+                        <h3>Performance Distribution</h3>
+                        <!-- THE FIX: Added the doughnut-wrapper and legend container -->
+                        <div class="doughnut-wrapper">
+                            <canvas id="performance-distribution-chart"></canvas>
+                            <div id="performance-distribution-legend"></div>
+                        </div>
+                    </div>
+                </div>
             </div>
 
             <div id="student-content-area" class="hidden">
-                <div id="student-details-header" class="card">
-                    <!-- Student details and nav buttons will be injected here -->
-                </div>
-                
+                <div id="student-details-header" class="card"></div>
                 <nav class="tabs">
                     <button class="tab-link active" data-tab="overview">Overview</button>
-                    <button class="tab-link" data-tab="profile">Profile</button> <!-- NEW TAB -->
+                    <button class="tab-link" data-tab="profile">Profile</button>
                     <button class="tab-link" data-tab="reports">Detailed Reports</button>
                 </nav>
-
                 <div id="overview" class="tab-content active">
                     <div class="charts-grid">
                         <div class="chart-container"><h3>Subject Performance Comparison</h3><canvas id="subject-chart"></canvas></div>
                         <div class="chart-container"><h3>Overall Progress (%)</h3><canvas id="progress-chart"></canvas></div>
                     </div>
                 </div>
-
-                <!-- NEW PROFILE TAB CONTENT -->
                 <div id="profile" class="tab-content">
-                    <!-- Profile info will be injected here by JS -->
+                    <div class="profile-grid"></div>
+                    <div class="notes-section"><h3>Teacher's Notes</h3><ul id="notes-list"></ul></div>
                 </div>
-
                 <div id="reports" class="tab-content">
                     <div id="test-type-filter-pills" class="filter-pills"></div>
                     <div id="test-reports-container"></div>
@@ -87,6 +98,7 @@
 
     <script src="topper.js"></script>
     <script src="support.js"></script>
+    <script src="class-analytics.js"></script>
     <script src="script.js"></script>
 </body>
 </html>

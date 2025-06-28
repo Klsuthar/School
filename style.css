@@ -16,6 +16,10 @@
     box-sizing: border-box;
 }
 
+html {
+    scroll-behavior: smooth;
+}
+
 body {
     font-family: 'Inter', sans-serif;
     background-color: var(--bg-dark);
@@ -30,7 +34,7 @@ body {
     height: 100vh;
 }
 
-/* Sidebar */
+/* ===== Sidebar Styling ===== */
 .sidebar {
     background-color: var(--bg-sidebar);
     padding: 20px;
@@ -38,6 +42,7 @@ body {
     flex-direction: column;
     gap: 20px;
     border-right: 1px solid var(--border-color);
+    overflow-y: auto;
 }
 
 .sidebar-header h2 {
@@ -63,7 +68,6 @@ body {
     gap: 15px;
 }
 
-/* Naya Grid Layout */
 select,
 #student-id-input {
     width: 100%;
@@ -170,7 +174,7 @@ select:disabled {
     color: var(--orange);
 }
 
-/* Main Content */
+/* ===== Main Content Styling ===== */
 .main-content {
     padding: 30px;
     overflow-y: auto;
@@ -195,14 +199,15 @@ select:disabled {
     justify-content: space-between;
     align-items: center;
     gap: 20px;
+    flex-wrap: wrap;
 }
 
 .header-info-container {
     display: flex;
     gap: 25px;
+    flex-wrap: wrap;
 }
 
-/* Naya Container */
 .header-detail-item {
     display: flex;
     align-items: center;
@@ -292,6 +297,7 @@ select:disabled {
     justify-content: center;
     gap: 8px;
     margin-bottom: 25px;
+    flex-wrap: wrap;
 }
 
 .filter-pills button {
@@ -318,7 +324,7 @@ select:disabled {
 
 #test-reports-container {
     display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(450px, 1fr));
+    grid-template-columns: repeat(auto-fit, minmax(400px, 1fr));
     gap: 20px;
 }
 
@@ -350,48 +356,49 @@ select:disabled {
     background-color: var(--bg-card);
 }
 
+.percentage-good {
+    color: var(--green);
+}
+
+.percentage-ok {
+    color: var(--orange);
+}
+
+.percentage-bad {
+    color: var(--red);
+}
+
 /* Charts & Other */
-.charts-grid {
+.charts-grid,
+.analytics-charts-grid {
     display: grid;
     grid-template-columns: 1fr 1fr;
     gap: 30px;
+}
+
+.analytics-charts-grid {
+    grid-template-columns: 2fr 1fr;
 }
 
 .chart-container {
     padding: 20px;
     height: 400px;
     position: relative;
+    min-width: 0;
+    /* NAYI LINE: Ensures container itself doesn't cause overflow */
+    overflow-x: hidden;
+}
+
+.chart-container h3 {
+    text-align: center;
+    margin: 0 0 20px 0;
+    font-weight: 500;
 }
 
 .hidden {
     display: none !important;
 }
 
-/* Responsive */
-@media (max-width: 1200px) {
-    .dashboard-layout {
-        grid-template-columns: 1fr;
-    }
-
-    .main-content {
-        height: auto;
-    }
-}
-
-@media (max-width: 768px) {
-    .charts-grid {
-        grid-template-columns: 1fr;
-    }
-
-    #test-reports-container {
-        grid-template-columns: 1fr;
-    }
-
-    #student-details-header {
-        flex-direction: column;
-        align-items: flex-start;
-    }
-}
 /* Profile Tab Styling */
 .profile-grid {
     display: grid;
@@ -439,4 +446,212 @@ select:disabled {
 
 .contact-link:hover {
     background-color: #7ab563;
+}
+
+/* Notes Section Styling */
+.notes-section {
+    margin-top: 30px;
+    background-color: var(--bg-dark);
+    padding: 20px;
+    border-radius: 8px;
+}
+
+.notes-section h3 {
+    margin-top: 0;
+    border-bottom: 1px solid var(--border-color);
+    padding-bottom: 10px;
+    margin-bottom: 15px;
+}
+
+#notes-list {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+    max-height: 400px;
+    overflow-y: auto;
+}
+
+.note-item {
+    display: flex;
+    gap: 15px;
+    padding: 15px 10px;
+    border-bottom: 1px solid var(--border-color);
+}
+
+.note-item:last-child {
+    border-bottom: none;
+}
+
+.note-icon {
+    font-size: 1.5em;
+    line-height: 1.4;
+}
+
+.note-achievement .note-icon {
+    color: var(--green);
+}
+
+.note-complaint .note-icon {
+    color: var(--orange);
+}
+
+.note-content {
+    flex-grow: 1;
+}
+
+.note-meta {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 5px;
+}
+
+.note-type {
+    font-weight: 600;
+    font-size: 1.1em;
+}
+
+.note-achievement .note-type {
+    color: var(--green);
+}
+
+.note-complaint .note-type {
+    color: var(--orange);
+}
+
+.note-date {
+    font-size: 0.85em;
+    color: var(--text-secondary);
+}
+
+.note-text {
+    font-size: 0.95em;
+    color: var(--text-secondary);
+    line-height: 1.5;
+}
+
+/* Doughnut Chart Layout Fix */
+.doughnut-wrapper {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 25px;
+    width: 100%;
+    height: calc(100% - 40px);
+}
+
+.doughnut-wrapper canvas {
+    max-width: 65%;
+    max-height: 100%;
+}
+
+#performance-distribution-legend {
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+}
+
+.legend-item {
+    display: flex;
+    align-items: center;
+    font-size: 0.9em;
+    font-weight: 500;
+}
+
+.legend-color-box {
+    width: 14px;
+    height: 14px;
+    border-radius: 3px;
+    margin-right: 10px;
+}
+
+/* =================================== */
+/* ===== RESPONSIVE MEDIA QUERIES ===== */
+/* =================================== */
+
+@media (max-width: 1200px) {
+    .dashboard-layout {
+        grid-template-columns: 1fr;
+        height: auto;
+    }
+
+    .sidebar {
+        border-right: none;
+        border-bottom: 1px solid var(--border-color);
+        overflow-y: visible;
+    }
+
+    .main-content {
+        overflow-y: visible;
+    }
+}
+
+@media (max-width: 900px) {
+
+    .analytics-charts-grid,
+    .charts-grid {
+        grid-template-columns: 1fr;
+    }
+}
+
+@media (max-width: 768px) {
+    .main-content {
+        padding: 20px;
+    }
+
+    #test-reports-container {
+        grid-template-columns: 1fr;
+    }
+
+    .header-info-container {
+        flex-direction: column;
+        align-items: flex-start;
+        gap: 15px;
+    }
+
+    /* THE FIX: Doughnut chart layout for mobile */
+    .doughnut-wrapper {
+        flex-direction: column;
+        /* Stack chart and legend */
+        gap: 15px;
+    }
+
+    .doughnut-wrapper canvas {
+        max-width: 80%;
+        /* Allow chart to be bigger */
+        max-height: 200px;
+        /* Limit height */
+    }
+
+    #performance-distribution-legend {
+        flex-direction: row;
+        /* Make legend horizontal on mobile */
+        justify-content: center;
+        flex-wrap: wrap;
+        /* Wrap if needed */
+        gap: 15px;
+    }
+
+    .chart-container {
+        padding: 20px;
+        height: 400px;
+        position: relative;
+        min-width: 0;
+    }
+}
+
+@media (max-width: 480px) {
+    .selection-grid {
+        grid-template-columns: 1fr;
+    }
+
+    .sidebar,
+    .main-content,
+    .card {
+        padding: 15px;
+    }
+
+    .test-report-block {
+        padding: 15px;
+    }
 }

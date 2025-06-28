@@ -1,0 +1,583 @@
+[{
+    "studentId": "12SM01",
+    "date": "2024-09-20",
+    "noteType": "Complaint",
+    "noteText": "Found talking during the library hour. Warned to maintain discipline."
+  },
+  {
+    "studentId": "12SM01",
+    "date": "2024-10-15",
+    "noteType": "Achievement",
+    "noteText": "Actively participated and won first prize in the inter-school science fair."
+  },
+  {
+    "studentId": "10A01",
+    "date": "2024-10-15",
+    "noteType": "Achievement",
+    "noteText": "Actively participated and won first prize in the inter-school science fair."
+  },
+  {
+    "studentId": "10A03",
+    "date": "2024-10-12",
+    "noteType": "Complaint",
+    "noteText": "Submitted mathematics homework late. Needs to be more punctual with assignments."
+  },
+  {
+    "studentId": "11SM03",
+    "date": "2024-09-28",
+    "noteType": "Achievement",
+    "noteText": "Demonstrated excellent leadership skills as the team captain during the sports event."
+  },
+  {
+    "studentId": "10A01",
+    "date": "2024-09-20",
+    "noteType": "Complaint",
+    "noteText": "Found talking during the library hour. Warned to maintain discipline."
+  },
+  {
+    "studentId": "11SM08",
+    "date": "2024-10-05",
+    "noteType": "Achievement",
+    "noteText": "Scored the highest in the surprise class test for Physics."
+  },
+  {
+    "studentId": "12SB02",
+    "date": "2024-10-18",
+    "noteType": "Achievement",
+    "noteText": "Presented a very well-researched biology project on photosynthesis."
+  },
+  {
+    "studentId": "905",
+    "date": "2024-10-17",
+    "noteType": "Complaint",
+    "noteText": "Needs to improve handwriting. It's difficult to read the answers in the test paper."
+  },
+  {
+    "studentId": "10B11",
+    "date": "2024-10-16",
+    "noteType": "Achievement",
+    "noteText": "Helped a classmate who was struggling with a math problem during recess."
+  },
+  {
+    "studentId": "808",
+    "date": "2024-10-14",
+    "noteType": "Complaint",
+    "noteText": "Forgot to bring the Social Science textbook to class for the third time this month."
+  },
+  {
+    "studentId": "707",
+    "date": "2024-10-10",
+    "noteType": "Achievement",
+    "noteText": "Showed significant improvement in English grammar in the last monthly test."
+  },
+  {
+    "studentId": "915",
+    "date": "2024-10-09",
+    "noteType": "Complaint",
+    "noteText": "Uniform was not as per the school's dress code. A verbal warning was issued."
+  },
+  {
+    "studentId": "11SB10",
+    "date": "2024-10-08",
+    "noteType": "Achievement",
+    "noteText": "Maintained the lab equipment with great care during the chemistry practical."
+  },
+  {
+    "studentId": "10A17",
+    "date": "2024-10-07",
+    "noteType": "Achievement",
+    "noteText": "Wrote a thoughtful essay on 'Environmental Conservation' for the English class."
+  },
+  {
+    "studentId": "603",
+    "date": "2024-10-04",
+    "noteType": "Complaint",
+    "noteText": "Did not complete the assigned reading for the history lesson."
+  },
+  {
+    "studentId": "12SM15",
+    "date": "2024-10-03",
+    "noteType": "Complaint",
+    "noteText": "Struggling with calculus concepts. Recommended for extra remedial classes."
+  },
+  {
+    "studentId": "818",
+    "date": "2024-10-02",
+    "noteType": "Achievement",
+    "noteText": "Recited a Sanskrit shloka flawlessly during the morning assembly."
+  },
+  {
+    "studentId": "10B04",
+    "date": "2024-10-01",
+    "noteType": "Complaint",
+    "noteText": "Seems distracted in class. Needs to be more attentive."
+  },
+  {
+    "studentId": "902",
+    "date": "2024-09-29",
+    "noteType": "Achievement",
+    "noteText": "Volunteered to clean the classroom after the art and craft session."
+  },
+  {
+    "studentId": "11SM01",
+    "date": "2024-09-27",
+    "noteType": "Complaint",
+    "noteText": "Failed to submit the physics assignment on the due date."
+  },
+  {
+    "studentId": "12SB13",
+    "date": "2024-09-26",
+    "noteType": "Achievement",
+    "noteText": "Excellent diagram of the human heart in the biology notebook."
+  },
+  {
+    "studentId": "715",
+    "date": "2024-09-24",
+    "noteType": "Complaint",
+    "noteText": "Argument with a fellow student during the lunch break. Both were counseled."
+  },
+  {
+    "studentId": "10A11",
+    "date": "2024-09-23",
+    "noteType": "Achievement",
+    "noteText": "Solved a challenging math problem on the board, which was outside the syllabus."
+  },
+  {
+    "studentId": "510",
+    "date": "2024-09-19",
+    "noteType": "Achievement",
+    "noteText": "Perfect score in the spelling bee competition for the weekly activity."
+  },
+  {
+    "studentId": "11SB05",
+    "date": "2024-09-18",
+    "noteType": "Complaint",
+    "noteText": "Lab coat was not clean during the chemistry practical. Reminded about hygiene."
+  },
+  {
+    "studentId": "922",
+    "date": "2024-09-17",
+    "noteType": "Achievement",
+    "noteText": "Asked a very insightful question about the 'French Revolution' in history class."
+  },
+  {
+    "studentId": "825",
+    "date": "2024-09-16",
+    "noteType": "Complaint",
+    "noteText": "Needs to participate more in class discussions."
+  },
+  {
+    "studentId": "10B01",
+    "date": "2024-09-15",
+    "noteType": "Achievement",
+    "noteText": "Consistently submits neat and well-organized homework."
+  },
+  {
+    "studentId": "12SM11",
+    "date": "2024-09-14",
+    "noteType": "Complaint",
+    "noteText": "Calculation error in multiple problems in the math test. Needs to be more careful."
+  },
+  {
+    "studentId": "618",
+    "date": "2024-09-13",
+    "noteType": "Achievement",
+    "noteText": "Finished the assigned reading book well before the deadline."
+  },
+  {
+    "studentId": "11SB18",
+    "date": "2024-09-12",
+    "noteType": "Achievement",
+    "noteText": "Good performance in the 100-meter race during sports practice."
+  },
+  {
+    "studentId": "10A08",
+    "date": "2024-09-11",
+    "noteType": "Complaint",
+    "noteText": "Was not able to answer basic questions from the previous chapter in Science."
+  },
+  {
+    "studentId": "908",
+    "date": "2024-09-10",
+    "noteType": "Achievement",
+    "noteText": "Perfect attendance for the month of August."
+  },
+  {
+    "studentId": "12SB01",
+    "date": "2024-09-09",
+    "noteType": "Complaint",
+    "noteText": "Did not bring the practical file for biology lab."
+  },
+  {
+    "studentId": "11SM20",
+    "date": "2024-09-08",
+    "noteType": "Achievement",
+    "noteText": "Helped the teacher in organizing files in the computer lab."
+  },
+  {
+    "studentId": "811",
+    "date": "2024-09-07",
+    "noteType": "Complaint",
+    "noteText": "Found scribbling on the desk. Warned not to damage school property."
+  },
+  {
+    "studentId": "10B15",
+    "date": "2024-09-06",
+    "noteType": "Achievement",
+    "noteText": "Showed good sportsmanship after losing the chess match."
+  },
+  {
+    "studentId": "711",
+    "date": "2024-09-05",
+    "noteType": "Complaint",
+    "noteText": "Seems to have difficulty in understanding fractions in Math."
+  },
+  {
+    "studentId": "12SM07",
+    "date": "2024-09-04",
+    "noteType": "Achievement",
+    "noteText": "Topped the class in the monthly test for Chemistry."
+  },
+  {
+    "studentId": "11SB02",
+    "date": "2024-09-03",
+    "noteType": "Complaint",
+    "noteText": "Was late to school by 10 minutes. A note has been sent to the parents."
+  },
+  {
+    "studentId": "10A14",
+    "date": "2024-09-02",
+    "noteType": "Achievement",
+    "noteText": "A clean and well-labeled map of India was submitted for the Geography project."
+  },
+  {
+    "studentId": "918",
+    "date": "2024-08-30",
+    "noteType": "Complaint",
+    "noteText": "Incomplete class notes for the Science subject."
+  },
+  {
+    "studentId": "802",
+    "date": "2024-08-29",
+    "noteType": "Achievement",
+    "noteText": "Composed a short poem in Hindi for the class activity."
+  },
+  {
+    "studentId": "11SM13",
+    "date": "2024-08-28",
+    "noteType": "Complaint",
+    "noteText": "Needs to work on presentation skills. Was not confident during the seminar."
+  },
+  {
+    "studentId": "12SB08",
+    "date": "2024-08-27",
+    "noteType": "Achievement",
+    "noteText": "Regularly asks clarifying questions, showing a high level of engagement."
+  },
+  {
+    "studentId": "10B19",
+    "date": "2024-08-26",
+    "noteType": "Complaint",
+    "noteText": "Did not bring the required materials for the art class."
+  },
+  {
+    "studentId": "610",
+    "date": "2024-08-23",
+    "noteType": "Achievement",
+    "noteText": "Read an additional book from the library this week."
+  },
+  {
+    "studentId": "701",
+    "date": "2024-08-22",
+    "noteType": "Complaint",
+    "noteText": "Lost the library book. A fine has been issued."
+  },
+  {
+    "studentId": "911",
+    "date": "2024-08-21",
+    "noteType": "Achievement",
+    "noteText": "Scored well in the surprise quiz on historical dates."
+  },
+  {
+    "studentId": "11SB15",
+    "date": "2024-08-20",
+    "noteType": "Complaint",
+    "noteText": "Found using a mobile phone during class hours. The device has been confiscated."
+  },
+  {
+    "studentId": "12SM19",
+    "date": "2024-08-19",
+    "noteType": "Achievement",
+    "noteText": "Assisted the juniors in setting up their experiment in the physics lab."
+  },
+  {
+    "studentId": "10A05",
+    "date": "2024-08-16",
+    "noteType": "Complaint",
+    "noteText": "Seems to be struggling with verb conjugations in English."
+  },
+  {
+    "studentId": "829",
+    "date": "2024-08-15",
+    "noteType": "Achievement",
+    "noteText": "Submitted a very creative model for the 'Best out of Waste' competition."
+  },
+  {
+    "studentId": "10B07",
+    "date": "2024-08-14",
+    "noteType": "Complaint",
+    "noteText": "Has not been completing the homework for Sanskrit."
+  },
+  {
+    "studentId": "901",
+    "date": "2024-08-13",
+    "noteType": "Achievement",
+    "noteText": "Excellent problem-solving skills shown in the Math Olympiad practice test."
+  },
+  {
+    "studentId": "11SM07",
+    "date": "2024-08-12",
+    "noteType": "Complaint",
+    "noteText": "Notebooks are not well-maintained. Needs to be more organized."
+  },
+  {
+    "studentId": "12SB17",
+    "date": "2024-08-09",
+    "noteType": "Achievement",
+    "noteText": "Gave a confident and well-structured presentation on 'Cell Division'."
+  },
+  {
+    "studentId": "704",
+    "date": "2024-08-08",
+    "noteType": "Complaint",
+    "noteText": "Low score in the weekly test for Social Science. Advised to revise regularly."
+  },
+  {
+    "studentId": "10A16",
+    "date": "2024-08-07",
+    "noteType": "Achievement",
+    "noteText": "Has a very positive attitude and encourages classmates."
+  },
+  {
+    "studentId": "505",
+    "date": "2024-08-06",
+    "noteType": "Complaint",
+    "noteText": "Teased another student. Parents have been informed about the incident."
+  },
+  {
+    "studentId": "11SB01",
+    "date": "2024-08-05",
+    "noteType": "Achievement",
+    "noteText": "Maintained the class bulletin board for the month of July."
+  },
+  {
+    "studentId": "12SM04",
+    "date": "2024-08-02",
+    "noteType": "Complaint",
+    "noteText": "Needs to improve speed in solving mathematical problems."
+  },
+  {
+    "studentId": "913",
+    "date": "2024-08-01",
+    "noteType": "Achievement",
+    "noteText": "Follows all classroom rules without any reminder."
+  },
+  {
+    "studentId": "801",
+    "date": "2024-07-31",
+    "noteType": "Complaint",
+    "noteText": "Was absent for three consecutive days without prior information."
+  },
+  {
+    "studentId": "10B20",
+    "date": "2024-07-30",
+    "noteType": "Achievement",
+    "noteText": "Helped the teacher to distribute notebooks to the entire class."
+  },
+  {
+    "studentId": "11SM12",
+    "date": "2024-07-29",
+    "noteType": "Complaint",
+    "noteText": "Looks tired and sleepy in the post-lunch sessions."
+  },
+  {
+    "studentId": "12SB06",
+    "date": "2024-07-26",
+    "noteType": "Achievement",
+    "noteText": "Scored highest in the Physical Education fitness test."
+  },
+  {
+    "studentId": "10A02",
+    "date": "2024-07-24",
+    "noteType": "Complaint",
+    "noteText": "Frequent spelling mistakes in English written work."
+  },
+  {
+    "studentId": "925",
+    "date": "2024-07-23",
+    "noteType": "Achievement",
+    "noteText": "Has shown great progress in solving geometry problems."
+  },
+  {
+    "studentId": "11SB09",
+    "date": "2024-07-22",
+    "noteType": "Complaint",
+    "noteText": "Answers back when corrected. Counseling on classroom etiquette was provided."
+  },
+  {
+    "studentId": "815",
+    "date": "2024-07-19",
+    "noteType": "Achievement",
+    "noteText": "Keeps his seating area very clean and tidy."
+  },
+  {
+    "studentId": "12SM02",
+    "date": "2024-07-18",
+    "noteType": "Complaint",
+    "noteText": "Submitted a plagiarized computer science assignment. A serious warning has been given."
+  },
+  {
+    "studentId": "10B03",
+    "date": "2024-07-17",
+    "noteType": "Achievement",
+    "noteText": "Showed remarkable improvement in the Sanskrit oral test."
+  },
+  {
+    "studentId": "718",
+    "date": "2024-07-16",
+    "noteType": "Complaint",
+    "noteText": "Often forgets to complete the diagrams in the science notebook."
+  },
+  {
+    "studentId": "11SM17",
+    "date": "2024-07-15",
+    "noteType": "Achievement",
+    "noteText": "Consistently scores well in all surprise quizzes."
+  },
+  {
+    "studentId": "10A10",
+    "date": "2024-10-20",
+    "noteType": "Achievement",
+    "noteText": "Wrote an exceptional poem for the school magazine."
+  },
+  {
+    "studentId": "904",
+    "date": "2024-10-21",
+    "noteType": "Complaint",
+    "noteText": "Distracted during the math class, affecting performance."
+  },
+  {
+    "studentId": "12SB04",
+    "date": "2024-10-22",
+    "noteType": "Achievement",
+    "noteText": "Perfect lab record submission for the Biology practicals."
+  },
+  {
+    "studentId": "812",
+    "date": "2024-10-23",
+    "noteType": "Complaint",
+    "noteText": "Needs to bring sports kit on scheduled days."
+  },
+  {
+    "studentId": "11SM05",
+    "date": "2024-10-24",
+    "noteType": "Achievement",
+    "noteText": "Solved an advanced logical problem in Computer Science class."
+  },
+  {
+    "studentId": "10B08",
+    "date": "2024-10-25",
+    "noteType": "Complaint",
+    "noteText": "Found to have an untidy notebook for Social Science."
+  },
+  {
+    "studentId": "12SM09",
+    "date": "2024-10-28",
+    "noteType": "Achievement",
+    "noteText": "Mentored a junior student for the upcoming math olympiad."
+  },
+  {
+    "studentId": "919",
+    "date": "2024-10-29",
+    "noteType": "Complaint",
+    "noteText": "Low participation in group activities."
+  },
+  {
+    "studentId": "713",
+    "date": "2024-10-30",
+    "noteType": "Achievement",
+    "noteText": "Consistently maintains above 95% attendance."
+  },
+  {
+    "studentId": "11SB07",
+    "date": "2024-10-31",
+    "noteType": "Complaint",
+    "noteText": "Forgot to bring the signed report card from parents."
+  },
+  {
+    "studentId": "10A15",
+    "date": "2024-11-01",
+    "noteType": "Achievement",
+    "noteText": "Has a very inquisitive nature and asks relevant questions."
+  },
+  {
+    "studentId": "822",
+    "date": "2024-11-02",
+    "noteType": "Complaint",
+    "noteText": "Needs improvement in map-pointing skills in Geography."
+  },
+  {
+    "studentId": "12SB11",
+    "date": "2024-11-04",
+    "noteType": "Achievement",
+    "noteText": "Submitted a creative and well-researched English project."
+  },
+  {
+    "studentId": "907",
+    "date": "2024-11-05",
+    "noteType": "Complaint",
+    "noteText": "Was not in proper school uniform."
+  },
+  {
+    "studentId": "11SM02",
+    "date": "2024-11-06",
+    "noteType": "Achievement",
+    "noteText": "Good understanding of chemical equations and balancing."
+  },
+  {
+    "studentId": "10B02",
+    "date": "2024-11-07",
+    "noteType": "Complaint",
+    "noteText": "Needs to speak in English during the English class."
+  },
+  {
+    "studentId": "12SM13",
+    "date": "2024-11-08",
+    "noteType": "Achievement",
+    "noteText": "Wrote an efficient algorithm for a complex problem in CS."
+  },
+  {
+    "studentId": "819",
+    "date": "2024-11-11",
+    "noteType": "Complaint",
+    "noteText": "Submitted a messy and incomplete Social Science project."
+  },
+  {
+    "studentId": "11SB12",
+    "date": "2024-11-12",
+    "noteType": "Achievement",
+    "noteText": "Showed great enthusiasm during the Physical Education class."
+  },
+  {
+    "studentId": "10A07",
+    "date": "2024-11-13",
+    "noteType": "Complaint",
+    "noteText": "Struggling with the tenses in English grammar."
+  },
+  {
+    "studentId": "921",
+    "date": "2024-11-14",
+    "noteType": "Achievement",
+    "noteText": "Volunteered to manage the stage during a school event."
+  }
+]

@@ -24,6 +24,14 @@
     "marksFile": "marks_12SM_MT3.json"
   },
   {
+    "testId": "12SM_MT4",
+    "class": "12th Science Math",
+    "testType": "Monthly Test",
+    "testName": "November Monthly Test",
+    "date": "2024-11-25",
+    "marksFile": "marks_12SM_MT4.json"
+  },
+  {
     "testId": "12SB_MT1",
     "class": "12th Science Bio",
     "testType": "Monthly Test",
