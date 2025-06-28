@@ -33,20 +33,5 @@
     "displayText": "Class 8th",
     "fileName": "students_class_08.json",
     "idPrefix": "8"
-  },
-  {
-    "displayText": "Class 7th",
-    "fileName": "students_class_07.json",
-    "idPrefix": "7"
-  },
-  {
-    "displayText": "Class 6th",
-    "fileName": "students_class_06.json",
-    "idPrefix": "6"
-  },
-  {
-    "displayText": "Class 5th",
-    "fileName": "students_class_05.json",
-    "idPrefix": "5"
   }
 ]
