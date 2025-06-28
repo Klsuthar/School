@@ -392,3 +392,51 @@ select:disabled {
         align-items: flex-start;
     }
 }
+/* Profile Tab Styling */
+.profile-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    gap: 20px;
+}
+
+.profile-card {
+    background-color: var(--bg-dark);
+    padding: 20px;
+    border-radius: 8px;
+    border-left: 4px solid var(--primary-color);
+    display: flex;
+    align-items: center;
+    gap: 15px;
+}
+
+.profile-card .icon {
+    font-size: 2em;
+    color: var(--primary-color);
+}
+
+.profile-card .info strong {
+    display: block;
+    color: var(--text-secondary);
+    font-size: 0.9em;
+    margin-bottom: 4px;
+}
+
+.profile-card .info span {
+    font-weight: 600;
+    font-size: 1.1em;
+}
+
+.contact-link {
+    display: inline-block;
+    text-decoration: none;
+    background-color: var(--green);
+    color: #fff;
+    padding: 8px 15px;
+    border-radius: 5px;
+    font-weight: 500;
+    transition: background-color 0.2s;
+}
+
+.contact-link:hover {
+    background-color: #7ab563;
+}

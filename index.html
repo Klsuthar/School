@@ -14,7 +14,7 @@
         <aside class="sidebar">
             <header class="sidebar-header"><h2>School Dashboard</h2></header>
 
-            <!-- NAYA: Compact selection grid -->
+            <!-- Compact selection grid -->
             <div class="selection-grid">
                 <div class="sidebar-section">
                     <label for="class-selector">Select Class</label>
@@ -61,20 +61,20 @@
                 
                 <nav class="tabs">
                     <button class="tab-link active" data-tab="overview">Overview</button>
+                    <button class="tab-link" data-tab="profile">Profile</button> <!-- NEW TAB -->
                     <button class="tab-link" data-tab="reports">Detailed Reports</button>
                 </nav>
 
                 <div id="overview" class="tab-content active">
                     <div class="charts-grid">
-                        <div class="chart-container">
-                            <h3>Subject Performance Comparison</h3>
-                            <canvas id="subject-chart"></canvas>
-                        </div>
-                        <div class="chart-container">
-                            <h3>Overall Progress (%)</h3>
-                            <canvas id="progress-chart"></canvas>
-                        </div>
+                        <div class="chart-container"><h3>Subject Performance Comparison</h3><canvas id="subject-chart"></canvas></div>
+                        <div class="chart-container"><h3>Overall Progress (%)</h3><canvas id="progress-chart"></canvas></div>
                     </div>
+                </div>
+
+                <!-- NEW PROFILE TAB CONTENT -->
+                <div id="profile" class="tab-content">
+                    <!-- Profile info will be injected here by JS -->
                 </div>
 
                 <div id="reports" class="tab-content">

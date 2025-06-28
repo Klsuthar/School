@@ -173,29 +173,55 @@ document.addEventListener('DOMContentLoaded', () => {
         progressChartInstance = new Chart(ctx, { type: 'line', data: { labels: labels, datasets: [{ label: 'Overall Performance (%)', data: percentages, borderColor: '#9ece6a', tension: 0.1 }] }, options: { scales: { y: { beginAtZero: true, max: 100 } }, responsive: true, maintainAspectRatio: false } });
     }
 
-    // --- UI HELPERS ---
     function populateTestFilter(performanceData) {
         testTypeFilterPills.innerHTML = '';
         const testTypes = ['All Tests', ...new Set(performanceData.map(test => test.testType))];
-        // THE FIX IS HERE
         testTypes.forEach((type, index) => {
             const button = document.createElement('button');
             button.textContent = type;
             button.dataset.filter = type;
-            if (index === 0) {
-                button.classList.add('active');
-            }
+            if (index === 0) button.classList.add('active');
             testTypeFilterPills.appendChild(button);
         });
     }
 
     function getPercentageClass(p) { return p >= 75 ? 'percentage-good' : p >= 50 ? 'percentage-ok' : 'percentage-bad'; }
 
+    // --- UPDATED/NEW UI HELPER FUNCTIONS ---
     function displayStudentDetailsHeader(student) {
         studentDetailsHeader.innerHTML = `<div class="header-info-container"><div class="header-detail-item"><span class="icon">👤</span><div class="text-content"><strong>Student Name</strong><span>${student.name}</span></div></div><div class="header-detail-item"><span class="icon">🆔</span><div class="text-content"><strong>Student ID</strong><span>${student.student_id}</span></div></div><div class="header-detail-item"><span class="icon">🏫</span><div class="text-content"><strong>Class</strong><span>${student.class}</span></div></div></div><div id="student-nav-buttons"><button id="prev-student-btn" title="Previous Student">←</button><button id="next-student-btn" title="Next Student">→</button></div>`;
         document.getElementById('prev-student-btn').addEventListener('click', navigateToPreviousStudent);
         document.getElementById('next-student-btn').addEventListener('click', navigateToNextStudent);
         updateNavButtons();
+    }
+    
+    function displayStudentProfile(student) {
+        const profileContainer = document.getElementById('profile');
+        profileContainer.innerHTML = `
+            <div class="profile-grid">
+                <div class="profile-card">
+                    <span class="icon">👨‍👩‍👧</span>
+                    <div class="info">
+                        <strong>Father's Name</strong>
+                        <span>${student.parents.father_name}</span>
+                    </div>
+                </div>
+                <div class="profile-card">
+                    <span class="icon">👩‍👧‍👦</span>
+                    <div class="info">
+                        <strong>Mother's Name</strong>
+                        <span>${student.parents.mother_name}</span>
+                    </div>
+                </div>
+                <div class="profile-card">
+                    <span class="icon">📞</span>
+                    <div class="info">
+                        <strong>Contact Number</strong>
+                        <a href="tel:+91${student.contact.phone}" class="contact-link">${student.contact.phone}</a>
+                    </div>
+                </div>
+            </div>
+        `;
     }
 
     async function loadStudentList(classFile) {
@@ -260,6 +286,7 @@ document.addEventListener('DOMContentLoaded', () => {
         const student = currentStudentsData.find(s => s.student_id === studentId);
         currentStudentIndex = currentStudentsData.findIndex(s => s.student_id === studentId);
         displayStudentDetailsHeader(student);
+        displayStudentProfile(student); // Call the new profile function
         handleStudentSelection(student.student_id, student.class);
     });
     
