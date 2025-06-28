@@ -1,26 +1,26 @@
 {
   "testInfo": {
     "testId": "12SB_MT2",
-    "subjects": ["Physics", "Chemistry", "Biology", "English", "Physical Education"],
+    "subjects": ["Physics", "Chemistry", "Biology", "English", "Hindi"],
     "maxmarks": [50, 50, 50, 50, 50]
   },
   "results": [
-    {"studentId": "12SB01", "scores": {"Physics": 44, "Chemistry": 43, "Biology": 47, "English": 45, "Physical Education": 50}},
-    {"studentId": "12SB02", "scores": {"Physics": 39, "Chemistry": 37, "Biology": 40, "English": 41, "Physical Education": 43}},
-    {"studentId": "12SB03", "scores": {"Physics": 48, "Chemistry": 49, "Biology": 48, "English": 47, "Physical Education": 49}},
-    {"studentId": "12SB04", "scores": {"Physics": 41, "Chemistry": 42, "Biology": 43, "English": 44, "Physical Education": 45}},
-    {"studentId": "12SB05", "scores": {"Physics": 33, "Chemistry": 31, "Biology": 35, "English": 32, "Physical Education": 37}},
-    {"studentId": "12SB06", "scores": {"Physics": 45, "Chemistry": 46, "Biology": 44, "English": 43, "Physical Education": 49}},
-    {"studentId": "12SB07", "scores": {"Physics": 40, "Chemistry": 38, "Biology": 41, "English": 39, "Physical Education": 42}},
-    {"studentId": "12SB08", "scores": {"Physics": 49, "Chemistry": 48, "Biology": 48, "English": 47, "Physical Education": 48}},
-    {"studentId": "12SB09", "scores": {"Physics": 35, "Chemistry": 32, "Biology": 34, "English": 33, "Physical Education": 36}},
-    {"studentId": "12SB10", "scores": {"Physics": 43, "Chemistry": 45, "Biology": 42, "English": 46, "Physical Education": 44}},
-    {"studentId": "12SB11", "scores": {"Physics": 41, "Chemistry": 40, "Biology": 43, "English": 39, "Physical Education": 45}},
-    {"studentId": "12SB12", "scores": {"Physics": 46, "Chemistry": 44, "Biology": 45, "English": 47, "Physical Education": 48}},
-    {"studentId": "12SB13", "scores": {"Physics": 36, "Chemistry": 34, "Biology": 33, "English": 35, "Physical Education": 38}},
-    {"studentId": "12SB14", "scores": {"Physics": 48, "Chemistry": 47, "Biology": 49, "English": 46, "Physical Education": 50}},
-    {"studentId": "12SB15", "scores": {"Physics": 30, "Chemistry": 31, "Biology": 29, "English": 32, "Physical Education": 34}},
-    {"studentId": "12SB16", "scores": {"Physics": 44, "Chemistry": 45, "Biology": 46, "English": 43, "Physical Education": 47}},
-    {"studentId": "12SB17", "scores": {"Physics": 38, "Chemistry": 39, "Biology": 37, "English": 40, "Physical Education": 41}}
+    {"studentId": "12SB01", "scores": {"Physics": 44, "Chemistry": 43, "Biology": 47, "English": 45, "Hindi": 50}},
+    {"studentId": "12SB02", "scores": {"Physics": 39, "Chemistry": 37, "Biology": 40, "English": 41, "Hindi": 43}},
+    {"studentId": "12SB03", "scores": {"Physics": 48, "Chemistry": 49, "Biology": 48, "English": 47, "Hindi": 49}},
+    {"studentId": "12SB04", "scores": {"Physics": 41, "Chemistry": 42, "Biology": 43, "English": 44, "Hindi": 45}},
+    {"studentId": "12SB05", "scores": {"Physics": 33, "Chemistry": 31, "Biology": 35, "English": 32, "Hindi": 37}},
+    {"studentId": "12SB06", "scores": {"Physics": 45, "Chemistry": 46, "Biology": 44, "English": 43, "Hindi": 49}},
+    {"studentId": "12SB07", "scores": {"Physics": 40, "Chemistry": 38, "Biology": 41, "English": 39, "Hindi": 42}},
+    {"studentId": "12SB08", "scores": {"Physics": 49, "Chemistry": 48, "Biology": 48, "English": 47, "Hindi": 48}},
+    {"studentId": "12SB09", "scores": {"Physics": 35, "Chemistry": 32, "Biology": 34, "English": 33, "Hindi": 36}},
+    {"studentId": "12SB10", "scores": {"Physics": 43, "Chemistry": 45, "Biology": 42, "English": 46, "Hindi": 44}},
+    {"studentId": "12SB11", "scores": {"Physics": 41, "Chemistry": 40, "Biology": 43, "English": 39, "Hindi": 45}},
+    {"studentId": "12SB12", "scores": {"Physics": 46, "Chemistry": 44, "Biology": 45, "English": 47, "Hindi": 48}},
+    {"studentId": "12SB13", "scores": {"Physics": 36, "Chemistry": 34, "Biology": 33, "English": 35, "Hindi": 38}},
+    {"studentId": "12SB14", "scores": {"Physics": 48, "Chemistry": 47, "Biology": 49, "English": 46, "Hindi": 50}},
+    {"studentId": "12SB15", "scores": {"Physics": 30, "Chemistry": 31, "Biology": 29, "English": 32, "Hindi": 34}},
+    {"studentId": "12SB16", "scores": {"Physics": 44, "Chemistry": 45, "Biology": 46, "English": 43, "Hindi": 47}},
+    {"studentId": "12SB17", "scores": {"Physics": 38, "Chemistry": 39, "Biology": 37, "English": 40, "Hindi": 41}}
   ]
 }
