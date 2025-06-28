@@ -30,13 +30,13 @@ body {
     height: 100vh;
 }
 
-/* ===== Sidebar Styling ===== */
+/* Sidebar */
 .sidebar {
     background-color: var(--bg-sidebar);
     padding: 20px;
     display: flex;
     flex-direction: column;
-    gap: 25px;
+    gap: 20px;
     border-right: 1px solid var(--border-color);
 }
 
@@ -46,6 +46,10 @@ body {
     color: var(--primary-color);
 }
 
+.sidebar-section {
+    padding: 0;
+}
+
 .sidebar-section label {
     display: block;
     margin-bottom: 10px;
@@ -53,6 +57,13 @@ body {
     font-weight: 500;
 }
 
+.selection-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 15px;
+}
+
+/* Naya Grid Layout */
 select,
 #student-id-input {
     width: 100%;
@@ -90,19 +101,27 @@ select:disabled {
     background-color: #357ABD;
 }
 
-/* Top Performers Card */
-#top-performers-card {
+/* Highlights Cards (Toppers/Support) */
+#top-performers-card,
+#support-card {
     background-color: var(--bg-dark);
     padding: 15px;
     border-radius: 8px;
 }
 
-#top-performers-card h3 .icon {
+#top-performers-card h3,
+#support-card h3 {
+    margin: 0 0 10px 0;
+}
+
+#top-performers-card h3 .icon,
+#support-card h3 .icon {
     font-size: 1.2em;
     margin-right: 5px;
 }
 
-#top-performers-list {
+#top-performers-list,
+#support-list {
     list-style: none;
     padding: 0;
     margin: 0;
@@ -111,12 +130,19 @@ select:disabled {
 .topper-item {
     display: flex;
     align-items: center;
-    padding: 10px 0;
+    padding: 10px 5px;
     border-bottom: 1px solid var(--border-color);
+    transition: background-color 0.2s;
+    cursor: pointer;
+    border-radius: 4px;
 }
 
 .topper-item:last-child {
     border-bottom: none;
+}
+
+.topper-item:hover {
+    background-color: #3b4261;
 }
 
 .topper-rank {
@@ -139,7 +165,12 @@ select:disabled {
     color: var(--green);
 }
 
-/* ===== Main Content Styling ===== */
+.support-percentage {
+    font-size: 0.9em;
+    color: var(--orange);
+}
+
+/* Main Content */
 .main-content {
     padding: 30px;
     overflow-y: auto;
@@ -159,46 +190,62 @@ select:disabled {
     border: 1px solid var(--border-color);
 }
 
-/* Student Header */
-/* Student Header - NEW and IMPROVED */
 #student-details-header {
     display: flex;
-    align-items: center;
     justify-content: space-between;
+    align-items: center;
     gap: 20px;
-    padding: 20px 25px;
-    /* Added more padding for a better look */
 }
 
+.header-info-container {
+    display: flex;
+    gap: 25px;
+}
+
+/* Naya Container */
 .header-detail-item {
     display: flex;
     align-items: center;
     gap: 12px;
-    /* Space between icon and text */
 }
 
 .header-detail-item .icon {
     font-size: 1.8em;
-    /* Icon size */
     color: var(--primary-color);
-    line-height: 1;
 }
 
 .header-detail-item .text-content strong {
     display: block;
     color: var(--text-secondary);
     font-size: 0.9em;
-    font-weight: 500;
-    margin-bottom: 2px;
 }
 
 .header-detail-item .text-content span {
     font-weight: 600;
     font-size: 1.15em;
+}
+
+#student-nav-buttons button {
+    background: none;
+    border: 1px solid var(--border-color);
+    color: var(--text-secondary);
+    padding: 8px 12px;
+    border-radius: 8px;
+    cursor: pointer;
+    transition: all 0.2s;
+}
+
+#student-nav-buttons button:hover {
+    background-color: var(--border-color);
     color: var(--text-primary);
 }
 
-/* Tabs */
+#student-nav-buttons button:disabled {
+    opacity: 0.4;
+    cursor: not-allowed;
+}
+
+/* Tabs & Reports */
 .tabs {
     display: flex;
     border-bottom: 1px solid var(--border-color);
@@ -240,10 +287,9 @@ select:disabled {
     }
 }
 
-/* Filter Pills Styling */
 .filter-pills {
     display: flex;
-    justify-content: center; /* Center the pills */
+    justify-content: center;
     gap: 8px;
     margin-bottom: 25px;
 }
@@ -253,11 +299,10 @@ select:disabled {
     color: var(--text-secondary);
     border: 1px solid var(--border-color);
     padding: 8px 16px;
-    border-radius: 20px; /* Rounded corners for a "pill" shape */
+    border-radius: 20px;
     font-size: 0.9em;
-    font-weight: 500;
     cursor: pointer;
-    transition: all 0.2s ease-in-out;
+    transition: all 0.2s;
 }
 
 .filter-pills button:hover {
@@ -303,21 +348,9 @@ select:disabled {
 
 .marks-table th {
     background-color: var(--bg-card);
-    font-weight: 600;
 }
 
-.percentage-good {
-    color: var(--green);
-}
-
-.percentage-ok {
-    color: var(--orange);
-}
-
-.percentage-bad {
-    color: var(--red);
-}
-
+/* Charts & Other */
 .charts-grid {
     display: grid;
     grid-template-columns: 1fr 1fr;
@@ -328,12 +361,6 @@ select:disabled {
     padding: 20px;
     height: 400px;
     position: relative;
-}
-
-.chart-container h3 {
-    text-align: center;
-    margin: 0 0 20px 0;
-    font-weight: 500;
 }
 
 .hidden {
@@ -359,18 +386,9 @@ select:disabled {
     #test-reports-container {
         grid-template-columns: 1fr;
     }
-}
 
-/* Students Needing Support Card Styling */
-#support-card {
-    background-color: var(--bg-dark);
-    padding: 15px;
-    border-radius: 8px;
-}
-
-/* Ismein hum .topper-* classes ko reuse kar sakte hain, lekin percentage ka color alag hoga */
-.support-percentage {
-    font-size: 0.9em;
-    color: var(--orange);
-    /* Orange color for attention */
+    #student-details-header {
+        flex-direction: column;
+        align-items: flex-start;
+    }
 }

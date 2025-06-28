@@ -1,6 +1,5 @@
 <!DOCTYPE html>
 <html lang="en">
-
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -9,50 +8,42 @@
     <link rel="stylesheet" href="style.css">
     <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
 </head>
-
 <body>
     <div class="dashboard-layout">
         <!-- ===== SIDEBAR ===== -->
         <aside class="sidebar">
-            <header class="sidebar-header">
-                <h2>School Dashboard</h2>
-            </header>
+            <header class="sidebar-header"><h2>School Dashboard</h2></header>
 
+            <!-- NAYA: Compact selection grid -->
+            <div class="selection-grid">
+                <div class="sidebar-section">
+                    <label for="class-selector">Select Class</label>
+                    <select id="class-selector"><option value="">-- Choose a Class --</option></select>
+                </div>
+                <div class="sidebar-section">
+                    <label for="student-selector">Select Student</label>
+                    <select id="student-selector" disabled><option value="">-- Choose a Student --</option></select>
+                </div>
+            </div>
+            
             <div class="sidebar-section">
-                <label for="class-selector">Select Class</label>
-                <select id="class-selector">
-                    <option value="">-- Choose a Class --</option>
-                </select>
+                <label for="student-id-input">Find by ID</label>
+                <div class="search-container">
+                    <input type="text" id="student-id-input" placeholder="Enter Student ID..."/>
+                    <button id="find-btn">Find</button>
+                </div>
             </div>
 
-            <!-- NAYA: Top Performers Card -->
             <div id="top-performers-card" class="sidebar-section hidden">
                 <h3><span class="icon">🏆</span> Top Performers</h3>
                 <div id="top-performers-loader" class="hidden">Calculating...</div>
-                <ul id="top-performers-list">
-                    <!-- Toppers will be injected here -->
-                </ul>
+                <ul id="top-performers-list"></ul>
             </div>
+            
             <div id="support-card" class="sidebar-section hidden">
                 <h3><span class="icon">💡</span> Students Needing Support</h3>
                 <div id="support-loader" class="hidden">Calculating...</div>
                 <ul id="support-list"></ul>
-            </div>
-
-            <div class="sidebar-section">
-                <label for="student-selector">Select Student</label>
-                <select id="student-selector" disabled>
-                    <option value="">-- Choose a Student --</option>
-                </select>
-            </div>
-
-
-            <div class="sidebar-section">
-                <label for="student-id-input">Find by ID</label>
-                <div class="search-container">
-                    <input type="text" id="student-id-input" placeholder="Enter Student ID...">
-                    <button id="find-btn">Find</button>
-                </div>
             </div>
         </aside>
 
@@ -64,16 +55,15 @@
             </div>
 
             <div id="student-content-area" class="hidden">
-                <!-- Student Details Header -->
-                <div id="student-details-header" class="card"></div>
-
-                <!-- NAYA: Tab Navigation -->
+                <div id="student-details-header" class="card">
+                    <!-- Student details and nav buttons will be injected here -->
+                </div>
+                
                 <nav class="tabs">
                     <button class="tab-link active" data-tab="overview">Overview</button>
                     <button class="tab-link" data-tab="reports">Detailed Reports</button>
                 </nav>
 
-                <!-- NAYA: Tab Content -->
                 <div id="overview" class="tab-content active">
                     <div class="charts-grid">
                         <div class="chart-container">
@@ -88,21 +78,15 @@
                 </div>
 
                 <div id="reports" class="tab-content">
-                    <div id="test-type-filter-pills" class="filter-pills">
-                    </div>
+                    <div id="test-type-filter-pills" class="filter-pills"></div>
                     <div id="test-reports-container"></div>
                 </div>
-            </div>
-
-            <div id="loading-student-data" class="hidden">
-                <p>Loading Student Performance Data...</p>
             </div>
         </main>
     </div>
 
-    <script src="script.js"></script>
     <script src="topper.js"></script>
     <script src="support.js"></script>
+    <script src="script.js"></script>
 </body>
-
 </html>

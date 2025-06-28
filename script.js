@@ -16,11 +16,12 @@ document.addEventListener('DOMContentLoaded', () => {
     const supportCard = document.getElementById('support-card');
     const supportList = document.getElementById('support-list');
     const supportLoader = document.getElementById('support-loader');
-    const testTypeFilterPills = document.getElementById('test-type-filter-pills'); // Naya Element
+    const testTypeFilterPills = document.getElementById('test-type-filter-pills');
 
     // Global variables
     let allClassInfo = [], currentStudentsData = [], studentPerformanceData = [];
     let subjectChartInstance, progressChartInstance;
+    let currentStudentIndex = -1;
 
     async function initialize() {
         Chart.defaults.color = '#a9b1d6';
@@ -32,16 +33,11 @@ document.addEventListener('DOMContentLoaded', () => {
         try {
             const response = await fetch('classes.json');
             allClassInfo = await response.json();
-            allClassInfo.forEach(cls => {
-                const option = new Option(cls.displayText, cls.fileName);
-                classSelector.add(option);
-            });
+            allClassInfo.forEach(cls => classSelector.add(new Option(cls.displayText, cls.fileName)));
         } catch (error) { console.error("Error loading classes:", error); }
     }
 
     async function displayClassHighlights(className, studentList) {
-        topPerformersList.innerHTML = '';
-        supportList.innerHTML = '';
         topPerformersCard.classList.remove('hidden');
         supportCard.classList.remove('hidden');
         topPerformersLoader.classList.remove('hidden');
@@ -53,10 +49,8 @@ document.addEventListener('DOMContentLoaded', () => {
                 calculateTopPerformers(classTests, studentList),
                 calculateStudentsNeedingSupport(classTests, studentList)
             ]);
-            if (topPerformers && topPerformers.length > 0) { renderTopPerformers(topPerformers); } 
-            else { topPerformersList.innerHTML = '<li>No test data available.</li>'; }
-            if (supportStudents && supportStudents.length > 0) { renderSupportStudents(supportStudents); } 
-            else { supportList.innerHTML = '<li>No test data available.</li>'; }
+            if (topPerformers?.length) renderTopPerformers(topPerformers); else topPerformersList.innerHTML = '<li>No data.</li>';
+            if (supportStudents?.length) renderSupportStudents(supportStudents); else supportList.innerHTML = '<li>No data.</li>';
         } catch (error) {
             console.error("Error displaying class highlights:", error);
             topPerformersList.innerHTML = '<li>Could not load data.</li>';
@@ -68,11 +62,11 @@ document.addEventListener('DOMContentLoaded', () => {
     }
 
     function renderTopPerformers(topPerformers) {
-        topPerformersList.innerHTML = topPerformers.map((topper, index) => `<li class="topper-item"><span class="topper-rank">#${index + 1}</span><div class="topper-details"><div class="topper-name">${topper.name}</div><div class="topper-percentage">${topper.percentage}% Overall</div></div></li>`).join('');
+        topPerformersList.innerHTML = topPerformers.map((topper, index) => `<li class="topper-item" data-id="${topper.id}"><span class="topper-rank">#${index + 1}</span><div class="topper-details"><div class="topper-name">${topper.name}</div><div class="topper-percentage">${topper.percentage}% Overall</div></div></li>`).join('');
     }
     
     function renderSupportStudents(supportStudents) {
-        supportList.innerHTML = supportStudents.map((student, index) => `<li class="topper-item"><span class="topper-rank">#${index + 1}</span><div class="topper-details"><div class="topper-name">${student.name}</div><div class="support-percentage">${student.percentage}% Overall</div></div></li>`).join('');
+        supportList.innerHTML = supportStudents.map((student, index) => `<li class="topper-item" data-id="${student.id}"><span class="topper-rank">#${index + 1}</span><div class="topper-details"><div class="topper-name">${student.name}</div><div class="support-percentage">${student.percentage}% Overall</div></div></li>`).join('');
     }
 
     async function handleStudentSelection(studentId, studentClass) {
@@ -109,7 +103,12 @@ document.addEventListener('DOMContentLoaded', () => {
     
     function renderFilteredPerformance(filterType) {
         const filteredData = filterType === "All Tests" ? studentPerformanceData : studentPerformanceData.filter(test => test.testType === filterType);
-        if (filteredData.length === 0) { return; }
+        if (filteredData.length === 0) {
+            if(subjectChartInstance) subjectChartInstance.destroy();
+            if(progressChartInstance) progressChartInstance.destroy();
+            testReportsContainer.innerHTML = `<p>No reports found for this filter.</p>`;
+            return;
+        }
         renderPerformanceReports(filteredData);
         renderProgressChart(filteredData);
         renderSubjectChart(filteredData);
@@ -153,11 +152,7 @@ document.addEventListener('DOMContentLoaded', () => {
             }),
             backgroundColor: chartColors[index % chartColors.length]
         }));
-        subjectChartInstance = new Chart(ctx, {
-            type: 'bar',
-            data: { labels: subjects, datasets: datasets },
-            options: { plugins: { tooltip: { callbacks: { label: (c) => `${c.dataset.label}: ${c.formattedValue}%` } } }, scales: { y: { beginAtZero: true, max: 100, title: { display: true, text: 'Percentage (%)' } } }, responsive: true, maintainAspectRatio: false }
-        });
+        subjectChartInstance = new Chart(ctx, { type: 'bar', data: { labels: subjects, datasets: datasets }, options: { plugins: { tooltip: { callbacks: { label: (c) => `${c.dataset.label}: ${c.formattedValue}%` } } }, scales: { y: { beginAtZero: true, max: 100, title: { display: true, text: 'Percentage (%)' } } }, responsive: true, maintainAspectRatio: false } });
     }
 
     function renderProgressChart(performanceData) {
@@ -169,15 +164,9 @@ document.addEventListener('DOMContentLoaded', () => {
             const totalMax = Object.values(test.maxmarks).reduce((a, b) => a + b, 0);
             return totalMax > 0 ? (totalObtained / totalMax * 100).toFixed(1) : 0;
         });
-        progressChartInstance = new Chart(ctx, {
-            type: 'line',
-            data: { labels: labels, datasets: [{ label: 'Overall Performance (%)', data: percentages, borderColor: '#9ece6a', tension: 0.1 }] },
-            options: { scales: { y: { beginAtZero: true, max: 100 } }, responsive: true, maintainAspectRatio: false }
-        });
+        progressChartInstance = new Chart(ctx, { type: 'line', data: { labels: labels, datasets: [{ label: 'Overall Performance (%)', data: percentages, borderColor: '#9ece6a', tension: 0.1 }] }, options: { scales: { y: { beginAtZero: true, max: 100 } }, responsive: true, maintainAspectRatio: false } });
     }
 
-    // --- UI HELPERS ---
-    // NAYA: populateTestFilter ab buttons banayega
     function populateTestFilter(performanceData) {
         testTypeFilterPills.innerHTML = '';
         const testTypes = ['All Tests', ...new Set(performanceData.map(test => test.testType))];
@@ -185,7 +174,7 @@ document.addEventListener('DOMContentLoaded', () => {
             const button = document.createElement('button');
             button.textContent = type;
             button.dataset.filter = type;
-            if (index === 0) button.classList.add('active'); // "All Tests" ko active karein
+            if (index === 0) button.classList.add('active');
             testTypeFilterPills.appendChild(button);
         });
     }
@@ -193,17 +182,28 @@ document.addEventListener('DOMContentLoaded', () => {
     function getPercentageClass(p) { return p >= 75 ? 'percentage-good' : p >= 50 ? 'percentage-ok' : 'percentage-bad'; }
 
     function displayStudentDetailsHeader(student) {
-        studentDetailsHeader.innerHTML = `<div class="header-detail-item"><span class="icon">👤</span><div class="text-content"><strong>Student Name</strong><span>${student.name}</span></div></div><div class="header-detail-item"><span class="icon">🆔</span><div class="text-content"><strong>Student ID</strong><span>${student.student_id}</span></div></div><div class="header-detail-item"><span class="icon">🏫</span><div class="text-content"><strong>Class</strong><span>${student.class}</span></div></div>`;
+        studentDetailsHeader.innerHTML = `
+            <div class="header-info-container">
+                <div class="header-detail-item"><span class="icon">👤</span><div class="text-content"><strong>Student Name</strong><span>${student.name}</span></div></div>
+                <div class="header-detail-item"><span class="icon">🆔</span><div class="text-content"><strong>Student ID</strong><span>${student.student_id}</span></div></div>
+                <div class="header-detail-item"><span class="icon">🏫</span><div class="text-content"><strong>Class</strong><span>${student.class}</span></div></div>
+            </div>
+            <div id="student-nav-buttons">
+                <button id="prev-student-btn" title="Previous Student">←</button>
+                <button id="next-student-btn" title="Next Student">→</button>
+            </div>
+        `;
+        // Nav buttons ke liye event listeners yahan add karein, kyunki ye abhi bane hain.
+        document.getElementById('prev-student-btn').addEventListener('click', navigateToPreviousStudent);
+        document.getElementById('next-student-btn').addEventListener('click', navigateToNextStudent);
+        updateNavButtons();
     }
 
     async function loadStudentList(classFile) {
         const response = await fetch(classFile);
         currentStudentsData = await response.json();
         studentSelector.innerHTML = '<option value="">-- Choose a Student --</option>';
-        currentStudentsData.forEach(student => {
-            const option = new Option(student.name, student.student_id);
-            studentSelector.add(option);
-        });
+        currentStudentsData.forEach(student => studentSelector.add(new Option(student.name, student.student_id)));
         studentSelector.disabled = false;
         if (currentStudentsData.length > 0) {
             const className = currentStudentsData[0].class;
@@ -213,31 +213,43 @@ document.addEventListener('DOMContentLoaded', () => {
             supportCard.classList.add('hidden');
         }
     }
-    
-    // --- EVENT LISTENERS ---
-    tabs.forEach(tab => {
-        tab.addEventListener('click', () => {
-            tabs.forEach(item => item.classList.remove('active'));
-            tab.classList.add('active');
-            document.getElementById(tab.dataset.tab).classList.add('active');
-            tabContents.forEach(content => {
-                if (content.id !== tab.dataset.tab) content.classList.remove('active');
-            });
-        });
-    });
 
+    // --- NAVIGATION LOGIC ---
+    function updateNavButtons() {
+        const prevBtn = document.getElementById('prev-student-btn');
+        const nextBtn = document.getElementById('next-student-btn');
+        if (prevBtn && nextBtn) {
+            prevBtn.disabled = currentStudentIndex <= 0;
+            nextBtn.disabled = currentStudentIndex >= currentStudentsData.length - 1;
+        }
+    }
+    
+    function navigateToPreviousStudent() {
+        if (currentStudentIndex > 0) {
+            currentStudentIndex--;
+            studentSelector.value = currentStudentsData[currentStudentIndex].student_id;
+            studentSelector.dispatchEvent(new Event('change'));
+        }
+    }
+
+    function navigateToNextStudent() {
+        if (currentStudentIndex < currentStudentsData.length - 1) {
+            currentStudentIndex++;
+            studentSelector.value = currentStudentsData[currentStudentIndex].student_id;
+            studentSelector.dispatchEvent(new Event('change'));
+        }
+    }
+
+    // --- EVENT LISTENERS ---
     classSelector.addEventListener('change', async (event) => {
         const classFile = event.target.value;
         studentContentArea.classList.add('hidden');
         welcomeMessage.classList.remove('hidden');
         studentSelector.innerHTML = '<option value="">-- Choose a Student --</option>';
         studentSelector.disabled = true;
-        if (!classFile) {
-            topPerformersCard.classList.add('hidden');
-            supportCard.classList.add('hidden');
-            return;
-        }
-        await loadStudentList(classFile);
+        topPerformersCard.classList.add('hidden');
+        supportCard.classList.add('hidden');
+        if (classFile) await loadStudentList(classFile);
     });
 
     studentSelector.addEventListener('change', (event) => {
@@ -248,19 +260,37 @@ document.addEventListener('DOMContentLoaded', () => {
             return;
         }
         const student = currentStudentsData.find(s => s.student_id === studentId);
+        currentStudentIndex = currentStudentsData.findIndex(s => s.student_id === studentId); // Current index set karein
         displayStudentDetailsHeader(student);
         handleStudentSelection(student.student_id, student.class);
     });
     
-    // NAYA: Filter pills ke liye click listener
+    // Clickable Toppers/Support List
+    [topPerformersList, supportList].forEach(list => {
+        list.addEventListener('click', (event) => {
+            const listItem = event.target.closest('li');
+            if (listItem && listItem.dataset.id) {
+                studentSelector.value = listItem.dataset.id;
+                studentSelector.dispatchEvent(new Event('change'));
+            }
+        });
+    });
+
     testTypeFilterPills.addEventListener('click', (event) => {
         if (event.target.tagName === 'BUTTON') {
-            // Active state manage karein
             testTypeFilterPills.querySelector('.active').classList.remove('active');
             event.target.classList.add('active');
-            // Performance ko filter karein
             renderFilteredPerformance(event.target.dataset.filter);
         }
+    });
+    
+    tabs.forEach(tab => {
+        tab.addEventListener('click', () => {
+            tabs.forEach(item => item.classList.remove('active'));
+            tab.classList.add('active');
+            tabContents.forEach(content => content.classList.remove('active'));
+            document.getElementById(tab.dataset.tab).classList.add('active');
+        });
     });
 
     findBtn.addEventListener('click', async () => {
@@ -268,7 +298,7 @@ document.addEventListener('DOMContentLoaded', () => {
         if (!studentId) return;
         const classInfo = allClassInfo.find(cls => studentId.startsWith(cls.idPrefix));
         if (!classInfo) { alert("Invalid Student ID format."); return; }
-        if(classSelector.value !== classInfo.fileName){
+        if (classSelector.value !== classInfo.fileName) {
             await loadStudentList(classInfo.fileName);
             classSelector.value = classInfo.fileName;
         }
