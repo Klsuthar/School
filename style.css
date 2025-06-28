@@ -12,7 +12,9 @@
     --red: #f7768e;
 }
 
-* { box-sizing: border-box; }
+* {
+    box-sizing: border-box;
+}
 
 body {
     font-family: 'Inter', sans-serif;
@@ -37,18 +39,22 @@ body {
     gap: 25px;
     border-right: 1px solid var(--border-color);
 }
+
 .sidebar-header h2 {
     margin: 0;
     text-align: center;
     color: var(--primary-color);
 }
+
 .sidebar-section label {
     display: block;
     margin-bottom: 10px;
     color: var(--text-secondary);
     font-weight: 500;
 }
-select, #student-id-input {
+
+select,
+#student-id-input {
     width: 100%;
     padding: 12px;
     border: 1px solid var(--border-color);
@@ -57,8 +63,17 @@ select, #student-id-input {
     background-color: var(--bg-dark);
     color: var(--text-primary);
 }
-select:disabled { background-color: #2a2d37; cursor: not-allowed; }
-.search-container { display: flex; gap: 10px; }
+
+select:disabled {
+    background-color: #2a2d37;
+    cursor: not-allowed;
+}
+
+.search-container {
+    display: flex;
+    gap: 10px;
+}
+
 #find-btn {
     padding: 0 20px;
     font-size: 16px;
@@ -70,7 +85,10 @@ select:disabled { background-color: #2a2d37; cursor: not-allowed; }
     cursor: pointer;
     transition: background-color 0.2s;
 }
-#find-btn:hover { background-color: #357ABD; }
+
+#find-btn:hover {
+    background-color: #357ABD;
+}
 
 /* Top Performers Card */
 #top-performers-card {
@@ -78,26 +96,61 @@ select:disabled { background-color: #2a2d37; cursor: not-allowed; }
     padding: 15px;
     border-radius: 8px;
 }
-#top-performers-card h3 .icon { font-size: 1.2em; margin-right: 5px; }
-#top-performers-list { list-style: none; padding: 0; margin: 0; }
+
+#top-performers-card h3 .icon {
+    font-size: 1.2em;
+    margin-right: 5px;
+}
+
+#top-performers-list {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+}
+
 .topper-item {
     display: flex;
     align-items: center;
     padding: 10px 0;
     border-bottom: 1px solid var(--border-color);
 }
-.topper-item:last-child { border-bottom: none; }
-.topper-rank { font-size: 1.5em; font-weight: bold; margin-right: 15px; color: var(--text-secondary); }
-.topper-details { flex-grow: 1; }
-.topper-name { font-weight: 600; }
-.topper-percentage { font-size: 0.9em; color: var(--green); }
+
+.topper-item:last-child {
+    border-bottom: none;
+}
+
+.topper-rank {
+    font-size: 1.5em;
+    font-weight: bold;
+    margin-right: 15px;
+    color: var(--text-secondary);
+}
+
+.topper-details {
+    flex-grow: 1;
+}
+
+.topper-name {
+    font-weight: 600;
+}
+
+.topper-percentage {
+    font-size: 0.9em;
+    color: var(--green);
+}
 
 /* ===== Main Content Styling ===== */
 .main-content {
     padding: 30px;
     overflow-y: auto;
 }
-#welcome-message { text-align: center; margin-top: 100px; color: var(--text-secondary); }
+
+#welcome-message {
+    text-align: center;
+    margin-top: 100px;
+    color: var(--text-secondary);
+}
+
 .card {
     background-color: var(--bg-card);
     padding: 25px;
@@ -107,17 +160,51 @@ select:disabled { background-color: #2a2d37; cursor: not-allowed; }
 }
 
 /* Student Header */
+/* Student Header - NEW and IMPROVED */
 #student-details-header {
-    display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
     gap: 20px;
+    padding: 20px 25px;
+    /* Added more padding for a better look */
 }
-.detail-item { padding: 0; }
-.detail-item strong { color: var(--text-secondary); font-size: 0.9em; }
-.detail-item span { font-weight: 500; font-size: 1.1em; }
+
+.header-detail-item {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    /* Space between icon and text */
+}
+
+.header-detail-item .icon {
+    font-size: 1.8em;
+    /* Icon size */
+    color: var(--primary-color);
+    line-height: 1;
+}
+
+.header-detail-item .text-content strong {
+    display: block;
+    color: var(--text-secondary);
+    font-size: 0.9em;
+    font-weight: 500;
+    margin-bottom: 2px;
+}
+
+.header-detail-item .text-content span {
+    font-weight: 600;
+    font-size: 1.15em;
+    color: var(--text-primary);
+}
 
 /* Tabs */
-.tabs { display: flex; border-bottom: 1px solid var(--border-color); margin-bottom: 20px; }
+.tabs {
+    display: flex;
+    border-bottom: 1px solid var(--border-color);
+    margin-bottom: 20px;
+}
+
 .tab-link {
     padding: 10px 20px;
     cursor: pointer;
@@ -128,41 +215,129 @@ select:disabled { background-color: #2a2d37; cursor: not-allowed; }
     font-weight: 500;
     border-bottom: 3px solid transparent;
 }
+
 .tab-link.active {
     color: var(--primary-color);
     border-bottom-color: var(--primary-color);
 }
-.tab-content { display: none; }
-.tab-content.active { display: block; animation: fadeIn 0.5s; }
-@keyframes fadeIn { from { opacity: 0; } to { opacity: 1; } }
+
+.tab-content {
+    display: none;
+}
+
+.tab-content.active {
+    display: block;
+    animation: fadeIn 0.5s;
+}
+
+@keyframes fadeIn {
+    from {
+        opacity: 0;
+    }
+
+    to {
+        opacity: 1;
+    }
+}
 
 /* Reports and Charts */
-.filter-container { margin-bottom: 25px; display: flex; align-items: center; gap: 10px; }
-#test-reports-container { display: grid; grid-template-columns: repeat(auto-fit, minmax(450px, 1fr)); gap: 20px; }
-.test-report-block { padding: 20px; background-color: var(--bg-dark); border: 1px solid var(--border-color); border-radius: 8px; }
-.test-report-block h3 { margin-top: 0; color: var(--text-primary); }
-.marks-table { width: 100%; border-collapse: collapse; }
-.marks-table th, .marks-table td { padding: 10px; text-align: left; border-bottom: 1px solid var(--border-color); }
-.marks-table th { background-color: var(--bg-card); font-weight: 600; }
-.percentage-good { color: var(--green); }
-.percentage-ok { color: var(--orange); }
-.percentage-bad { color: var(--red); }
+.filter-container {
+    margin-bottom: 25px;
+    display: flex;
+    align-items: center;
+    gap: 10px;
+}
 
-.charts-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 30px; }
-.chart-container { padding: 20px; height: 400px; position: relative; }
-.chart-container h3 { text-align: center; margin: 0 0 20px 0; font-weight: 500; }
+#test-reports-container {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(450px, 1fr));
+    gap: 20px;
+}
 
-.hidden { display: none !important; }
+.test-report-block {
+    padding: 20px;
+    background-color: var(--bg-dark);
+    border: 1px solid var(--border-color);
+    border-radius: 8px;
+}
+
+.test-report-block h3 {
+    margin-top: 0;
+    color: var(--text-primary);
+}
+
+.marks-table {
+    width: 100%;
+    border-collapse: collapse;
+}
+
+.marks-table th,
+.marks-table td {
+    padding: 10px;
+    text-align: left;
+    border-bottom: 1px solid var(--border-color);
+}
+
+.marks-table th {
+    background-color: var(--bg-card);
+    font-weight: 600;
+}
+
+.percentage-good {
+    color: var(--green);
+}
+
+.percentage-ok {
+    color: var(--orange);
+}
+
+.percentage-bad {
+    color: var(--red);
+}
+
+.charts-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 30px;
+}
+
+.chart-container {
+    padding: 20px;
+    height: 400px;
+    position: relative;
+}
+
+.chart-container h3 {
+    text-align: center;
+    margin: 0 0 20px 0;
+    font-weight: 500;
+}
+
+.hidden {
+    display: none !important;
+}
 
 /* Responsive */
 @media (max-width: 1200px) {
-    .dashboard-layout { grid-template-columns: 1fr; }
-    .main-content { height: auto; }
+    .dashboard-layout {
+        grid-template-columns: 1fr;
+    }
+
+    .main-content {
+        height: auto;
+    }
 }
+
 @media (max-width: 768px) {
-    .charts-grid { grid-template-columns: 1fr; }
-    #test-reports-container { grid-template-columns: 1fr; }
+    .charts-grid {
+        grid-template-columns: 1fr;
+    }
+
+    #test-reports-container {
+        grid-template-columns: 1fr;
+    }
 }
+
 /* Students Needing Support Card Styling */
 #support-card {
     background-color: var(--bg-dark);
@@ -173,5 +348,6 @@ select:disabled { background-color: #2a2d37; cursor: not-allowed; }
 /* Ismein hum .topper-* classes ko reuse kar sakte hain, lekin percentage ka color alag hoga */
 .support-percentage {
     font-size: 0.9em;
-    color: var(--orange); /* Orange color for attention */
+    color: var(--orange);
+    /* Orange color for attention */
 }
