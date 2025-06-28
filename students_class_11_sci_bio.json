@@ -1,0 +1,20 @@
+[
+  {"student_id": "11SB01", "name": "Aditi Rao", "class": "11th Science Bio", "parents": {"father_name": "Srinivas Rao", "mother_name": "Padma Rao"}, "contact": {"phone": "9811001201"}},
+  {"student_id": "11SB02", "name": "Bharat Desai", "class": "11th Science Bio", "parents": {"father_name": "Nikhil Desai", "mother_name": "Arti Desai"}, "contact": {"phone": "9811001202"}},
+  {"student_id": "11SB03", "name": "Charu Bisht", "class": "11th Science Bio", "parents": {"father_name": "Madan Bisht", "mother_name": "Lila Bisht"}, "contact": {"phone": "9811001203"}},
+  {"student_id": "11SB04", "name": "Dhruv Joshi", "class": "11th Science Bio", "parents": {"father_name": "Manoj Joshi", "mother_name": "Priya Joshi"}, "contact": {"phone": "9811001204"}},
+  {"student_id": "11SB05", "name": "Ekta Kaur", "class": "11th Science Bio", "parents": {"father_name": "Jaspreet Singh", "mother_name": "Harleen Kaur"}, "contact": {"phone": "9811001205"}},
+  {"student_id": "11SB06", "name": "Farhan Sheikh", "class": "11th Science Bio", "parents": {"father_name": "Farooq Sheikh", "mother_name": "Zarina Sheikh"}, "contact": {"phone": "9811001206"}},
+  {"student_id": "11SB07", "name": "Gita Mehta", "class": "11th Science Bio", "parents": {"father_name": "Gaurav Mehta", "mother_name": "Shweta Mehta"}, "contact": {"phone": "9811001207"}},
+  {"student_id": "11SB08", "name": "Himanshu Naidu", "class": "11th Science Bio", "parents": {"father_name": "Krishna Naidu", "mother_name": "Geeta Naidu"}, "contact": {"phone": "9811001208"}},
+  {"student_id": "11SB09", "name": "Ira Patil", "class": "11th Science Bio", "parents": {"father_name": "Sandeep Patil", "mother_name": "Vaishali Patil"}, "contact": {"phone": "9811001209"}},
+  {"student_id": "11SB10", "name": "Jiya Shah", "class": "11th Science Bio", "parents": {"father_name": "Jignesh Shah", "mother_name": "Hetal Shah"}, "contact": {"phone": "9811001210"}},
+  {"student_id": "11SB11", "name": "Kabir Dubey", "class": "11th Science Bio", "parents": {"father_name": "Ritesh Dubey", "mother_name": "Archana Dubey"}, "contact": {"phone": "9811001211"}},
+  {"student_id": "11SB12", "name": "Leena Thakur", "class": "11th Science Bio", "parents": {"father_name": "Vikram Thakur", "mother_name": "Anjali Thakur"}, "contact": {"phone": "9811001212"}},
+  {"student_id": "11SB13", "name": "Mohit Roy", "class": "11th Science Bio", "parents": {"father_name": "Amit Roy", "mother_name": "Sumita Roy"}, "contact": {"phone": "9811001213"}},
+  {"student_id": "11SB14", "name": "Nidhi Goel", "class": "11th Science Bio", "parents": {"father_name": "Sumit Goel", "mother_name": "Neha Goel"}, "contact": {"phone": "9811001214"}},
+  {"student_id": "11SB15", "name": "Pranav Jadhav", "class": "11th Science Bio", "parents": {"father_name": "Ganesh Jadhav", "mother_name": "Savita Jadhav"}, "contact": {"phone": "9811001215"}},
+  {"student_id": "11SB16", "name": "Rashi Bose", "class": "11th Science Bio", "parents": {"father_name": "Debashish Bose", "mother_name": "Mitali Bose"}, "contact": {"phone": "9811001216"}},
+  {"student_id": "11SB17", "name": "Sahil Chawla", "class": "11th Science Bio", "parents": {"father_name": "Harish Chawla", "mother_name": "Meena Chawla"}, "contact": {"phone": "9811001217"}},
+  {"student_id": "11SB18", "name": "Tanya Kulkarni", "class": "11th Science Bio", "parents": {"father_name": "Prasad Kulkarni", "mother_name": "Medha Kulkarni"}, "contact": {"phone": "9811001218"}}
+]

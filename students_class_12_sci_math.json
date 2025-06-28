@@ -1,0 +1,22 @@
+[
+  {"student_id": "12SM01", "name": "Alok Kumar", "class": "12th Science Math", "parents": {"father_name": "Rajesh Kumar", "mother_name": "Sunita Kumar"}, "contact": {"phone": "9811001301"}},
+  {"student_id": "12SM02", "name": "Bindiya Sharma", "class": "12th Science Math", "parents": {"father_name": "Suresh Sharma", "mother_name": "Anita Sharma"}, "contact": {"phone": "9811001302"}},
+  {"student_id": "12SM03", "name": "Chandan Singh", "class": "12th Science Math", "parents": {"father_name": "Rakesh Singh", "mother_name": "Meena Singh"}, "contact": {"phone": "9811001303"}},
+  {"student_id": "12SM04", "name": "Deepa Gupta", "class": "12th Science Math", "parents": {"father_name": "Anil Gupta", "mother_name": "Geeta Gupta"}, "contact": {"phone": "9811001304"}},
+  {"student_id": "12SM05", "name": "Girish Patel", "class": "12th Science Math", "parents": {"father_name": "Manoj Patel", "mother_name": "Kiran Patel"}, "contact": {"phone": "9811001305"}},
+  {"student_id": "12SM06", "name": "Hina Verma", "class": "12th Science Math", "parents": {"father_name": "Vikas Verma", "mother_name": "Ritu Verma"}, "contact": {"phone": "9811001306"}},
+  {"student_id": "12SM07", "name": "Inder Joshi", "class": "12th Science Math", "parents": {"father_name": "Prakash Joshi", "mother_name": "Rekha Joshi"}, "contact": {"phone": "9811001307"}},
+  {"student_id": "12SM08", "name": "Jyoti Reddy", "class": "12th Science Math", "parents": {"father_name": "Anand Reddy", "mother_name": "Shanti Reddy"}, "contact": {"phone": "9811001308"}},
+  {"student_id": "12SM09", "name": "Kunal Jain", "class": "12th Science Math", "parents": {"father_name": "Sanjay Jain", "mother_name": "Pooja Jain"}, "contact": {"phone": "9811001309"}},
+  {"student_id": "12SM10", "name": "Lalit Mehra", "class": "12th Science Math", "parents": {"father_name": "Deepak Mehra", "mother_name": "Usha Mehra"}, "contact": {"phone": "9811001310"}},
+  {"student_id": "12SM11", "name": "Mehul Mishra", "class": "12th Science Math", "parents": {"father_name": "Ravi Mishra", "mother_name": "Seema Mishra"}, "contact": {"phone": "9811001311"}},
+  {"student_id": "12SM12", "name": "Nitin Chauhan", "class": "12th Science Math", "parents": {"father_name": "Ajay Chauhan", "mother_name": "Rani Chauhan"}, "contact": {"phone": "9811001312"}},
+  {"student_id": "12SM13", "name": "Pankaj Saxena", "class": "12th Science Math", "parents": {"father_name": "Dinesh Saxena", "mother_name": "Lata Saxena"}, "contact": {"phone": "9811001313"}},
+  {"student_id": "12SM14", "name": "Rina Yadav", "class": "12th Science Math", "parents": {"father_name": "Pawan Yadav", "mother_name": "Suman Yadav"}, "contact": {"phone": "9811001314"}},
+  {"student_id": "12SM15", "name": "Sachin Nair", "class": "12th Science Math", "parents": {"father_name": "Mahesh Nair", "mother_name": "Vidya Nair"}, "contact": {"phone": "9811001315"}},
+  {"student_id": "12SM16", "name": "Tina Tiwari", "class": "12th Science Math", "parents": {"father_name": "Harish Tiwari", "mother_name": "Savita Tiwari"}, "contact": {"phone": "9811001316"}},
+  {"student_id": "12SM17", "name": "Vipin Chaudhary", "class": "12th Science Math", "parents": {"father_name": "Girish Chaudhary", "mother_name": "Sarika Chaudhary"}, "contact": {"phone": "9811001317"}},
+  {"student_id": "12SM18", "name": "Zoya Agarwal", "class": "12th Science Math", "parents": {"father_name": "Ashish Agarwal", "mother_name": "Ritu Agarwal"}, "contact": {"phone": "9811001318"}},
+  {"student_id": "12SM19", "name": "Yuvraj Soni", "class": "12th Science Math", "parents": {"father_name": "Pradeep Soni", "mother_name": "Jyoti Soni"}, "contact": {"phone": "9811001319"}},
+  {"student_id": "12SM20", "name": "Waseem Khan", "class": "12th Science Math", "parents": {"father_name": "Imran Khan", "mother_name": "Fatima Khan"}, "contact": {"phone": "9811001320"}}
+]

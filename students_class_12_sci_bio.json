@@ -1,0 +1,19 @@
+[
+  {"student_id": "12SB01", "name": "Anjali Rao", "class": "12th Science Bio", "parents": {"father_name": "Gopal Rao", "mother_name": "Lakshmi Rao"}, "contact": {"phone": "9811001401"}},
+  {"student_id": "12SB02", "name": "Brijesh Desai", "class": "12th Science Bio", "parents": {"father_name": "Kamlesh Desai", "mother_name": "Meena Desai"}, "contact": {"phone": "9811001402"}},
+  {"student_id": "12SB03", "name": "Catherine Thomas", "class": "12th Science Bio", "parents": {"father_name": "John Thomas", "mother_name": "Mary Thomas"}, "contact": {"phone": "9811001403"}},
+  {"student_id": "12SB04", "name": "David Paul", "class": "12th Science Bio", "parents": {"father_name": "Daniel Paul", "mother_name": "Susan Paul"}, "contact": {"phone": "9811001404"}},
+  {"student_id": "12SB05", "name": "Farida Begum", "class": "12th Science Bio", "parents": {"father_name": "Aslam Begum", "mother_name": "Nadia Begum"}, "contact": {"phone": "9811001405"}},
+  {"student_id": "12SB06", "name": "Gauri Pant", "class": "12th Science Bio", "parents": {"father_name": "Mahesh Pant", "mother_name": "Lata Pant"}, "contact": {"phone": "9811001406"}},
+  {"student_id": "12SB07", "name": "Heena Qureshi", "class": "12th Science Bio", "parents": {"father_name": "Irfan Qureshi", "mother_name": "Salma Qureshi"}, "contact": {"phone": "9811001407"}},
+  {"student_id": "12SB08", "name": "Irfan Ali", "class": "12th Science Bio", "parents": {"father_name": "Zakir Ali", "mother_name": "Fatima Ali"}, "contact": {"phone": "9811001408"}},
+  {"student_id": "12SB09", "name": "Kavita Bisht", "class": "12th Science Bio", "parents": {"father_name": "Trilok Bisht", "mother_name": "Kamla Bisht"}, "contact": {"phone": "9811001409"}},
+  {"student_id": "12SB10", "name": "Lata Negi", "class": "12th Science Bio", "parents": {"father_name": "Rajendra Negi", "mother_name": "Shashi Negi"}, "contact": {"phone": "9811001410"}},
+  {"student_id": "12SB11", "name": "Mona Jha", "class": "12th Science Bio", "parents": {"father_name": "Manish Jha", "mother_name": "Sarita Jha"}, "contact": {"phone": "9811001411"}},
+  {"student_id": "12SB12", "name": "Nisha Rana", "class": "12th Science Bio", "parents": {"father_name": "Pawan Rana", "mother_name": "Geeta Rana"}, "contact": {"phone": "9811001412"}},
+  {"student_id": "12SB13", "name": "Priya Rawat", "class": "12th Science Bio", "parents": {"father_name": "Deepak Rawat", "mother_name": "Rekha Rawat"}, "contact": {"phone": "9811001413"}},
+  {"student_id": "12SB14", "name": "Rohan Bhatt", "class": "12th Science Bio", "parents": {"father_name": "Mohan Bhatt", "mother_name": "Deepa Bhatt"}, "contact": {"phone": "9811001414"}},
+  {"student_id": "12SB15", "name": "Suresh Solanki", "class": "12th Science Bio", "parents": {"father_name": "Girish Solanki", "mother_name": "Heena Solanki"}, "contact": {"phone": "9811001415"}},
+  {"student_id": "12SB16", "name": "Tanuja Kashyap", "class": "12th Science Bio", "parents": {"father_name": "Lokesh Kashyap", "mother_name": "Jyoti Kashyap"}, "contact": {"phone": "9811001416"}},
+  {"student_id": "12SB17", "name": "Usha Gusain", "class": "12th Science Bio", "parents": {"father_name": "Jagmohan Gusain", "mother_name": "Sushila Gusain"}, "contact": {"phone": "9811001417"}}
+]

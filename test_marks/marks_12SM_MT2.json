@@ -1,0 +1,29 @@
+{
+  "testInfo": {
+    "testId": "12SM_MT2",
+    "subjects": ["Physics", "Chemistry", "Math", "English", "Computer Science"],
+    "maxmarks": [50, 50, 50, 50, 50]
+  },
+  "results": [
+    {"studentId": "12SM01", "scores": {"Physics": 45, "Chemistry": 42, "Math": 47, "English": 43, "Computer Science": 48}},
+    {"studentId": "12SM02", "scores": {"Physics": 39, "Chemistry": 38, "Math": 36, "English": 41, "Computer Science": 40}},
+    {"studentId": "12SM03", "scores": {"Physics": 48, "Chemistry": 49, "Math": 48, "English": 47, "Computer Science": 49}},
+    {"studentId": "12SM04", "scores": {"Physics": 41, "Chemistry": 43, "Math": 42, "English": 44, "Computer Science": 45}},
+    {"studentId": "12SM05", "scores": {"Physics": 34, "Chemistry": 31, "Math": 33, "English": 32, "Computer Science": 35}},
+    {"studentId": "12SM06", "scores": {"Physics": 42, "Chemistry": 46, "Math": 45, "English": 43, "Computer Science": 47}},
+    {"studentId": "12SM07", "scores": {"Physics": 40, "Chemistry": 39, "Math": 38, "English": 37, "Computer Science": 42}},
+    {"studentId": "12SM08", "scores": {"Physics": 47, "Chemistry": 48, "Math": 49, "English": 48, "Computer Science": 50}},
+    {"studentId": "12SM09", "scores": {"Physics": 35, "Chemistry": 32, "Math": 34, "English": 33, "Computer Science": 36}},
+    {"studentId": "12SM10", "scores": {"Physics": 43, "Chemistry": 41, "Math": 44, "English": 46, "Computer Science": 42}},
+    {"studentId": "12SM11", "scores": {"Physics": 38, "Chemistry": 42, "Math": 39, "English": 41, "Computer Science": 43}},
+    {"studentId": "12SM12", "scores": {"Physics": 46, "Chemistry": 44, "Math": 43, "English": 47, "Computer Science": 45}},
+    {"studentId": "12SM13", "scores": {"Physics": 36, "Chemistry": 34, "Math": 31, "English": 35, "Computer Science": 37}},
+    {"studentId": "12SM14", "scores": {"Physics": 47, "Chemistry": 48, "Math": 46, "English": 45, "Computer Science": 49}},
+    {"studentId": "12SM15", "scores": {"Physics": 31, "Chemistry": 29, "Math": 30, "English": 32, "Computer Science": 34}},
+    {"studentId": "12SM16", "scores": {"Physics": 44, "Chemistry": 43, "Math": 46, "English": 42, "Computer Science": 44}},
+    {"studentId": "12SM17", "scores": {"Physics": 37, "Chemistry": 40, "Math": 38, "English": 39, "Computer Science": 41}},
+    {"studentId": "12SM18", "scores": {"Physics": 45, "Chemistry": 47, "Math": 44, "English": 46, "Computer Science": 43}},
+    {"studentId": "12SM19", "scores": {"Physics": 39, "Chemistry": 38, "Math": 37, "English": 40, "Computer Science": 39}},
+    {"studentId": "12SM20", "scores": {"Physics": 49, "Chemistry": 48, "Math": 47, "English": 47, "Computer Science": 48}}
+  ]
+}

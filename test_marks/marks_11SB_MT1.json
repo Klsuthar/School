@@ -1,0 +1,27 @@
+{
+  "testInfo": {
+    "testId": "11SB_MT1",
+    "subjects": ["Physics", "Chemistry", "Biology", "English", "Physical Education"],
+    "maxmarks": [50, 50, 50, 50, 50]
+  },
+  "results": [
+    {"studentId": "11SB01", "scores": {"Physics": 42, "Chemistry": 41, "Biology": 45, "English": 43, "Physical Education": 48}},
+    {"studentId": "11SB02", "scores": {"Physics": 37, "Chemistry": 35, "Biology": 38, "English": 39, "Physical Education": 41}},
+    {"studentId": "11SB03", "scores": {"Physics": 46, "Chemistry": 47, "Biology": 48, "English": 45, "Physical Education": 49}},
+    {"studentId": "11SB04", "scores": {"Physics": 39, "Chemistry": 40, "Biology": 41, "English": 42, "Physical Education": 43}},
+    {"studentId": "11SB05", "scores": {"Physics": 31, "Chemistry": 29, "Biology": 33, "English": 30, "Physical Education": 35}},
+    {"studentId": "11SB06", "scores": {"Physics": 43, "Chemistry": 44, "Biology": 42, "English": 41, "Physical Education": 47}},
+    {"studentId": "11SB07", "scores": {"Physics": 38, "Chemistry": 36, "Biology": 39, "English": 37, "Physical Education": 40}},
+    {"studentId": "11SB08", "scores": {"Physics": 47, "Chemistry": 48, "Biology": 46, "English": 45, "Physical Education": 49}},
+    {"studentId": "11SB09", "scores": {"Physics": 33, "Chemistry": 30, "Biology": 32, "English": 31, "Physical Education": 34}},
+    {"studentId": "11SB10", "scores": {"Physics": 41, "Chemistry": 43, "Biology": 40, "English": 44, "Physical Education": 42}},
+    {"studentId": "11SB11", "scores": {"Physics": 39, "Chemistry": 38, "Biology": 41, "English": 37, "Physical Education": 43}},
+    {"studentId": "11SB12", "scores": {"Physics": 44, "Chemistry": 42, "Biology": 43, "English": 45, "Physical Education": 46}},
+    {"studentId": "11SB13", "scores": {"Physics": 34, "Chemistry": 32, "Biology": 31, "English": 33, "Physical Education": 36}},
+    {"studentId": "11SB14", "scores": {"Physics": 46, "Chemistry": 45, "Biology": 47, "English": 44, "Physical Education": 48}},
+    {"studentId": "11SB15", "scores": {"Physics": 28, "Chemistry": 29, "Biology": 27, "English": 30, "Physical Education": 32}},
+    {"studentId": "11SB16", "scores": {"Physics": 42, "Chemistry": 43, "Biology": 44, "English": 41, "Physical Education": 45}},
+    {"studentId": "11SB17", "scores": {"Physics": 36, "Chemistry": 37, "Biology": 35, "English": 38, "Physical Education": 39}},
+    {"studentId": "11SB18", "scores": {"Physics": 45, "Chemistry": 44, "Biology": 46, "English": 43, "Physical Education": 47}}
+  ]
+}
