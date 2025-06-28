@@ -14,7 +14,7 @@ document.addEventListener('DOMContentLoaded', () => {
     const welcomeMessage = document.getElementById('welcome-message');
     const tabs = document.querySelectorAll('.tab-link');
     const tabContents = document.querySelectorAll('.tab-content');
-    
+
     // Naye elements
     const supportCard = document.getElementById('support-card');
     const supportList = document.getElementById('support-list');
@@ -29,7 +29,7 @@ document.addEventListener('DOMContentLoaded', () => {
         Chart.defaults.borderColor = '#3b4261';
         await loadClasses();
     }
-    
+
     async function loadClasses() {
         try {
             const response = await fetch('classes.json');
@@ -49,7 +49,7 @@ document.addEventListener('DOMContentLoaded', () => {
         supportCard.classList.remove('hidden');
         topPerformersLoader.classList.remove('hidden');
         supportLoader.classList.remove('hidden');
-        
+
         try {
             const testsDirectory = await fetch('tests-directory.json').then(res => res.json());
             const classTests = testsDirectory.filter(test => test.class === className);
@@ -59,13 +59,13 @@ document.addEventListener('DOMContentLoaded', () => {
                 calculateTopPerformers(classTests, studentList),
                 calculateStudentsNeedingSupport(classTests, studentList)
             ]);
-            
+
             if (topPerformers && topPerformers.length > 0) {
                 renderTopPerformers(topPerformers);
             } else {
                 topPerformersList.innerHTML = '<li>No test data available.</li>';
             }
-            
+
             if (supportStudents && supportStudents.length > 0) {
                 renderSupportStudents(supportStudents);
             } else {
@@ -93,7 +93,7 @@ document.addEventListener('DOMContentLoaded', () => {
             </li>
         `).join('');
     }
-    
+
     function renderSupportStudents(supportStudents) {
         supportList.innerHTML = supportStudents.map((student, index) => `
             <li class="topper-item">
@@ -111,7 +111,7 @@ document.addEventListener('DOMContentLoaded', () => {
         if (!studentId || !studentClass) return;
         studentContentArea.classList.remove('hidden');
         welcomeMessage.classList.add('hidden');
-        
+
         try {
             const testsDirectory = await fetch('tests-directory.json').then(res => res.json());
             const studentTestsMeta = testsDirectory.filter(test => test.class === studentClass);
@@ -122,7 +122,7 @@ document.addEventListener('DOMContentLoaded', () => {
             processAndStorePerformanceData(studentId, studentTestsMeta, allMarksData);
         } catch (error) { console.error("Error loading performance data:", error); }
     }
-    
+
     function processAndStorePerformanceData(studentId, studentTestsMeta, allMarksData) {
         studentPerformanceData = [];
         allMarksData.forEach((marksData, index) => {
@@ -140,7 +140,7 @@ document.addEventListener('DOMContentLoaded', () => {
         populateTestFilter(studentPerformanceData);
         renderFilteredPerformance("All Tests");
     }
-    
+
     function renderFilteredPerformance(filterType) {
         const filteredData = filterType === "All Tests" ? studentPerformanceData : studentPerformanceData.filter(test => test.testType === filterType);
         if (filteredData.length === 0) { return; }
@@ -228,7 +228,29 @@ document.addEventListener('DOMContentLoaded', () => {
     function getPercentageClass(p) { return p >= 75 ? 'percentage-good' : p >= 50 ? 'percentage-ok' : 'percentage-bad'; }
 
     function displayStudentDetailsHeader(student) {
-        studentDetailsHeader.innerHTML = `<div class="detail-item"><strong>Student Name</strong><span>${student.name}</span></div><div class="detail-item"><strong>Student ID</strong><span>${student.student_id}</span></div><div class="detail-item"><strong>Class</strong><span>${student.class}</span></div>`;
+        studentDetailsHeader.innerHTML = `
+        <div class="header-detail-item">
+            <span class="icon">👤</span>
+            <div class="text-content">
+                <strong>Student Name</strong>
+                <span>${student.name}</span>
+            </div>
+        </div>
+        <div class="header-detail-item">
+            <span class="icon">🆔</span>
+            <div class="text-content">
+                <strong>Student ID</strong>
+                <span>${student.student_id}</span>
+            </div>
+        </div>
+        <div class="header-detail-item">
+            <span class="icon">🏫</span>
+            <div class="text-content">
+                <strong>Class</strong>
+                <span>${student.class}</span>
+            </div>
+        </div>
+    `;
     }
 
     async function loadStudentList(classFile) {
@@ -248,7 +270,7 @@ document.addEventListener('DOMContentLoaded', () => {
             supportCard.classList.add('hidden');
         }
     }
-    
+
     // --- EVENT LISTENERS ---
     tabs.forEach(tab => {
         tab.addEventListener('click', () => {
@@ -286,7 +308,7 @@ document.addEventListener('DOMContentLoaded', () => {
         displayStudentDetailsHeader(student);
         handleStudentSelection(student.student_id, student.class);
     });
-    
+
     testTypeFilter.addEventListener('change', (event) => renderFilteredPerformance(event.target.value));
 
     findBtn.addEventListener('click', async () => {
@@ -294,7 +316,7 @@ document.addEventListener('DOMContentLoaded', () => {
         if (!studentId) return;
         const classInfo = allClassInfo.find(cls => studentId.startsWith(cls.idPrefix));
         if (!classInfo) { alert("Invalid Student ID format."); return; }
-        if(classSelector.value !== classInfo.fileName){
+        if (classSelector.value !== classInfo.fileName) {
             await loadStudentList(classInfo.fileName);
             classSelector.value = classInfo.fileName;
         }
